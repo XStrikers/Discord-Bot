@@ -20,8 +20,8 @@ module.exports = {
         let chanceToLose = 0.1667;
         const cooldownTime = 10 * 60 * 1000;
 
-        if (cooldowns.has(userId)) {
-            const lastGameTime = cooldowns.get(userId);
+        if (cooldowns.roulette.has(userId)) {
+            const lastGameTime = cooldowns.roulette.get(userId);
             const now = Date.now();
             if (now - lastGameTime < cooldownTime) {
                 const remainingMinutes = Math.ceil((cooldownTime - (now - lastGameTime)) / 1000 / 60);
@@ -33,7 +33,7 @@ module.exports = {
             }
         }
 
-        cooldowns.set(userId, Date.now());
+        cooldowns.roulette.set(userId, Date.now());
         
         const [rows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
         if (rows.length === 0 || rows[0].coins < bet) {
