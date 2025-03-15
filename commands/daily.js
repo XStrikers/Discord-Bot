@@ -12,7 +12,11 @@ module.exports = {
         const userId = interaction.user.id;
         const username = interaction.user.username;
         const currentDate = new Date();
-        const today = currentDate.toISOString().split('T')[0];
+        const today = currentDate.toISOString().slice(0, 19).replace("T", " ");
+
+        const lastDaily = rows[0].last_daily ? new Date(rows[0].last_daily) : null;
+        const lastDailyDate = lastDaily && !isNaN(lastDaily.getTime()) ? lastDaily.toISOString().split('T')[0] : null;
+
     
         try {
             // Prüfe, ob der Benutzer bereits in der Datenbank ist
