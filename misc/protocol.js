@@ -1,7 +1,7 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 const express = require("express");
 
-const TOKEN = process.env.BOT_TOKEN;
+const TOKEN = process.env.TOKEN;
 const CHANNEL_ID = process.env.CHANNEL_ID;
 
 // Starte den Express-Server
