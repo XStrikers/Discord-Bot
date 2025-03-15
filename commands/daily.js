@@ -1,0 +1,98 @@
+const { SlashCommandBuilder, EmbedBuilder, MessageFlags  } = require('discord.js');
+const { pool, getCoins } = require('../economy');
+const cooldowns = require('../cooldowns');
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('daily')
+        .setDescription('Hole dir deine tägliche XS-Coins ab.'),
+
+
+    async execute(interaction) {
+        const userId = interaction.user.id;
+        const username = interaction.user.username;
+        const currentDate = new Date();
+        const today = currentDate.toISOString().split('T')[0];
+    
+        try {
+            // Prüfe, ob der Benutzer bereits in der Datenbank ist
+            const [rows] = await pool.execute('SELECT last_daily, coins, current_xp, level, xp_needed FROM discord_user WHERE discord_id = ?', [userId]);
+    
+            let newCoins = Math.floor(Math.random() * (150 - 100 + 1)) + 100;
+            let earnedXP = Math.floor(Math.random() * 51) + 50;
+    
+            if (rows.length === 0) {
+                // Benutzer existiert nicht -> Erstelle neuen Eintrag mit zufälligen Coins und XP
+                const displayName = interaction.user.displayName;
+
+                await pool.execute(
+                    'INSERT INTO discord_user (discord_id, username, display_name, coins, current_xp, xp_needed, level, last_daily, last_work) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
+                    [userId, username, displayName, newCoins, earnedXP, 120, 0, currentDate, null]
+                );
+                    
+                const embed = new EmbedBuilder()
+                    .setTitle('<:xscoins:1346851584985792513> Beutel erhalten')
+                    .setDescription(`Du hast gerade einen **Beutel**, **${newCoins}** <:xscoins:1346851584985792513> und **${earnedXP} XP** erhalten!\nNutze \`/adventure\`, um noch mehr <:xscoins:1346851584985792513> zu sammeln.`)
+                    .setColor(0x26d926)
+
+                return interaction.reply({ embeds: [embed] });
+            }
+    
+            const lastDaily = rows[0].last_daily ? new Date(rows[0].last_daily) : null;
+            const lastDailyDate = lastDaily ? lastDaily.toISOString().split('T')[0] : null;
+    
+            // Falls der User heute schon sein Daily geholt hat
+            if (lastDailyDate === today) {
+                const embed = new EmbedBuilder()
+                    .setTitle('<:xscoins:1346851584985792513> bereits eingesammelt')
+                    .setDescription('Deine tägliche <:xscoins:1346851584985792513> hast du bereits eingesammelt.\nMorgen kannst du neue <:xscoins:1346851584985792513> einsammeln. Gebe den Befehl \`/adventure\` ein, um weitere <:xscoins:1346851584985792513> zu sammeln.')
+                    .setColor(0xd92626)
+
+                    const { MessageFlags } = require('discord.js');
+
+                    return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
+            }
+    
+            newCoins = rows[0].coins + newCoins;
+            let currentXP = rows[0].current_xp + earnedXP;
+            let level = rows[0].level;
+            let xpNeeded = rows[0].xp_needed;
+
+            // Level-Up-Logik
+            while (currentXP >= xpNeeded) {
+                level++; // Level erhöhen
+                let overflowXP = currentXP - xpNeeded;  // Berechne überschüssige XP nach dem Level-Up
+                xpNeeded = Math.floor(xpNeeded * 1.5); // XP für das nächste Level erhöhen
+                currentXP = overflowXP; // Überschüssige XP bleiben
+            }
+    
+            // Datenbank aktualisieren
+            await pool.execute('UPDATE discord_user SET coins = ?, current_xp = ?, level = ?, xp_needed = ?, last_daily = ? WHERE discord_id = ?', [newCoins, currentXP, level, xpNeeded, currentDate, userId]);
+    
+            const embed = new EmbedBuilder()
+                .setTitle('<:xscoins:1346851584985792513> eingesammelt')
+                .setDescription(`Du hast gerade **${newCoins - rows[0].coins}** <:xscoins:1346851584985792513> und **${earnedXP} XP** eingesammelt.\nIn deinem XS-Coins Beutel befinden sich **${newCoins}** <:xscoins:1346851584985792513>`)
+                .setColor(0x26d926)
+
+            // Wenn der Benutzer ein Level-Up erreicht hat, sende eine Nachricht in den definierten Level-Up-Channel
+            if (level > rows[0].level) {
+                const channel = await client.channels.fetch(process.env.LEVEL_UP_CHANNEL);
+                const levelUpEmbed = new EmbedBuilder()
+                    .setTitle('<:epic:1346851964389953546> Level Up')
+                    .setDescription(`**${interaction.user.displayName}**, du hast das **Level ${level}** erreicht <:epic:1346851964389953546>\nMach weiter so und stürze dich ins nächste Abenteuer.`)
+                    .setColor(0x26d926);
+
+                await channel.send({ embeds: [levelUpEmbed] });
+            }
+                return interaction.reply({ embeds: [embed] });
+        } catch (error) {
+            console.error(error);
+            const embed = new EmbedBuilder()
+                .setTitle(':x: Fehler')
+                .setDescription(`Fehler beim Abrufen der Coins.`)
+                .setColor(0xd92626)
+
+            await interaction.reply({ embeds: [embed] });
+        }
+    }
+}
