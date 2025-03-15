@@ -1,22 +1,7 @@
 const { Client, GatewayIntentBits } = require("discord.js");
-const express = require("express");
 
 const TOKEN = process.env.TOKEN;
 const CHANNEL_ID = process.env.CHANNEL_ID;
-
-// Starte den Express-Server
-const app = express();
-const PORT = process.env.PORT || 10001;
-
-app.get("/", (req, res) => {
-    res.send("🤖 Bot läuft noch und ist aktiv.");
-});
-
-app.listen(PORT, () => {
-    console.log(`✅ KeepAlive-Server läuft auf Port ${PORT}`);
-}).on('error', (err) => {
-    console.error("❌ Fehler beim Starten des KeepAlive-Servers:", err.message);
-});
 
 // Discord Bot Client
 const client = new Client({
