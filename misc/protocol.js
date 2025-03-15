@@ -1,16 +1,42 @@
-const express = require('express');
+const { Client, GatewayIntentBits } = require("discord.js");
+const express = require("express");
 
+const TOKEN = process.env.BOT_TOKEN;
+const CHANNEL_ID = process.env.CHANNEL_ID;
+
+// Starte den Express-Server
 const app = express();
 const PORT = process.env.PORT || 1000;
 
-// Eine einfache Route, die "OK" zurückgibt
-app.get('/', (req, res) => {
-    res.send(':robot: Bot läuft noch.');
+app.get("/", (req, res) => {
+    res.send("🤖 Bot läuft noch und ist aktiv.");
 });
 
-// Starte den Server
 app.listen(PORT, () => {
-    console.log(`KeepAlive-Server läuft auf Port ${PORT}`);
+    console.log(`✅ KeepAlive-Server läuft auf Port ${PORT}`);
 });
 
-module.exports = app;
+// Discord Bot Client
+const client = new Client({
+    intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages, GatewayIntentBits.MessageContent]
+});
+
+client.once("ready", () => {
+    console.log(`✅ Bot ist bereit als ${client.user.tag}`);
+
+    // Alle 30 Minuten eine Nachricht in den angegebenen Channel senden
+    setInterval(async () => {
+        try {
+            const channel = await client.channels.fetch(CHANNEL_ID);
+            if (channel) {
+                await channel.send("Ich bin noch online! ✅");
+                console.log("✅ Keep-Alive Nachricht gesendet");
+            }
+        } catch (error) {
+            console.error("❌ Fehler beim Senden der Keep-Alive Nachricht:", error);
+        }
+    }, 30 * 60 * 1000); // 30 Minuten
+});
+
+// Bot einloggen
+client.login(TOKEN);
