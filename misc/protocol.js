@@ -6,7 +6,7 @@ const CHANNEL_ID = process.env.CHANNEL_ID;
 
 // Starte den Express-Server
 const app = express();
-const PORT = process.env.PORT || 1000;
+const PORT = process.env.PORT || 10001;
 
 app.get("/", (req, res) => {
     res.send("🤖 Bot läuft noch und ist aktiv.");
