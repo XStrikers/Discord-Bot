@@ -5,6 +5,14 @@ const path = require('path');
 const cooldowns = require('./cooldowns');
 const port = process.env.PORT; || 3000;
 
+app.get('/', (req, res) => {
+  res.send('Bot läuft!');
+});
+
+app.listen(port, () => {
+  console.log(`Server läuft auf Port ${port}`);
+});
+
 const client = new Client({
     intents: [
         GatewayIntentBits.Guilds,
