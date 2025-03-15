@@ -27,8 +27,8 @@ module.exports = {
         }
 
         const now = Date.now();
-        if (cooldowns.has(userId)) {
-            const lastDiceTime = cooldowns.get(userId);
+        if (cooldowns.dice.has(userId)) {
+            const lastDiceTime = cooldowns.dice.get(userId);
             if (now - lastDiceTime < cooldownTime) {
                 const remainingMinutes = Math.ceil((cooldownTime - (now - lastDiceTime)) / 1000 / 60);
                 const embed = new EmbedBuilder()
@@ -40,7 +40,7 @@ module.exports = {
             }
         }
 
-        cooldowns.set(userId, now);
+        .dice.set(userId, now);
 
         const userRoll1 = Math.floor(Math.random() * 6) + 1;
         const userRoll2 = Math.floor(Math.random() * 6) + 1;
