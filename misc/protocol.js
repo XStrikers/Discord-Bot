@@ -14,6 +14,8 @@ app.get("/", (req, res) => {
 
 app.listen(PORT, () => {
     console.log(`✅ KeepAlive-Server läuft auf Port ${PORT}`);
+}).on('error', (err) => {
+    console.error("❌ Fehler beim Starten des KeepAlive-Servers:", err.message);
 });
 
 // Discord Bot Client
