@@ -40,7 +40,7 @@ module.exports = {
             }
         }
 
-        .dice.set(userId, now);
+        cooldowns.dice.set(userId, now);
 
         const userRoll1 = Math.floor(Math.random() * 6) + 1;
         const userRoll2 = Math.floor(Math.random() * 6) + 1;
