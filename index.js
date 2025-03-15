@@ -3,6 +3,17 @@ const { Client, GatewayIntentBits, Collection, REST, Routes } = require('discord
 const fs = require('fs');
 const path = require('path');
 const cooldowns = require('./cooldowns');
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 3000;
+
+app.get('/', (req, res) => {
+  res.send('Bot läuft!');
+});
+
+app.listen(port, () => {
+  console.log(`Server läuft auf Port ${port}`);
+});
 
 const client = new Client({
     intents: [
