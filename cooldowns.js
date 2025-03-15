@@ -1,6 +1,4 @@
-const cooldowns = {
+module.exports = {
     dice: new Map(),
     roulette: new Map()
 };
-
-module.exports = cooldowns;
