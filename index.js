@@ -3,7 +3,7 @@ const { Client, GatewayIntentBits, Collection, REST, Routes } = require('discord
 const fs = require('fs');
 const path = require('path');
 const cooldowns = require('./cooldowns');
-const port = process.env.PORT; || 3000;
+const port = process.env.PORT || 3000;
 
 app.get('/', (req, res) => {
   res.send('Bot läuft!');
