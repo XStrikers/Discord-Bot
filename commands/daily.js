@@ -12,19 +12,23 @@ module.exports = {
         const userId = interaction.user.id;
         const username = interaction.user.username;
         const currentDate = new Date();
-        const today = currentDate.toISOString().slice(0, 19).replace("T", " ");
-
-        const lastDaily = rows[0].last_daily ? new Date(rows[0].last_daily) : null;
-        const lastDailyDate = lastDaily && !isNaN(lastDaily.getTime()) ? lastDaily.toISOString().split('T')[0] : null;
-
+        const today = currentDate.toISOString().split('T')[0];
     
         try {
             // Prüfe, ob der Benutzer bereits in der Datenbank ist
             const [rows] = await pool.execute('SELECT last_daily, coins, current_xp, level, xp_needed FROM discord_user WHERE discord_id = ?', [userId]);
-    
+
+            let lastDaily = null;
+            let lastDailyDate = null;
+
+            if (rows.length > 0 && rows[0].last_daily) {
+                lastDaily = new Date(rows[0].last_daily);
+                lastDailyDate = !isNaN(lastDaily.getTime()) ? lastDaily.toISOString().split('T')[0] : null;
+            }
+            
             let newCoins = Math.floor(Math.random() * (150 - 100 + 1)) + 100;
             let earnedXP = Math.floor(Math.random() * 51) + 50;
-    
+            
             if (rows.length === 0) {
                 // Benutzer existiert nicht -> Erstelle neuen Eintrag mit zufälligen Coins und XP
                 const displayName = interaction.user.displayName;
@@ -41,9 +45,6 @@ module.exports = {
 
                 return interaction.reply({ embeds: [embed] });
             }
-    
-            const lastDaily = rows[0].last_daily ? new Date(rows[0].last_daily) : null;
-            const lastDailyDate = lastDaily ? lastDaily.toISOString().split('T')[0] : null;
     
             // Falls der User heute schon sein Daily geholt hat
             if (lastDailyDate === today) {
