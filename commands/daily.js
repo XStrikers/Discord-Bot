@@ -32,7 +32,7 @@ module.exports = {
                     
                 const embed = new EmbedBuilder()
                     .setTitle('<:xscoins:1346851584985792513> Beutel erhalten')
-                    .setDescription(`Du hast gerade einen **Beutel**, **${newCoins}** <:xscoins:1346851584985792513> und **${earnedXP} XP** erhalten!\nNutze \`/adventure\`, um noch mehr <:xscoins:1346851584985792513> zu sammeln.`)
+                    .setDescription(`Du hast gerade einen **Beutel**, **${newCoins}** <:xscoins:1346851584985792513> und **${earnedXP} XP** erhalten!\nNutze \`/work\`, um noch mehr <:xscoins:1346851584985792513> zu sammeln.`)
                     .setColor(0x26d926)
 
                 return interaction.reply({ embeds: [embed] });
@@ -45,7 +45,7 @@ module.exports = {
             if (lastDailyDate === today) {
                 const embed = new EmbedBuilder()
                     .setTitle('<:xscoins:1346851584985792513> bereits eingesammelt')
-                    .setDescription('Deine tägliche <:xscoins:1346851584985792513> hast du bereits eingesammelt.\nMorgen kannst du neue <:xscoins:1346851584985792513> einsammeln. Gebe den Befehl \`/adventure\` ein, um weitere <:xscoins:1346851584985792513> zu sammeln.')
+                    .setDescription('Deine tägliche <:xscoins:1346851584985792513> hast du bereits eingesammelt.\nMorgen kannst du neue <:xscoins:1346851584985792513> einsammeln. Gebe den Befehl \`/work\` ein, um weitere <:xscoins:1346851584985792513> zu sammeln.')
                     .setColor(0xd92626)
 
                     const { MessageFlags } = require('discord.js');
