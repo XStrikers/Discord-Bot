@@ -6,15 +6,19 @@ const path = require('path');
 const cooldowns = require('./cooldowns');
 const express = require('express');
 const app = express();
-const port = process.env.PORT || 10000;
+const port = process.env.PORT;
 
-app.get('/', (req, res) => {
-  res.send('Bot läuft!');
-});
+if (port) {  // Server nur starten, wenn PORT existiert
+    app.get('/', (req, res) => {
+        res.send('Bot läuft!');
+    });
 
-app.listen(port, () => {
-  console.log(`🌐 Server läuft auf Port ${port}`);
-});
+    app.listen(port, () => {
+        console.log(`🌐 Server läuft auf Port ${port}`);
+    });
+} else {
+    console.log("⚠️ Kein Port gesetzt – Express-Server wird nicht gestartet.");
+}
 
 const client = new Client({
     intents: [
