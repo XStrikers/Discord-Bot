@@ -13,7 +13,7 @@ app.get('/', (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server läuft auf Port ${port}`);
+  console.log(`🌐 Server läuft auf Port ${port}`);
 });
 
 const client = new Client({
