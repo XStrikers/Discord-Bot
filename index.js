@@ -73,7 +73,7 @@ client.on('interactionCreate', async interaction => {
     if (!command) return;
 
     try {
-        await command.execute(interaction);
+        await command.execute(interaction, client);
     } catch (error) {
         console.error('❌ Fehler bei Befehl:', error);
         await interaction.reply({ content: 'Es ist ein Fehler aufgetreten.', flags: 64 });
