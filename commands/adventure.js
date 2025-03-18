@@ -7,7 +7,7 @@ module.exports = {
         .setName('adventure')
         .setDescription('Stürze dich für eine Stunde ins Abenteuer und sichere dir damit XS-Coins.'),
 
-    async execute(interaction) {
+    async execute(interaction, client) {
         const userId = interaction.user.id;
         const currentDate = new Date();
 
