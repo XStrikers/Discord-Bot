@@ -97,7 +97,7 @@ module.exports = {
                 .setDescription(`Fehler beim Abrufen der Coins.`)
                 .setColor(0xd92626)
 
-            await interaction.reply({ embeds: [embed] });
+            await interaction.reply({ embeds: [embed], flags: 64 });
         }
     }
 }
