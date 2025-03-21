@@ -1,14 +1,17 @@
-uche require('dotenv').config();
-require('./misc/protocol');
-const { Client, GatewayIntentBits, Collection, REST, Routes } = require('discord.js');
-const fs = require('fs');
-const path = require('path');
-const cooldowns = require('./cooldowns');
-const express = require('express');
+import 'dotenv/config';
+import './misc/protocol.js';
+import { Client, GatewayIntentBits, Collection, REST, Routes } from 'discord.js';
+import { readdirSync } from 'fs';
+import { join, dirname } from 'path';
+import { fileURLToPath } from 'url';
+import express from 'express';
+import cooldowns from './cooldowns.js';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
 const port = process.env.PORT;
 
-if (port) {  // Server nur starten, wenn PORT existiert
+if (port) {
     app.get('/', (req, res) => {
         res.send('Bot läuft!');
     });
@@ -32,25 +35,20 @@ const client = new Client({
 
 // Lade die GUILD_ID aus der .env-Datei
 const guildId = process.env.GUILD_ID
-
-// Lade alle Befehle
 client.commands = new Collection();
-const commandFiles = fs.readdirSync(path.join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
+const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
-    const command = require(`./commands/${file}`);
+    const { default: command } = await import(`./commands/${file}`);
     client.commands.set(command.data.name, command);
 }
 
-// Registrierung der Slash-Befehle bei Discord
 const registerCommands = async () => {
     try {
         const commands = client.commands.map(command => command.data.toJSON());
-        
         const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
         
         console.log('🚀 Starte die Befehlsregistrierung...');
-
         await rest.put(Routes.applicationGuildCommands(client.user.id, guildId), {
             body: commands,
         });
@@ -68,15 +66,12 @@ client.once('ready', () => {
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
-    
     const command = client.commands.get(interaction.commandName);
     if (!command) return;
 
     try {
         await interaction.deferReply();
-        
         await command.execute(interaction, client);
-
         await interaction.editReply('Befehl ausgeführt!');
     } catch (error) {
         console.error('❌ Fehler bei Befehl:', error);
