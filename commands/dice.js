@@ -2,7 +2,7 @@ import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 import { pool, getCoins } from '../economy';
 import cooldowns from '../cooldowns';
 
-export default = {
+export default {
     data: new SlashCommandBuilder()
         .setName('dice')
         .setDescription('Würfel, um deine XS-Coins zu vermehren.')
