@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, EmbedBuilder, MessageFlags  } from 'discord.js';
 import { pool, getCoins } from '../economy.js';
-import cooldowns = from '../cooldowns.js';
+import cooldowns from '../cooldowns.js';
 
 export default {
     data: new SlashCommandBuilder()
@@ -52,8 +52,6 @@ export default {
                     .setTitle('<:xscoins:1346851584985792513> bereits eingesammelt')
                     .setDescription('Deine tägliche <:xscoins:1346851584985792513> hast du bereits eingesammelt.\nMorgen kannst du neue <:xscoins:1346851584985792513> einsammeln. Gebe den Befehl \`/adventure\` ein, um weitere <:xscoins:1346851584985792513> zu sammeln.')
                     .setColor(0xd92626)
-
-                    const { MessageFlags } = import('discord.js');
 
                     return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
             }
