@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 import { getCoins } = from '../economy';
 
-export default = {
+export default {
     data: new SlashCommandBuilder()
         .setName('coins')
         .setDescription('Zeigt deine Coins an.'),
