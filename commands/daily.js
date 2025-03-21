@@ -97,6 +97,8 @@ module.exports = {
                 .setDescription(`Fehler beim Abrufen der Coins.`)
                 .setColor(0xd92626)
 
+            const { MessageFlags } = require('discord.js');
+
             return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
         }
     }
