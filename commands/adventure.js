@@ -1,8 +1,8 @@
-ucheconst { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require('discord.js');
-const { pool, getCoins } = require('../economy');
-const cooldowns = require('../cooldowns');
+import { SlashCommandBuilder, EmbedBuilder, MessageFlags } from 'discord.js';
+import { pool, getCoins } from '../economy';
+import cooldowns from '../cooldowns';
 
-module.exports = {
+export default = {
     data: new SlashCommandBuilder()
         .setName('adventure')
         .setDescription('Stürze dich für eine Stunde ins Abenteuer und sichere dir damit XS-Coins.'),
@@ -70,7 +70,6 @@ module.exports = {
                 }
             }
 
-        // Neues Abenteuer starten
             await pool.execute('UPDATE discord_user SET last_work = ? WHERE discord_id = ?', [currentDate, userId]);
 
             const embed = new EmbedBuilder()
