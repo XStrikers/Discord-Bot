@@ -2,7 +2,7 @@ import { SlashCommandBuilder, EmbedBuilder, MessageFlags  } from 'discord.js';
 import { pool, getCoins } from '../economy';
 import cooldowns = from '../cooldowns';
 
-export default = {
+export default {
     data: new SlashCommandBuilder()
         .setName('daily')
         .setDescription('Hole dir deine tägliche XS-Coins ab.'),
