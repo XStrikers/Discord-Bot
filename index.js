@@ -1,4 +1,4 @@
-require('dotenv').config();
+uche require('dotenv').config();
 require('./misc/protocol');
 const { Client, GatewayIntentBits, Collection, REST, Routes } = require('discord.js');
 const fs = require('fs');
@@ -82,7 +82,7 @@ client.on('interactionCreate', async interaction => {
         console.error('❌ Fehler bei Befehl:', error);
 
         if (!interaction.replied) {
-            await interaction.reply({ content: 'Es ist ein Fehler aufgetreten.', flags: 64 });
+            await interaction.reply({ content: 'Es ist ein Fehler aufgetreten. Versuche es bitte erneut.', flags: 64 });
         }
     }
 });
