@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 import { getLevel } from '../economy';
 
-export default = {
+export default {
     data: new SlashCommandBuilder()
         .setName('level')
         .setDescription('Zeigt dein aktuelles Level an.'),
