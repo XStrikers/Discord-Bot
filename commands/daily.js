@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, EmbedBuilder, MessageFlags  } = require('discord.js');
+import { SlashCommandBuilder, EmbedBuilder, MessageFlags  } from 'discord.js';
 import { pool, getCoins } from '../economy';
 import cooldowns = from '../cooldowns';
 
@@ -53,7 +53,7 @@ export default = {
                     .setDescription('Deine tägliche <:xscoins:1346851584985792513> hast du bereits eingesammelt.\nMorgen kannst du neue <:xscoins:1346851584985792513> einsammeln. Gebe den Befehl \`/adventure\` ein, um weitere <:xscoins:1346851584985792513> zu sammeln.')
                     .setColor(0xd92626)
 
-                    const { MessageFlags } = require('discord.js');
+                    const { MessageFlags } = import('discord.js');
 
                     return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
             }
@@ -97,7 +97,7 @@ export default = {
                 .setDescription(`Fehler beim Abrufen der Coins. Versuche es bitte erneut.`)
                 .setColor(0xd92626)
 
-            const { MessageFlags } = require('discord.js');
+            const { MessageFlags } = import('discord.js');
 
             return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
         }
