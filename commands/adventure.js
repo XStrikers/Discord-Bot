@@ -2,7 +2,7 @@ import { SlashCommandBuilder, EmbedBuilder, MessageFlags } from 'discord.js';
 import { pool, getCoins } from '../economy';
 import cooldowns from '../cooldowns';
 
-export default = {
+export default {
     data: new SlashCommandBuilder()
         .setName('adventure')
         .setDescription('Stürze dich für eine Stunde ins Abenteuer und sichere dir damit XS-Coins.'),
