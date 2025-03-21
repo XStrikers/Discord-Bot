@@ -1,4 +1,4 @@
-const { Client, GatewayIntentBits } = require("discord.js");
+import { Client, GatewayIntentBits } from "discord.js";
 
 const TOKEN = process.env.TOKEN;
 const CHANNEL_ID = process.env.CHANNEL_ID;
