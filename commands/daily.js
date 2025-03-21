@@ -94,7 +94,7 @@ module.exports = {
             console.error(error);
             const embed = new EmbedBuilder()
                 .setTitle(':x: Fehler')
-                .setDescription(`Fehler beim Abrufen der Coins.`)
+                .setDescription(`Fehler beim Abrufen der Coins. Versuche es bitte erneut.`)
                 .setColor(0xd92626)
 
             const { MessageFlags } = require('discord.js');
