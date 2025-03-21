@@ -1,4 +1,5 @@
-module.exports = {
+export default = {
     dice: new Map(),
-    roulette: new Map()
+    roulette: new Map(),
+    farm: new Map()
 };
