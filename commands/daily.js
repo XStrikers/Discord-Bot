@@ -1,8 +1,8 @@
-const { SlashCommandBuilder, EmbedBuilder, MessageFlags  } = require('discord.js');
-const { pool, getCoins } = require('../economy');
-const cooldowns = require('../cooldowns');
+import { SlashCommandBuilder, EmbedBuilder, MessageFlags  } = require('discord.js');
+import { pool, getCoins } from '../economy';
+import cooldowns = from '../cooldowns';
 
-module.exports = {
+export default = {
     data: new SlashCommandBuilder()
         .setName('daily')
         .setDescription('Hole dir deine tägliche XS-Coins ab.'),
