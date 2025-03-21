@@ -1,7 +1,7 @@
 import mysql from 'mysql2/promise';
 
 // Datenbankverbindung erstellen
-export const pool = mysql.createPool({
+const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
     password: process.env.DB_PASSWORD,
@@ -14,7 +14,7 @@ export const pool = mysql.createPool({
 });
 
 // Funktion zum Abrufen der Coins eines Benutzers
-export async function getCoins(userId) {
+async function getCoins(userId) {
     try {
         const [rows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
         return rows.length > 0 ? rows[0].coins : null;
@@ -25,7 +25,7 @@ export async function getCoins(userId) {
 }
 
 // Funktion zum Abrufen des Levels eines Benutzers
-export async function getLevel(userId) {
+async function getLevel(userId) {
     try {
         const [rows] = await pool.execute('SELECT level FROM discord_user WHERE discord_id = ?', [userId]);
         return rows.length > 0 ? rows[0].level : null;
