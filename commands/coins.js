@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { getCoins } = from '../economy';
+import { getCoins } = from '../economy.js';
 
 export default {
     data: new SlashCommandBuilder()
