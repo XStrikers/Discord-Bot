@@ -2,7 +2,7 @@ import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 import { pool, getCoins } from '../economy';
 import cooldowns from '../cooldowns';
 
-export default = {
+export default {
     data: new SlashCommandBuilder()
         .setName('farm')
         .setDescription('Verwalte deine Farm.')
