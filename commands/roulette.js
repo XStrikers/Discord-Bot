@@ -1,8 +1,8 @@
-const { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder } = require('discord.js');
-const { pool } = require('../economy');
-const cooldowns = require('../cooldowns');
+import { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder } from 'discord.js';
+import { pool } from '../economy';
+import cooldowns from '../cooldowns';
 
-module.exports = {
+export default = {
     data: new SlashCommandBuilder()
         .setName('roulette')
         .setDescription('Spiele Russian Roulette mit deinem Einsatz.')
