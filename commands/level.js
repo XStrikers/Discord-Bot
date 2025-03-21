@@ -1,7 +1,7 @@
-const { SlashCommandBuilder, EmbedBuilder } = require('discord.js');
-const { getLevel } = require('../economy');
+import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
+import { getLevel } from '../economy';
 
-module.exports = {
+export default = {
     data: new SlashCommandBuilder()
         .setName('level')
         .setDescription('Zeigt dein aktuelles Level an.'),
