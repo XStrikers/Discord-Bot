@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy';
-import cooldowns from '../cooldowns';
+import { pool } from '../economy.js';
+import cooldowns from '../cooldowns.js';
 
 export default {
     data: new SlashCommandBuilder()
