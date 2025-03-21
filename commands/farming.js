@@ -174,7 +174,7 @@ if (interaction.options.getSubcommand() === 'plant') {
             return interaction.reply({
                 embeds: [new EmbedBuilder()
                     .setTitle(':x: Fehler')
-                    .setDescription('Es gab ein Problem bei der Verarbeitung. Versuche es bitte später erneut.')
+                    .setDescription('Es gab ein Problem bei der Verarbeitung. Versuche es bitte erneut.')
                     .setColor(0xd92626)],
                 flags: 64
             });
