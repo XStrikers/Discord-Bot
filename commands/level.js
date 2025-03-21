@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { getLevel } from '../economy';
+import { getLevel } from '../economy.js';
 
 export default {
     data: new SlashCommandBuilder()
