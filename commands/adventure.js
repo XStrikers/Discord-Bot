@@ -1,4 +1,4 @@
-const { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require('discord.js');
+ucheconst { SlashCommandBuilder, EmbedBuilder, MessageFlags } = require('discord.js');
 const { pool, getCoins } = require('../economy');
 const cooldowns = require('../cooldowns');
 
@@ -84,7 +84,7 @@ module.exports = {
             console.error(error);
             const embed = new EmbedBuilder()
                 .setTitle(':x: Fehler')
-                .setDescription(`Es gab ein Problem beim Starten deines Abenteuers.`)
+                .setDescription(`Es gab ein Problem beim Starten deines Abenteuers. Versuche es bitte erneut.`)
                 .setColor(0xd92626);
 
             return interaction.reply({ embeds: [embed], flags: 64 });
