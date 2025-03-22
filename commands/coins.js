@@ -17,7 +17,7 @@ export default {
             const embed = new EmbedBuilder()
                 .setTitle('<:xscoins:1346851584985792513> Deine XS-Coins')
                 .setDescription(coins !== null 
-                    ? 'In deinem Beutel befinden sich **${coins}** <:xscoins:1346851584985792513>`
+                    ? `In deinem Beutel befinden sich **${coins}** <:xscoins:1346851584985792513>`
                     : 'Mit dem Befehl \`/daily\` erhältst du einen <:xscoins:1346851584985792513> Beutel und sammelst deine ersten <:xscoins:1346851584985792513> ein.')
                 .setColor(coins !== null ? 0x26d926 : 0xd92626);
 
