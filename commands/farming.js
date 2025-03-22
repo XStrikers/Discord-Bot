@@ -156,7 +156,8 @@ if (interaction.options.getSubcommand() === 'plant') {
                     const timeDiff = (currentDate - plantTime) / 60000;
             
                     if (timeDiff < 60) {
-                        cooldownMessage = `**Weizen** wächst noch. Ernte in **${Math.ceil(60 - timeDiff)} Minuten**.`;
+                        const remainingTime = Math.ceil(60 - timeDiff);
+                        cooldownMessage = `**Weizen** wächst noch. Ernte in **${remainingTime} Minuten**.`;
                     } else {
                         cooldownMessage = `**Weizen ist bereit zur Ernte.**\nNutze \`/farm harvest\`, um deine Ernte einzuholen.`;
                     }
