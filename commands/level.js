@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { getLevel } from '../economy.js';
+const { getLevel } await import('../economy.js');
 
 export default {
     data: new SlashCommandBuilder()
@@ -8,7 +8,7 @@ export default {
     
     async execute(interaction) {
         await interaction.deferReply();
-
+    
         const userId = interaction.user.id;
         const level = await getLevel(userId);
 
