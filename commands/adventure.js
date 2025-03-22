@@ -27,9 +27,11 @@ export default {
             const { last_work, coins: userCoins, current_xp, level, xp_needed } = rows[0];
             let lastWork = last_work ? new Date(last_work) : null;
 
+            const cooldown = 3600;
+            
             if (lastWork) {
                 const timeDiff = (currentDate - lastWork) / 1000;
-                if (timeDiff >= 3600) {
+                if (timeDiff >= cooldown) {
                     const earnedCoins = Math.floor(Math.random() * 51) + 50;
                     const earnedXP = Math.floor(Math.random() * 51) + 50;
                     const newCoins = userCoins + earnedCoins;
@@ -62,7 +64,7 @@ export default {
 
                     return interaction.reply({ embeds: [embed] });
                 } else {
-                    const remainingTime = Math.ceil((3600 - timeDiff) / 60);
+                    const remainingTime = Math.ceil((cooldown - timeDiff) / 60);
                     const embed = new EmbedBuilder()
                         .setTitle('🧭 Aktives Abenteuer')
                         .setDescription(`Du bist noch auf einem Abenteuer! \nIn **${remainingTime} Minuten** hast du dein Abenteuer beendet und kannst dann deine <:xscoins:1346851584985792513> zur Belohnung abholen.`)
