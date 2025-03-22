@@ -1,6 +1,9 @@
 import { SlashCommandBuilder, EmbedBuilder, MessageFlags } from 'discord.js';
-import { pool, getCoins } from '../economy.js';
 import cooldowns from '../cooldowns.js';
+import economy from '../economy.js';
+
+const { pool, getCoins, getLevel } = economy;
+
 
 export default {
     data: new SlashCommandBuilder()
