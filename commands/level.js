@@ -1,6 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-const economy = await import('../economy.js');
-const { getLevel } = economy;
+import { getLevel } from '../economy.js';
 
 export default {
     data: new SlashCommandBuilder()
