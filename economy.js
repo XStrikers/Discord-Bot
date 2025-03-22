@@ -10,7 +10,8 @@ export const pool = mysql.createPool({
     connectionLimit: 10,
     queueLimit: 0,
     connectTimeout: 10000,
-    idleTimeout: 60000
+    idleTimeout: 60000,
+    timezone: 'Europe/Berlin'
 });
 
 // Funktion zum Abrufen der Coins eines Benutzers
