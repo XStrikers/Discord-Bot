@@ -10,22 +10,25 @@ export default {
         await interaction.deferReply();
 
         const userId = interaction.user.id;
-        const coins = await getCoins(userId);
 
-        if (coins !== null) {
+        try {
+            const coins = await getCoins(userId);
+
             const embed = new EmbedBuilder()
                 .setTitle('<:xscoins:1346851584985792513> Deine XS-Coins')
-                .setDescription(`In deinem Beutel befinden sich **${coins}** <:xscoins:1346851584985792513>`)
-                .setColor(0x26d926);
+                .setDescription(coins !== null 
+                    ? 'In deinem Beutel befinden sich **${coins}** <:xscoins:1346851584985792513>`
+                    : 'Mit dem Befehl \`/daily\` erhältst du einen <:xscoins:1346851584985792513> Beutel und sammelst deine ersten <:xscoins:1346851584985792513> ein.')
+                .setColor(coins !== null ? 0x26d926 : 0xd92626);
 
             await interaction.editReply({ embeds: [embed] });
-        } else {
-            const embed = new EmbedBuilder()
-                .setTitle('<:xscoins:1346851584985792513> Keine Coins vorhanden')
-                .setDescription('Mit dem Befehl \`/daily\` erhältst du einen <:xscoins:1346851584985792513> Beutel und sammelst deine ersten <:xscoins:1346851584985792513> ein.')
-                .setColor(0xd92626);
 
-            await interaction.editReply({ embeds: [embed] });
+        } catch (error) {
+            console.error('Fehler beim Abrufen der Coins:', error);
+
+            await interaction.editReply({ 
+                content: '❌ Ein Fehler ist aufgetreten. Bitte versuche es später erneut.' 
+            });
         }
     },
 };
