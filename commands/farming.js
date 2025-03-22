@@ -30,69 +30,69 @@ export default {
                 [userId]
             );
 
-            // Wenn der Benutzer nicht existiert, erstellen wir einen Eintrag
             if (farmRows.length === 0) {
+                // Falls nicht, neuen Eintrag mit Farming-Level 0 erstellen
                 await pool.execute(
-                    'INSERT INTO farming (discord_id, level, current_xp, xp_needed) VALUES (?, 0, 0, 100)',
+                    'INSERT INTO farming (discord_id) VALUES (?)',
                     [userId]
                 );
             }
 
             const { level, current_xp, xp_needed, plant_type, plant_time } = farmRows.length > 0 ? farmRows[0] : { level: 0, current_xp: 0, xp_needed: 100, plant_type: null, plant_time: null };
 
-            // --------------- 🌱 Pflanze setzen ----------------
-            if (interaction.options.getSubcommand() === 'plant') {
-                // Überprüfen, ob der Benutzer bereits eine Pflanze geerntet hat
-                if (plant_time !== null) {
-                    const plantTime = new Date(plant_time);
-                    const timeDiff = (currentDate - plantTime) / 60000; // Zeitdifferenz in Minuten
+// --------------- 🌱 Pflanze setzen ----------------
+if (interaction.options.getSubcommand() === 'plant') {
+    // Falls eine Pflanze bereits geerntet werden kann, blockieren wir das Pflanzen
+    if (plant_time !== null) {
+        const plantTime = new Date(plant_time);
+        const timeDiff = (currentDate - plantTime) / 60000;
 
-                    if (timeDiff >= 60) {
-                        return interaction.reply({
-                            embeds: [new EmbedBuilder()
-                                .setTitle('🌾 Ernte bereit')
-                                .setDescription('**Du hast eine reife Ernte!**\nNutze `/farm harvest`, bevor du etwas Neues pflanzt.')
-                                .setColor(0xd92626)],
-                            flags: 64 // Ephemeral-Flag für private Antwort
-                        });
-                    }
+        if (timeDiff >= 60) {
+            return interaction.reply({
+                embeds: [new EmbedBuilder()
+                    .setTitle('🌾 Ernte bereit')
+                    .setDescription('**Du hast eine reife Ernte!**\nNutze `/farm harvest`, bevor du etwas Neues pflanzt.')
+                    .setColor(0xd92626)],
+                    flags: 64
+            });
+        }
 
-                    return interaction.reply({
-                        embeds: [new EmbedBuilder()
-                            .setTitle('🌱 Dein Weizen wächst noch')
-                            .setDescription(`Warte **${Math.ceil(60 - timeDiff)} Minuten**, bevor du wieder Weizen anbauen kannst.`)
-                            .setColor(0xd92626)],
-                        flags: 64 // Ephemeral-Flag
-                    });
-                }
+        return interaction.reply({
+            embeds: [new EmbedBuilder()
+                .setTitle('🌱 Dein Weizen wächst noch')
+                .setDescription(`Warte **${Math.ceil(60 - timeDiff)} Minuten**, bevor du wieder Weizen anbauen kannst.`)
+                .setColor(0xd92626)],
+                flags: 64
+        });
+    }
 
-                // Überprüfen, ob der Nutzer genug Coins hat
-                const [userRows] = await pool.execute(
-                    'SELECT coins FROM discord_user WHERE discord_id = ?',
-                    [userId]
-                );
-                const userCoins = userRows.length > 0 ? userRows[0].coins : 0;
+    // Überprüfen, ob der Nutzer genug Coins hat
+    const [userRows] = await pool.execute(
+        'SELECT coins FROM discord_user WHERE discord_id = ?',
+        [userId]
+    );
+    let userCoins = userRows.length > 0 ? userRows[0].coins : 0;
 
-                if (userCoins < 20) {
-                    return interaction.reply({
-                        embeds: [new EmbedBuilder()
-                            .setTitle('❌ Nicht genug Coins')
-                            .setDescription('Du benötigst mindestens **20 Coins**, um Weizen anzubauen.')
-                            .setColor(0xd92626)]
-                    });
-                }
+    if (userCoins < 20) {
+        return interaction.reply({
+            embeds: [new EmbedBuilder()
+                .setTitle('❌ Nicht genug Coins')
+                .setDescription('Du benötigst mindestens **20 Coins**, um Weizen anzubauen.')
+                .setColor(0xd92626)]
+        });
+    }
 
-                // Pflanze setzen & Coins abziehen
-                await pool.execute('UPDATE farming SET plant_type = ?, plant_time = ? WHERE discord_id = ?', ['Weizen', currentDate, userId]);
-                await pool.execute('UPDATE discord_user SET coins = coins - 20 WHERE discord_id = ?', [userId]);
+    // Pflanze setzen & Coins abziehen
+    await pool.execute('UPDATE farming SET plant_type = ?, plant_time = ? WHERE discord_id = ?', ['Weizen', currentDate, userId]);
+    await pool.execute('UPDATE discord_user SET coins = coins - 20 WHERE discord_id = ?', [userId]);
 
-                return interaction.reply({
-                    embeds: [new EmbedBuilder()
-                        .setTitle('🌱 Weizen gepflanzt')
-                        .setDescription('Die Weizensamen wurden gesät. Kehre in **1 Stunde** zurück, um die Ernte einzuholen.')
-                        .setColor(0x26d926)]
-                });
-            }
+    return interaction.reply({
+        embeds: [new EmbedBuilder()
+            .setTitle('🌱 Weizen gepflanzt')
+            .setDescription('Die Weizensamen wurden gesät. Kehre in **1 Stunde** zurück, um die Ernte einzuholen..')
+            .setColor(0x26d926)]
+    });
+}
 
             // --------------- 🌾 Ernte einholen ----------------
             if (interaction.options.getSubcommand() === 'harvest') {
@@ -107,7 +107,7 @@ export default {
                 }
 
                 const plantTime = new Date(plant_time);
-                const timeDiff = (currentDate - plantTime) / 60000; // Zeitdifferenz in Minuten
+                const timeDiff = (currentDate - plantTime) / 60000;
 
                 if (timeDiff < 60) {
                     return interaction.reply({
@@ -120,8 +120,8 @@ export default {
                 }
 
                 // Ernte-Belohnung berechnen
-                const reward = Math.floor(Math.random() * 51) + 50; // Coins (zwischen 50 und 100)
-                const xpGain = Math.floor(Math.random() * 11) + 10; // XP (zwischen 10 und 20)
+                const reward = Math.floor(Math.random() * 51) + 50;
+                const xpGain = Math.floor(Math.random() * 11) + 10;
 
                 let newXP = current_xp + xpGain;
                 let newLevel = level;
@@ -154,6 +154,31 @@ export default {
                 if (plant_time !== null) {
                     const plantTime = new Date(plant_time);
                     const timeDiff = (currentDate - plantTime) / 60000;
-
+            
                     if (timeDiff < 60) {
-                        cooldownMessage = `**Weizen** wächst noch. Ernte in **${Math.ceil
+                        cooldownMessage = `**Weizen** wächst noch. Ernte in **${Math.ceil(60 - timeDiff)} Minuten**.`;
+                    } else {
+                        cooldownMessage = `**Weizen ist bereit zur Ernte.**\nNutze \`/farm harvest\`, um deine Ernte einzuholen.`;
+                    }
+                }
+
+                return interaction.reply({
+                    embeds: [new EmbedBuilder()
+                        .setTitle('🌾 Dein Farming-Status')
+                        .setDescription(`**Level:** ${level}\n**XP:** ${current_xp}/${xp_needed}\n\n${cooldownMessage}`)
+                        .setColor(0x26d926)]
+                });
+            }
+
+        } catch (error) {
+            console.error(error);
+            return interaction.reply({
+                embeds: [new EmbedBuilder()
+                    .setTitle(':x: Fehler')
+                    .setDescription('Es gab ein Problem bei der Verarbeitung.')
+                    .setColor(0xd92626)],
+                flags: 64
+            });
+        }
+    }
+};
