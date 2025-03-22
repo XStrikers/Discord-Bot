@@ -11,11 +11,7 @@ export const pool = mysql.createPool({
     queueLimit: 0,
     connectTimeout: 10000,
     idleTimeout: 60000,
-    timezone: 'Europe/Berlin'
 });
-
-// Setze die Zeitzone direkt in der SQL-Abfrage
-await pool.execute('SET time_zone = "Europe/Berlin"');
 
 // Funktion zum Abrufen der Coins eines Benutzers
 export async function getCoins(userId) {
