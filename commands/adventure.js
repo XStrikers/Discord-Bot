@@ -24,7 +24,8 @@ export default {
                 return interaction.reply({ embeds: [embed] });
             }
 
-            const { last_work, coins: userCoins, current_xp, level, xp_needed } = rows[0];
+            let { last_work, coins: userCoins, current_xp, level, xp_needed } = rows[0];
+
             let lastWork = last_work ? new Date(last_work) : null;
 
             const cooldown = 3600;
