@@ -30,10 +30,6 @@ export default {
             subcommand.setName('status')
                 .setDescription('Zeigt deinen Farming-Fortschritt.')
         )
-        .addSubcommand(subcommand =>
-            subcommand.setName('market')
-                .setDescription('Alle Pflanzen in einem Überblick.')
-        ),
 
     async execute(interaction) {
         const userId = interaction.user.id;
