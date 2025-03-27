@@ -58,20 +58,6 @@ export default {
                     });
                 }
 
-                if (plant_time !== null) {
-                    const timeDiff = (currentDate - new Date(plant_time)) / 60000;
-                    const requiredTime = plants[plant_type] ? plants[plant_type].cooldown : 60;
-
-                    if (timeDiff < requiredTime) {
-                        return interaction.reply({
-                            embeds: [new EmbedBuilder()
-                                .setTitle('⏳ Deine Pflanze wächst noch')
-                                .setDescription(`Warte **${Math.ceil(requiredTime - timeDiff)} Minuten**, bevor du etwas Neues pflanzt.`)
-                                .setColor(0xd92626)]
-                        });
-                    }
-                }
-
                 // Nur fortfahren, wenn du keine Pflanze hast, oder eine existierende Pflanze keine Zeit mehr benötigt
                 if (plant_time !== null) {
                     const timeDiff = (currentDate - new Date(plant_time)) / 60000;
