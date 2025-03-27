@@ -76,15 +76,16 @@ export default {
                     }
                 }
 
-                if (!plants[plant_type]) {
+                if (!plant_type || !plants[plant_type]) {
                     return interaction.reply({
                         embeds: [new EmbedBuilder()
-                            .setTitle('❌ Fehler')
-                            .setDescription(`Ungültige Pflanze: **${plant_type}**. Bitte pflanze etwas Neues.`)
-                            .setColor(0xd92626)],
-                            flags: 64
+                        .setTitle('❌ Fehler')
+                        .setDescription(`Du hast noch keine Pflanze gepflanzt. Bitte pflanze zuerst etwas Neues.`)
+                        .setColor(0xd92626)],
+                        flags: 64
                     });
-                }                
+                }
+              
 
                 const [userRows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
                 let userCoins = userRows.length > 0 ? userRows[0].coins : 0;
