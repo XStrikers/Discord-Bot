@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 import { pool } from '../economy.js';
 import cooldowns from '../cooldowns.js';
+import { betLimits } from './betLimits.js';
 
 const plants = {
     "Weizen": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30 },
