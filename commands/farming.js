@@ -3,10 +3,11 @@ import { pool } from '../economy.js';
 import cooldowns from '../cooldowns.js';
 
 const plants = {
-    "Weizen": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30},
-    "Kartoffeln": { level: 5, cost: 50, rewardMin: 80, rewardMax: 130, xp: 20, cooldown: 60},
-    "Karotten": { level: 10, cost: 100, rewardMin: 130, rewardMax: 180, xp: 30, cooldown: 90},
-    "Tomaten": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120}};
+    "Weizen": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30 },
+    "Kartoffeln": { level: 5, cost: 50, rewardMin: 80, rewardMax: 130, xp: 20, cooldown: 60 },
+    "Karotten": { level: 10, cost: 100, rewardMin: 130, rewardMax: 180, xp: 30, cooldown: 90 },
+    "Tomaten": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120 }
+};
 
 export default {
     data: new SlashCommandBuilder()
@@ -29,11 +30,12 @@ export default {
         .addSubcommand(subcommand =>
             subcommand.setName('status')
                 .setDescription('Zeigt deinen Farming-Fortschritt.')
-        )
+        ),
 
     async execute(interaction) {
         const userId = interaction.user.id;
         const currentDate = new Date();
+
         try {
             const [farmRows] = await pool.execute('SELECT * FROM farming WHERE discord_id = ?', [userId]);
             if (farmRows.length === 0) {
@@ -71,8 +73,6 @@ export default {
                         });
                     }
                 }
-
-              
 
                 const [userRows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
                 let userCoins = userRows.length > 0 ? userRows[0].coins : 0;
