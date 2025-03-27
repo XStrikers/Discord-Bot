@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 import { pool, getCoins } from '../economy.js';
 import cooldowns from '../cooldowns.js';
+import { betLimits } from '../betLimits.js';
 
 export default {
     data: new SlashCommandBuilder()
@@ -16,6 +17,15 @@ export default {
         const userId = interaction.user.id;
         const bet = interaction.options.getInteger('einsatz');
         const cooldownTime = 10 * 60 * 1000;
+
+        // Überprüfe, ob der Einsatz den maximalen Einsatz überschreitet
+        if (bet > betLimits.dice.maxBet) {
+            const embed = new EmbedBuilder()
+                .setTitle('<:xscoins:1346851584985792513> Zu hoher Einsatz')
+                .setDescription(`Der maximale Einsatz für das Dice-Spiel beträgt **${betLimits.dice.maxBet}** <:xscoins:1346851584985792513>. Dein Einsatz überschreitet diesen Betrag.`)
+                .setColor(0xd92626);
+            return interaction.reply({ embeds: [embed], flags: 64 });
+        }
 
         const [rows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
         if (rows.length === 0 || rows[0].coins < bet) {
