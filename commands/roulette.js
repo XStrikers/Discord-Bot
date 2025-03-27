@@ -1,6 +1,7 @@
 import { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder } from 'discord.js';
 import { pool } from '../economy.js';
 import cooldowns from '../cooldowns.js';
+import { betLimits } from '../betLimits.js';
 
 export default {
     data: new SlashCommandBuilder()
@@ -19,6 +20,15 @@ export default {
         let round = 1;
         let chanceToLose = 0.1667;
         const cooldownTime = 10 * 60 * 1000;
+
+        // Überprüfen, ob der Einsatz den maximalen Einsatz überschreitet
+        if (bet > betLimits.roulette.maxBet) {
+            const embed = new EmbedBuilder()
+                .setTitle('<:xscoins:1346851584985792513> Zu hoher Einsatz')
+                .setDescription(`Der maximale Einsatz für Roulette beträgt **${betLimits.roulette.maxBet}** <:xscoins:1346851584985792513>. Dein Einsatz überschreitet diesen Betrag.`)
+                .setColor(0xd92626);
+            return interaction.reply({ embeds: [embed], flags: 64 });
+        }
 
         if (cooldowns.roulette.has(userId)) {
             const lastGameTime = cooldowns.roulette.get(userId);
