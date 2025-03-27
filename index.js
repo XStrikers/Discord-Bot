@@ -34,14 +34,16 @@ const client = new Client({
 });
 
 // Lade die GUILD_ID aus der .env-Datei
-const guildId = process.env.GUILD_ID
+const guildId = process.env.GUILD_ID;
 client.commands = new Collection();
 const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
 
-for (const file of commandFiles) {
-    const { default: command } = await import(`./commands/${file}`);
-    client.commands.set(command.data.name, command);
-}
+const loadCommands = async () => {
+    for (const file of commandFiles) {
+        const { default: command } = await import(`./commands/${file}`);
+        client.commands.set(command.data.name, command);
+    }
+};
 
 const registerCommands = async () => {
     try {
@@ -59,9 +61,10 @@ const registerCommands = async () => {
     }
 };
 
-client.once('ready', () => {
+client.once('ready', async () => {
     console.log(`✅ Bot ist online als ${client.user.tag}`);
-    registerCommands();
+    await loadCommands();
+    await registerCommands();
 });
 
 client.on('interactionCreate', async interaction => {
