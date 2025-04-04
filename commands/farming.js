@@ -3,10 +3,10 @@ import { pool } from '../economy.js';
 import cooldowns from '../cooldowns.js';
 
 const plants = {
-    "Weizen": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30 },
-    "Kartoffeln": { level: 5, cost: 50, rewardMin: 80, rewardMax: 130, xp: 20, cooldown: 60 },
-    "Karotten": { level: 10, cost: 100, rewardMin: 130, rewardMax: 180, xp: 30, cooldown: 90 },
-    "Tomaten": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120 }
+    "🌾 Weizen": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30 },
+    "🥔 Kartoffeln": { level: 5, cost: 50, rewardMin: 80, rewardMax: 130, xp: 20, cooldown: 60 },
+    "🥕 Karotten": { level: 10, cost: 100, rewardMin: 130, rewardMax: 180, xp: 30, cooldown: 90 },
+    "🍅 Tomaten": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120 }
 };
 
 export default {
@@ -127,22 +127,39 @@ export default {
                 let newLevel = level;
                 let newXPNeeded = xp_needed;
 
+                let embeds = [new EmbedBuilder()
+                    .setTitle('🌾 Ernte erfolgreich')
+                    .setDescription(`Du hast **${reward} Coins** und **${xpGain} XP** erhalten!`)
+                    .setColor(0x26d926)
+                ];
+            
                 if (newXP >= xp_needed) {
                     newLevel++;
                     newXP = 0;
                     newXPNeeded = Math.floor(xp_needed * 1.2);
+            
+                    // Prüfen, ob eine neue Pflanze freigeschaltet wurde
+                    const unlockedPlants = Object.keys(plants).filter(p => plants[p].level === newLevel);
+                    if (unlockedPlants.length > 0) {
+                        embeds.push(new EmbedBuilder()
+                            .setTitle('🎉 Level Up!')
+                            .setDescription(`Du hast **Level ${newLevel}** erreicht und folgende Pflanze freigeschaltet:\n**${unlockedPlants.join(', ')}**.`)
+                            .setColor(0xf1c40f) // Goldene Farbe für Level-Up
+                        );
+                    } else {
+                        embeds.push(new EmbedBuilder()
+                            .setTitle('🎉 Level Up!')
+                            .setDescription(`Du hast Level **${newLevel}** erreicht!`)
+                            .setColor(0xf1c40f)
+                        );
+                    }
                 }
-
+            
                 await pool.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [reward, userId]);
                 await pool.execute('UPDATE farming SET current_xp = ?, level = ?, xp_needed = ?, plant_type = NULL, plant_time = NULL WHERE discord_id = ?', 
                     [newXP, newLevel, newXPNeeded, userId]);
-
-                return interaction.reply({
-                    embeds: [new EmbedBuilder()
-                        .setTitle('🌾 Ernte erfolgreich')
-                        .setDescription(`Du hast **${reward} Coins** und **${xpGain} XP** erhalten!`)
-                        .setColor(0x26d926)]
-                });
+            
+                return interaction.reply({ embeds });
             }
 
             // --------------- 📊 Status ----------------
