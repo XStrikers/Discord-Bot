@@ -91,8 +91,8 @@ export default {
 
                 return interaction.reply({
                     embeds: [new EmbedBuilder()
-                        .setTitle(`🌱 ${plantName} gepflanzt`)
-                        .setDescription(`Deine **${plantName}** wurden gepflanzt. Kehre in **${plant.cooldown} Minuten** zurück.`)
+                        .setTitle(`${plantName} gepflanzt`)
+                        .setDescription(`Deine **${plantName}**-Farm wurde gepflanzt. Kehre in **${plant.cooldown} Minuten** zurück.`)
                         .setColor(0x26d926)]
                 });
             }
@@ -102,7 +102,7 @@ export default {
                 if (plant_type === null) {
                     return interaction.reply({
                         embeds: [new EmbedBuilder()
-                            .setTitle('❌ Keine Pflanze zum Ernten')
+                            .setTitle('❌ Keine Farm zum Ernten')
                             .setDescription('Du hast nichts gepflanzt oder es ist noch nicht bereit zur Ernte.')
                             .setColor(0xd92626)],
                             flags: 64
@@ -116,7 +116,7 @@ export default {
                     return interaction.reply({
                         embeds: [new EmbedBuilder()
                             .setTitle('⏳ Noch nicht bereit')
-                            .setDescription(`Deine **${plant_type}** sind noch nicht reif. Warte **${Math.ceil(plant.cooldown - timeDiff)} Minuten**.`)
+                            .setDescription(`Deine **${plant_type}**-Farm ist noch nicht reif. Warte **${Math.ceil(plant.cooldown - timeDiff)} Minuten**.`)
                             .setColor(0xd92626)]
                     });
                 }
@@ -164,7 +164,7 @@ export default {
 
             // --------------- 📊 Status ----------------
             if (interaction.options.getSubcommand() === 'status') {
-                let statusMessage = '🌱 Kein Weizen wächst gerade.';
+                let statusMessage = '🌱 Es wurde nichts angebaut.';
 
                 if (plant_type !== null && plants[plant_type]) {
                     const plant = plants[plant_type];
