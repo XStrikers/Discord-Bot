@@ -1,7 +1,8 @@
 import axios from 'axios';
 
 // GitHub Repository URL und Token
-const githubUrl = 'https://api.github.com/repos/XStrikers/Discord-Bot/twitch/streamers.json';
+const githubUrl = 'https://api.github.com/repos/XStrikers/Discord-Bot/contents/twitch/streamers.json';
+
 const token = process.env.GITHUB_TOKEN;
 
 // Funktion zum Abrufen der Streamer-Liste von GitHub
