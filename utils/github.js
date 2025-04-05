@@ -31,10 +31,13 @@ export const updateStreamersOnGitHub = async (streamers) => {
 
         const updatedContent = Buffer.from(JSON.stringify(streamers, null, 2)).toString('base64');
 
+        // Hole die SHA der aktuellen Datei
+        const sha = currentContent.sha;
+
         const response = await axios.put(githubUrl, {
             message: 'Aktualisiere Streamer-Liste',
             content: updatedContent,
-            sha: response.data.sha
+            sha: sha
         }, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -42,7 +45,21 @@ export const updateStreamersOnGitHub = async (streamers) => {
         });
 
         console.log('✅ GitHub-Repository erfolgreich aktualisiert!');
+
+        // Antwort an Discord
+        if (!interaction.replied) {
+            await interaction.reply('GitHub-Repository wurde erfolgreich aktualisiert!');
+        } else {
+            await interaction.followUp('GitHub-Repository wurde erfolgreich aktualisiert!');
+        }
     } catch (error) {
         console.error('❌ Fehler beim Aktualisieren von GitHub:', error);
+
+        // Fehlerantwort an Discord
+        if (!interaction.replied) {
+            await interaction.reply('Es gab einen Fehler beim Aktualisieren der Streamer-Liste.');
+        } else {
+            await interaction.followUp('Es gab einen Fehler beim Aktualisieren der Streamer-Liste.');
+        }
     }
 };
