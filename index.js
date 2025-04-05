@@ -6,6 +6,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import cooldowns from './cooldowns.js';
+import { checkTwitchStreams } from './twitch/streamChecker.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -63,8 +64,16 @@ const registerCommands = async () => {
 
 client.once('ready', async () => {
     console.log(`✅ Bot ist online als ${client.user.tag}`);
-    await loadCommands();
-    await registerCommands();
+
+    try {
+        await loadCommands();
+        await registerCommands();
+
+        console.log("📡 Starte Twitch Stream-Checker...");
+        setInterval(() => checkTwitchStreams(client), 60 * 1000);
+    } catch (err) {
+        console.error("❌ Fehler bei Initialisierung:", err);
+    }
 });
 
 client.on('interactionCreate', async interaction => {
