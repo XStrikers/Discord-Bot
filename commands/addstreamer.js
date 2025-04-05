@@ -15,7 +15,7 @@ export default {
         const streamerName = interaction.options.getString('name').toLowerCase();
 
         // Holen der aktuellen Streamer-Liste von GitHub
-        const streamers = await getStreamersFromGitHub();
+        const streamers = await getStreamersFromGitHub();  // Abrufen der Streamer von GitHub
 
         // Prüfen, ob der Streamer bereits in der Liste ist
         if (streamers.includes(streamerName)) {
@@ -25,12 +25,13 @@ export default {
             });
         }
 
-        // Füge den Streamer hinzu
+        // Füge den Streamer zur Liste hinzu
         streamers.push(streamerName);
 
         // Speichern der aktualisierten Liste auf GitHub
-        await updateStreamersOnGitHub(streamers);
+        await updateStreamersOnGitHub(streamers);  // Liste auf GitHub aktualisieren
 
+        // Bestätigung an den Benutzer senden
         return interaction.reply({
             content: `✅ Der Streamer \`${streamerName}\` wurde erfolgreich zur Liste hinzugefügt.`,
             ephemeral: true
