@@ -6,7 +6,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import cooldowns from './cooldowns.js';
-import { checkTwitchStreams } from './twitch/streamChecker.js';
+import { checkTwitchStreams } from './twitch/streamchecker.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
