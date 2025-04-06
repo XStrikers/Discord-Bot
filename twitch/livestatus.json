@@ -1,1 +1,10 @@
-{}
+{
+  "montanablack88": {
+    "isLive": true,
+    "announced": true
+  },
+  "maexmisfit": {
+    "isLive": false,
+    "announced": false
+  }
+}
