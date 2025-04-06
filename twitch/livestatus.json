@@ -1,6 +1,6 @@
 {
   "gronkhtv": {
-    "isLive": true,
-    "announced": true
+    "isLive": false,
+    "announced": false
   }
 }
