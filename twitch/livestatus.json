@@ -1,1 +1,14 @@
-{}
+{
+  "gronkhtv": {
+    "isLive": true,
+    "announced": true
+  },
+  "montanablack88": {
+    "isLive": false,
+    "announced": false
+  },
+  "maexmisfit": {
+    "isLive": false,
+    "announced": false
+  }
+}
