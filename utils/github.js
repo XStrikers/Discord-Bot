@@ -1,10 +1,9 @@
 import axios from 'axios';
 
-// GitHub Repository URL und Token
-const githubUrl = 'https://api.github.com/repos/XStrikers/Discord-Bot/twitch/streamers.json';
+const githubUrl = 'https://api.github.com/repos/XStrikers/Discord-Bot/contents/twitch/streamers.json';
 const token = process.env.GITHUB_TOKEN;
 
-// Funktion zum Abrufen der Streamer-Liste von GitHub
+// ✅ Funktion zum Abrufen der aktuellen Streamer-Liste + SHA
 export const getStreamersFromGitHub = async () => {
     try {
         const response = await axios.get(githubUrl, {
@@ -13,27 +12,36 @@ export const getStreamersFromGitHub = async () => {
             }
         });
 
-        // GitHub gibt die Datei als Base64 kodierten Inhalt zurück
         const content = Buffer.from(response.data.content, 'base64').toString('utf-8');
-        return JSON.parse(content);
+        const sha = response.data.sha;
+
+        return {
+            streamers: JSON.parse(content),
+            sha
+        };
     } catch (error) {
-        console.error('❌ Fehler beim Abrufen von GitHub:', error);
-        return [];
+        console.error('❌ Fehler beim Abrufen von GitHub:');
+        console.error('Status:', error.response?.status);
+        console.error('Nachricht:', error.response?.data?.message);
+        return { streamers: [], sha: null };
     }
 };
 
-// Funktion zum Speichern der Streamer-Liste auf GitHub
+// ✅ Funktion zum Aktualisieren der Datei
 export const updateStreamersOnGitHub = async (streamers) => {
     try {
-        // Zuerst den aktuellen Inhalt der Datei abrufen
-        const currentContent = await getStreamersFromGitHub();
+        const { sha } = await getStreamersFromGitHub();
+
+        if (!sha) {
+            throw new Error("SHA konnte nicht abgerufen werden – Datei existiert nicht?");
+        }
 
         const updatedContent = Buffer.from(JSON.stringify(streamers, null, 2)).toString('base64');
 
         const response = await axios.put(githubUrl, {
             message: 'Aktualisiere Streamer-Liste',
             content: updatedContent,
-            sha: response.data.sha
+            sha: sha
         }, {
             headers: {
                 Authorization: `Bearer ${token}`
@@ -42,6 +50,10 @@ export const updateStreamersOnGitHub = async (streamers) => {
 
         console.log('✅ GitHub-Repository erfolgreich aktualisiert!');
     } catch (error) {
-        console.error('❌ Fehler beim Aktualisieren von GitHub:', error);
+        console.error('❌ Fehler beim Aktualisieren von GitHub:');
+        console.error('Status:', error.response?.status);
+        console.error('Nachricht:', error.response?.data?.message);
+        console.error('Details:', error.message);
     }
 };
+
