@@ -118,7 +118,7 @@ export async function checkTwitchStreams(client) {
                 const hasChanges =
                     previous.title !== title ||
                     previous.viewers !== viewers ||
-                    previous.thumbnail !== thumbnail; ||
+                    previous.thumbnail !== thumbnail ||
                     previous.cacheBuster !== cacheBuster;
 
                 if (hasChanges) {
