@@ -75,7 +75,10 @@ export async function checkTwitchStreams(client) {
 
             const title = isLive.title;
             const viewers = isLive.viewer_count;
-            const thumbnail = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${isLive.user_login}-640x360.jpg`;
+            const cacheBuster = Math.floor(now.getTime() / (10 * 60 * 1000));
+            const thumbnail = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${isLive.user_login}-640x360.jpg?cb=${cacheBuster}`;
+
+
 
             const embed = new EmbedBuilder()
                 .setColor('#9146FF')
