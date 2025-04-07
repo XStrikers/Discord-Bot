@@ -110,14 +110,16 @@ export async function checkTwitchStreams(client) {
                     messageId: sent.id,
                     title,
                     viewers,
-                    thumbnail
+                    thumbnail,
+                    cacheBuster
                 };
             } else {
                 // Prüfe auf Änderungen
                 const hasChanges =
                     previous.title !== title ||
                     previous.viewers !== viewers ||
-                    previous.thumbnail !== thumbnail;
+                    previous.thumbnail !== thumbnail; ||
+                    previous.cacheBuster !== cacheBuster;
 
                 if (hasChanges) {
                     try {
