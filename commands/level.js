@@ -1,31 +1,54 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { getLevel } from '../economy.js';
+import { getLevel, getCoins } from '../economy.js';
 
 export default {
     data: new SlashCommandBuilder()
         .setName('level')
-        .setDescription('Zeigt dein aktuelles Level an.'),
-    
+        .setDescription('Zeigt dein aktuelles Level und deine Coins an.'),
+
     async execute(interaction) {
         await interaction.deferReply();
-    
-        const userId = interaction.user.id;
-        const level = await getLevel(userId);
 
-        if (level !== null) {
+        const userId = interaction.user.id;
+
+        try {
+            const level = await getLevel(userId);
+            const coins = await getCoins(userId);
+
+            // Überprüfung ob beide Werte null sind
+            if (level === null && coins === null) {
+                const embed = new EmbedBuilder()
+                    .setTitle('❌ Kein Profil gefunden')
+                    .setDescription('Du hast noch kein Profil. Nutze `/daily`, um dein Abenteuer zu starten.')
+                    .setColor(0xd92626);
+
+                await interaction.editReply({ embeds: [embed] });
+                return;
+            }
+
+            // Embed mit Level und Coins
             const embed = new EmbedBuilder()
-                .setTitle('<a:tongue:1346851810173784199> Level Status')
-                .setDescription(`Du bist aktuell **Level ${level}**.\nSpiele weiter, um aufzusteigen.`)
+                .setTitle('<a:tongue:1346851810173784199> Dein Fortschritt')
+                .setDescription(
+                    `${level !== null 
+                        ? `Du bist aktuell **Level ${level}**.\nSei weiter aktiv und zeige den User, wer hier am aktivsten ist!` 
+                        : '📈 Du hast noch kein Level. Nutze `/daily`, um XP zu sammeln.'
+                    }\n\n` +
+                    `${coins !== null 
+                        ? `In deinem Beutel befinden aktuell **${coins}** <:xscoins:1346851584985792513>` 
+                        : '💰 Noch keine Coins gefunden. Nutze `/daily`, um welche zu erhalten.'
+                    }`
+                )
                 .setColor(0x26d926);
 
             await interaction.editReply({ embeds: [embed] });
-        } else {
-            const embed = new EmbedBuilder()
-                .setTitle(':x: Kein Level gefunden')
-                .setDescription('Nutze `/daily`, um <:xscoins:1346851584985792513> und XP zu sammeln und dein Abenteuer zu starten.')
-                .setColor(0xd92626);
 
-            await interaction.editReply({ embeds: [embed] });
+        } catch (error) {
+            console.error('Fehler beim Abrufen von Level oder Coins:', error);
+
+            await interaction.editReply({
+                content: '❌ Ein Fehler ist aufgetreten. Bitte versuche es später erneut.'
+            });
         }
     },
 };
