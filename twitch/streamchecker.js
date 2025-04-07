@@ -94,7 +94,7 @@ export async function checkTwitchStreams(client) {
                 .setThumbnail(profileImage)
                 .setImage(thumbnail)
                 .setFooter({
-                    iconURL: 'https://cdn-icons-png.flaticon.com/512/2111/2111668.png',
+                    iconURL: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png',
                     text: `Twitch - ${formattedTime} Uhr`
                 });
 
