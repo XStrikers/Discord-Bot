@@ -70,7 +70,7 @@ client.once('ready', async () => {
         await registerCommands();
 
         console.log("📡 Starte Twitch Stream-Checker...");
-        setInterval(() => checkTwitchStreams(client), 10 * 60 * 1000);
+        setInterval(() => checkTwitchStreams(client), 60 * 1000);
         console.log("🔄 Twitch Stream-Check ausgeführt...");
     } catch (err) {
         console.error("❌ Fehler bei Initialisierung:", err);
