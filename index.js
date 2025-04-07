@@ -6,6 +6,7 @@ import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import cooldowns from './cooldowns.js';
+import { checkTwitchStreams } from './twitch/streamchecker.js';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
@@ -67,6 +68,10 @@ client.once('ready', async () => {
     try {
         await loadCommands();
         await registerCommands();
+
+        console.log("📡 Starte Twitch Stream-Checker...");
+        setInterval(() => checkTwitchStreams(client), 60 * 1000);
+        console.log("🔄 Twitch Stream-Check ausgeführt...");
     } catch (err) {
         console.error("❌ Fehler bei Initialisierung:", err);
     }
