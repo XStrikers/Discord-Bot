@@ -15,6 +15,8 @@ export default {
             const level = await getLevel(userId);
             const coins = await getCoins(userId);
 
+            const formattedCoins = coins !== null ? coins.toLocaleString('de-DE') : null;
+
             // Überprüfung ob beide Werte null sind
             if (level === null && coins === null) {
                 const embed = new EmbedBuilder()
