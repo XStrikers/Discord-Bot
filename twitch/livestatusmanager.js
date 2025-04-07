@@ -1,6 +1,5 @@
+import 'dotenv/config';
 import axios from 'axios';
-import dotenv from 'dotenv';
-dotenv.config();
 
 const githubUrl = 'https://api.github.com/repos/XStrikers/Discord-Bot/contents/twitch/livestatus.json';
 const token = process.env.GITHUB_TOKEN;
