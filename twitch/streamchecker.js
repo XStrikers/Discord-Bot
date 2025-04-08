@@ -4,6 +4,7 @@ import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getLiveStatusFromGitHub, updateLiveStatusOnGitHub } from './livestatusmanager.js';
+import { logToFile } from './logger.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
@@ -34,6 +35,7 @@ export async function checkTwitchStreams(client) {
         streamers = JSON.parse(streamersRaw);
     } catch (err) {
         console.error("❌ Fehler beim Lesen der streamers.json:", err);
+        logToFile('errors.log', `❌ Fehler beim Lesen der streamers.json: ${err.message}`);
     }
 
     const { status: liveStatus } = await getLiveStatusFromGitHub();
@@ -48,6 +50,8 @@ export async function checkTwitchStreams(client) {
 
     if (res.status === 401) {
         console.warn('⚠️ Access Token ungültig – wird erneuert...');
+        logToFile('errors.log', `⚠️ Twitch API 401 – Access Token wurde erneuert`);
+
         accessToken = await getAccessToken();
         return await checkTwitchStreams(client);
     }
@@ -102,6 +106,7 @@ export async function checkTwitchStreams(client) {
 
             // Wenn noch nie gepostet → sende neue Nachricht
             if (!previous?.announced || !previous?.messageId) {
+                logToFile('streams.log', `🔴 ${isLive.user_login} ist live – ${viewers} Zuschauer – "${title}"`);
                 const sent = await channel.send({ content: '||@everyone||', embeds: [embed] });
 
                 liveStatus[streamer] = {
@@ -133,8 +138,11 @@ export async function checkTwitchStreams(client) {
                             thumbnail
                         };
                         console.log(`🔁 Beitrag von ${streamer} aktualisiert.`);
+                        logToFile('streams.log', `🔁 ${streamer} aktualisiert – "${title}" (${viewers} Zuschauer)`);
+
                     } catch (err) {
                         console.warn(`⚠️ Nachricht von ${streamer} konnte nicht bearbeitet werden:`, err);
+                        logToFile('errors.log', `❌ Nachricht von ${streamer} konnte nicht bearbeitet werden: ${err.message}`);
                     }
                 }
             }
@@ -149,6 +157,20 @@ export async function checkTwitchStreams(client) {
     // Wenn er vorher live war, aber jetzt nicht mehr → als offline markieren
         if (wasLive && !stillLive) {
             console.log(`📴 ${streamer} ist jetzt offline.`);
+
+            liveStatus[streamer] = {
+                isLive: false,
+                announced: false
+            };
+        }
+    }
+
+    for (const streamer of Object.keys(liveStatus)) {
+        const wasLive = liveStatus[streamer]?.isLive;
+        const isCurrentlyLive = liveNow.some(s => s.user_login.toLowerCase() === streamer.toLowerCase());
+
+        if (wasLive && !isCurrentlyLive) {
+            logToFile('streams.log', `📴 ${streamer} ist offline`);
 
             liveStatus[streamer] = {
                 isLive: false,
