@@ -141,21 +141,21 @@ export async function checkTwitchStreams(client) {
         }
     }
 
-    await updateLiveStatusOnGitHub(liveStatus);
-
+    // Alle Streamer durchgehen, um Offline-Zustände zu erkennen
     for (const streamer of streamers) {
-        const wasInApi = liveNow.some(s => s.user_login.toLowerCase() === streamer.toLowerCase());
-        const wasMarkedLive = liveStatus[streamer]?.isLive;
+        const wasLive = liveStatus[streamer]?.isLive;
+        const stillLive = liveNow.some(s => s.user_login.toLowerCase() === streamer.toLowerCase());
 
-    // Nur loggen, wenn er zuletzt als live markiert war, aber nicht in der API auftaucht
-        if (wasMarkedLive && !wasInApi) {
-            console.warn(`⚠️ Hinweis: ${streamer} wurde NICHT als live erkannt, obwohl zuvor als live markiert.
-                Mögliche Ursachen:
-                - Stream läuft über Konsole (PlayStation, Xbox)
-                - Kein Spieltitel gesetzt
-                - Stream wurde zu kurz oder gerade erst gestartet
-                - Twitch API listet den Stream nicht korrekt
-            `);
+    // Wenn er vorher live war, aber jetzt nicht mehr → als offline markieren
+        if (wasLive && !stillLive) {
+            console.log(`📴 ${streamer} ist jetzt offline.`);
+
+            liveStatus[streamer] = {
+                isLive: false,
+                announced: false
+            };
         }
     }
+
+      await updateLiveStatusOnGitHub(liveStatus);
 }
