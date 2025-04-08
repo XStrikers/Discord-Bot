@@ -142,4 +142,19 @@ export async function checkTwitchStreams(client) {
     }
 
     await updateLiveStatusOnGitHub(liveStatus);
+
+// 🔍 Verpasste Streams prüfen
+    for (const streamer of streamers) {
+        const wasInApi = liveNow.some(s => s.user_login.toLowerCase() === streamer.toLowerCase());
+
+        if (!wasInApi) {
+            console.warn(`⚠️ Hinweis: ${streamer} wurde NICHT als live erkannt.
+    Mögliche Ursachen:
+    - Stream läuft über Konsole (PlayStation, Xbox)
+    - Kein Spieltitel gesetzt
+    - Stream wurde zu kurz oder gerade erst gestartet
+    - Twitch API listet den Stream nicht korrekt
+    `);
+        }
+    }
 }
