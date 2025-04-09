@@ -1,8 +1,11 @@
 // logger.js
-import fs from 'fs';
-import path from 'path';
+import { fileURLToPath } from 'url';
+import { dirname } from 'path';
 
-const logsDir = path.join('./logs');
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+const logsDir = path.join(__dirname, 'logs');
 
 // Stelle sicher, dass der logs-Ordner existiert
 if (!fs.existsSync(logsDir)) {
