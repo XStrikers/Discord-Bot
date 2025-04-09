@@ -25,6 +25,8 @@ async function getAccessToken() {
 }
 
 export async function checkTwitchStreams(client) {
+    logToFile('streams.log', '✅ Streamcheck gestartet');
+
     if (!accessToken) {
         accessToken = await getAccessToken();
     }
