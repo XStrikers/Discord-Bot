@@ -7,6 +7,8 @@ import { fileURLToPath } from 'url';
 import express from 'express';
 import cooldowns from './cooldowns.js';
 import { checkTwitchStreams } from './twitch/streamchecker.js';
+import { logToFile } from './logger.js';
+logToFile('streams.log', '🚀 Bot wurde gestartet');
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
