@@ -1,6 +1,6 @@
 import fs from 'fs';
 import path from 'path';
-import { SlashCommandBuilder, EmbedBuilder, MessageFlags } from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
 import { fileURLToPath } from 'url';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -16,7 +16,7 @@ export default {
         if (interaction.user.id !== ownerId) {
             return interaction.reply({
                 content: '🚫 Du darfst diesen Befehl nicht verwenden.',
-                flags: 64
+                ephemeral: true
             });
         }
 
@@ -27,31 +27,51 @@ export default {
         } catch (err) {
             return interaction.reply({
                 content: '⚠️ Es gibt derzeit keine Streamer in der Liste.',
-                flags: 64
+                ephemeral: true
             });
         }
 
         if (streamers.length === 0) {
             return interaction.reply({
                 content: '⚠️ Keine Streamer in der Liste!',
-                flags: 64
+                ephemeral: true
             });
         }
 
-        const streamerFields = streamers.map((streamer, index) => ({
-            name: `🎮 Streamer #${index + 1}`,
-            value: streamer,
-            inline: true
-        }));
-
         const embed = new EmbedBuilder()
-            .setTitle('📝 Aktuelle Streamer-Liste')
-            .setDescription('Hier sind alle derzeit hinzugefügten Streamer:')
-            .addFields(streamerFields)
-            .setColor('#9146FF') // Twitch Lila
+            .setTitle('📺 Aktuelle Streamer')
+            .setColor('#9146FF')
             .setThumbnail('https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png')
             .setTimestamp();
 
-        return interaction.reply({ embeds: [embed], ephemeral: true });
+            const fields = [];
+
+            for (let i = 0; i < streamers.length; i++) {
+                const streamer = streamers[i];
+            
+                fields.push({
+                    name: `🎮 ${streamer}`,
+                    value: `[🔗 Zum Stream](https://twitch.tv/${streamer})`,
+                    inline: true
+                });
+            
+                // Nach jedem zweiten Streamer: Leere Zeile einfügen
+                const isSecondInRow = (i + 1) % 2 === 0;
+                if (isSecondInRow) {
+                    fields.push({
+                        name: '\u200B',
+                        value: '\u2003',
+                        inline: false
+                    });
+                }
+            }
+            
+            embed.addFields(fields);
+            
+            return interaction.reply({
+                embeds: [embed],
+                flags: 0
+            });
+            
     }
 };
