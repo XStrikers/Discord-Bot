@@ -17,7 +17,7 @@ export default {
         if (interaction.user.id !== ownerId) {
             return interaction.reply({
                 content: '🚫 Du darfst diesen Befehl nicht verwenden.',
-                ephemeral: true
+                flags: 64
             });
         }
 
@@ -28,21 +28,21 @@ export default {
         } catch (err) {
             return interaction.reply({
                 content: '⚠️ Es gibt derzeit keine Streamer in der Liste.',
-                ephemeral: true
+                flags: 64
             });
         }
 
         if (streamers.length === 0) {
             return interaction.reply({
                 content: '⚠️ Keine Streamer in der Liste!',
-                ephemeral: true
+                flags: 64
             });
         }
 
         const streamersList = streamers.join('\n');
         return interaction.reply({
             content: `📝 **Aktuelle Streamer in der Liste**:\n${streamersList}`,
-            ephemeral: true
+            flags: 64
         });
     }
 };
