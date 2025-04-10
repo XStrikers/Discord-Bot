@@ -12,7 +12,6 @@ export default {
         .setDescription('Zeigt die Liste aller hinzugefügten Streamer'),
 
     async execute(interaction) {
-        // Zugriffsschutz: Nur der Besitzer darf das
         const ownerId = process.env.OWNER_ID;
         if (interaction.user.id !== ownerId) {
             return interaction.reply({
@@ -39,10 +38,20 @@ export default {
             });
         }
 
-        const streamersList = streamers.join('\n');
-        return interaction.reply({
-            content: `📝 **Aktuelle Streamer in der Liste**:\n${streamersList}`,
-            flags: 64
-        });
+        const streamerFields = streamers.map((streamer, index) => ({
+            name: `🎮 Streamer #${index + 1}`,
+            value: streamer,
+            inline: true
+        }));
+
+        const embed = new EmbedBuilder()
+            .setTitle('📝 Aktuelle Streamer-Liste')
+            .setDescription('Hier sind alle derzeit hinzugefügten Streamer:')
+            .addFields(streamerFields)
+            .setColor('#9146FF') // Twitch Lila
+            .setThumbnail('https://static.twitchcdn.net/assets/favicon-32-e29e246c157142c94346.png')
+            .setTimestamp();
+
+        return interaction.reply({ embeds: [embed], ephemeral: true });
     }
 };
