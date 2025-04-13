@@ -175,7 +175,7 @@ export default {
     ctx.shadowColor = 'transparent';
             
     // 📊 Level, XP, Coins anzeigen
-    const padding = 80;
+    const padding = 50;
     const xStart = 150;
     const yStart = 150;
 
