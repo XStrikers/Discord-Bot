@@ -35,4 +35,35 @@ export async function getLevel(userId) {
     }
 }
 
-export default { pool, getCoins, getLevel };
+export async function getUserStats(userId) {
+    const [rows] = await pool.execute(`
+        SELECT 
+            discord_id, 
+            username,
+            display_name,
+            level, 
+            current_xp, 
+            xp_needed, 
+            coins 
+        FROM discord_user
+        WHERE discord_id = ?
+    `, [userId]);
+
+    return rows.length > 0 ? rows[0] : null;
+}
+
+export async function getAllUserStats() {
+    const [rows] = await pool.execute(`
+        SELECT 
+            CAST(discord_id AS CHAR) AS discord_id,
+            username,
+            display_name,
+            level, 
+            current_xp, 
+            xp_needed, 
+            coins 
+        FROM discord_user
+        ORDER BY level DESC, current_xp DESC
+    `);
+    return rows;
+}
