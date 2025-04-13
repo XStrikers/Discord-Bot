@@ -5,6 +5,7 @@
   "dependencies": {
     "aws-ssl-profiles": "^1.1.2",
     "axios": "^1.8.4",
+    "canvas": "^2.11.2",
     "denque": "^2.1.0",
     "discord-api-types": "^0.37.119",
     "discord.js": "^14.18.0",
