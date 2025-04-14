@@ -1,20 +1,15 @@
 {
   "moonlightizda": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1361324338015375521",
-    "title": "[FSK18] Tatorte reinigen  !dc !10% !instant !yt !pokehelp",
-    "viewers": 7,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2907786",
-    "cacheBuster": 2907725
+    "isLive": false,
+    "announced": false
   },
   "happyendttv": {
     "isLive": true,
     "announced": true,
     "messageId": "1361474391845634189",
     "title": "Neue DBD spielerin 🥰neues Event zocken Mitspieler sind immer willkommen",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2907786",
+    "viewers": 2,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2907787",
     "cacheBuster": 2907785
   }
 }
