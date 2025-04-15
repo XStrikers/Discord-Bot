@@ -25,7 +25,7 @@ export default {
         if (bet > betLimits.roulette.maxBet) {
             const embed = new EmbedBuilder()
                 .setTitle('<:xscoins:1346851584985792513> Zu hoher Einsatz')
-                .setDescription(`Der maximale Einsatz für Roulette beträgt **${betLimits.roulette.maxBet}** <:xscoins:1346851584985792513>. Dein Einsatz überschreitet diesen Betrag.`)
+                .setDescription(`Der maximale Einsatz für Roulette beträgt **${betLimits.roulette.maxBet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513>. Dein Einsatz überschreitet diesen Betrag.`)
                 .setColor(0xd92626);
             return interaction.reply({ embeds: [embed], flags: 64 });
         }
@@ -60,7 +60,7 @@ export default {
             if (Math.random() < chanceToLose) {
                 const embed = new EmbedBuilder()
                     .setTitle('💥 BAMM')
-                    .setDescription(`**${interaction.user.displayName}** hat in Runde **${round}** und seinen Einsatz von **${bet}** <:xscoins:1346851584985792513> verloren.`)
+                    .setDescription(`**${interaction.user.displayName}** hat in Runde **${round}** und seinen Einsatz von **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> verloren.`)
                     .setColor(0xd92626);
                 await i.update({ embeds: [embed], components: [] });
                 return collector.stop('lost');
@@ -73,7 +73,7 @@ export default {
             const embed = new EmbedBuilder()
                 .setTitle(':dart: Russisches Roulette')
                 .setDescription(`🔫 Runde **${round}**
-                Du hast bisher **${bet}** <:xscoins:1346851584985792513> angesammelt.\n
+                Du hast bisher **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> angesammelt.\n
                 Deine Überlebenschance beträgt **${((1 - chanceToLose) * 100).toFixed(1)}%**.`)
                 .setColor(0x26d926);
             
@@ -88,7 +88,7 @@ export default {
         const embed = new EmbedBuilder()
             .setTitle(':dart: Russisches Roulette')
             .setDescription(`🔫 **Runde 1** gestartet.\n
-                Dein aktueller Einsatz: **${bet}** <:xscoins:1346851584985792513>.`)
+                Dein aktueller Einsatz: **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513>.`)
             .setColor(0x26d926);
         
         const buttonRow = new ActionRowBuilder().addComponents(
@@ -113,7 +113,7 @@ export default {
                 await pool.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [bet, userId]);
                 const embed = new EmbedBuilder()
                     .setTitle('<:laughing:1346851741714612265> Gewinn gesichert')
-                    .setDescription(`**${interaction.user.displayName}** hat sich entschieden aufzuhören und seinen Gewinn von **${bet}** <:xscoins:1346851584985792513> zu nehmen.`)
+                    .setDescription(`**${interaction.user.displayName}** hat sich entschieden aufzuhören und seinen Gewinn von **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> zu nehmen.`)
                     .setColor(0x26d926);
                 await i.update({ embeds: [embed], components: [] });
                 return collector.stop('cashout');
