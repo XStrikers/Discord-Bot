@@ -51,7 +51,7 @@ export default {
 
                     const embed = new EmbedBuilder()
                         .setTitle('🧭 Neues Abenteuer gestartet!')
-                        .setDescription(`Du hast dein letztes Abenteuer abgeschlossen und **${earnedCoins}** <:xscoins:1346851584985792513> sowie **${earnedXP} XP** erhalten!\nAktuell hast du in deinem XS-Coins Beutel **${newCoins}** <:xscoins:1346851584985792513> gesammelt.\n\nDu hast ein neues Abenteuer begonnen, kehre in **1 Stunde** zurück.`)
+                        .setDescription(`Du hast dein letztes Abenteuer abgeschlossen und **${earnedCoins}** <:xscoins:1346851584985792513> sowie **${earnedXP} XP** erhalten!\nAktuell hast du in deinem XS-Coins Beutel **${newCoins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> gesammelt.\n\nDu hast ein neues Abenteuer begonnen, kehre in **1 Stunde** zurück.`)
                         .setColor(0x26d926);
 
                     if (newLevel > level) {
