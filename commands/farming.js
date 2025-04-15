@@ -170,7 +170,7 @@ export default {
                     const plant = plants[plant_type];
                     const timeDiff = (currentDate - new Date(plant_time)) / 60000;
                     statusMessage = timeDiff < plant.cooldown
-                        ? `**${plant_type}** wächst noch und kann erst in **${Math.ceil(plant.cooldown - timeDiff)} Minuten** geerntet werden..`
+                        ? `**${plant_type}** wächst noch und kann erst in **${Math.ceil(plant.cooldown - timeDiff)} Minuten** geerntet werden.`
                         : `**${plant_type} ist bereit zur Ernte!**`;
                 } else {
                     statusMessage ='🌱 Du hast momentan nichts gepflanzt.'
@@ -179,7 +179,7 @@ export default {
                 return interaction.reply({
                     embeds: [new EmbedBuilder()
                         .setTitle('🌾 Dein Farming-Status')
-                        .setDescription(`**Dein aktuelles LEvel ist **${level}\nAktuell hat Du auf deiner Farm **${current_xp} / ${xp_needed} XP** gesammelt.\n\n${statusMessage}`)
+                        .setDescription(`**Du bist aktuell **Lvel ${level}**.\nAktuell hat Du auf deiner Farm **${current_xp} / ${xp_needed} XP** gesammelt.\n\n${statusMessage}`)
                         .setColor(0x26d926)]
                 });
             }
