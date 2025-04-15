@@ -22,7 +22,7 @@ export default {
         if (bet > betLimits.dice.maxBet) {
             const embed = new EmbedBuilder()
                 .setTitle('<:xscoins:1346851584985792513> Zu hoher Einsatz')
-                .setDescription(`Der maximale Einsatz für das Dice-Spiel beträgt **${betLimits.dice.maxBet}** <:xscoins:1346851584985792513>. Dein Einsatz überschreitet diesen Betrag.`)
+                .setDescription(`Der maximale Einsatz für das Dice-Spiel beträgt **${betLimits.dice.maxBet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513>. Dein Einsatz überschreitet diesen Betrag.`)
                 .setColor(0xd92626);
             return interaction.reply({ embeds: [embed], flags: 64 });
         }
@@ -65,7 +65,7 @@ export default {
         const initialEmbed = new EmbedBuilder()
             .setTitle(':game_die: Dice gestartet')
             .setColor('Blue')
-            .setDescription(`**${interaction.user.displayName}** wettet mit **${bet}** <:xscoins:1346851584985792513> und :game_die: würfelt eine **${userRoll1}** und **${userRoll2}**.
+            .setDescription(`**${interaction.user.displayName}** wettet mit **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> und :game_die: würfelt eine **${userRoll1}** und **${userRoll2}**.
             
             Warte auf den Bot, dass er würfelt.`);
 
@@ -75,7 +75,7 @@ export default {
         const botRollEmbed = new EmbedBuilder()
             .setTitle(':game_die: Dice gestartet')
             .setColor('Blue')
-            .setDescription(`**${interaction.user.displayName}** wettet mit **${bet}** <:xscoins:1346851584985792513> und :game_die: würfelt eine **${userRoll1}** und **${userRoll2}**.
+            .setDescription(`**${interaction.user.displayName}** wettet mit **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> und :game_die: würfelt eine **${userRoll1}** und **${userRoll2}**.
             
             Der **Bot** wirft die :game_die: Würfel und hat eine **${botRoll1}** und **${botRoll2}** geworfen.`);
 
@@ -91,7 +91,7 @@ export default {
                 .setColor(0x26d926)
                 .setDescription(`**${interaction.user.displayName}** hat mit **${userTotalRoll}** gegen den **Bot** mit **${botTotalRoll}** gewonnen.
                 
-                **${interaction.user.displayName}** hat **${reward}** <:xscoins:1346851584985792513> gewonnen.`);
+                **${interaction.user.displayName}** hat **${reward.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> gewonnen.`);
         } else if (userTotalRoll < botTotalRoll) {
             await pool.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [bet, userId]);
             finalEmbed = new EmbedBuilder()
@@ -99,14 +99,14 @@ export default {
                 .setColor(0xd92626)
                 .setDescription(`**${interaction.user.displayName}** hat mit **${userTotalRoll}** gegen den **Bot** mit **${botTotalRoll}** verloren.
                 
-                **${interaction.user.displayName}** hat seinen Einsatz **${bet}** <:xscoins:1346851584985792513> verloren.`);
+                **${interaction.user.displayName}** hat seinen Einsatz **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> verloren.`);
         } else {
             finalEmbed = new EmbedBuilder()
                 .setTitle(':game_die: Dice unentschieden')
                 .setColor(0xd98226)
                 .setDescription(`**${interaction.user.displayName}** hat mit **${userTotalRoll}** gegen den **Bot** mit **${botTotalRoll}** ein Unentschieden erzielt.
                 
-                **${interaction.user.displayName}** erhält seine **${bet}** <:xscoins:1346851584985792513> zurück.`);
+                **${interaction.user.displayName}** erhält seine **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> zurück.`);
         }
 
         await interaction.editReply({ embeds: [finalEmbed] });
