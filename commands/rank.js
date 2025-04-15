@@ -175,7 +175,7 @@ export default {
     ctx.shadowColor = 'transparent';
             
     // 📊 Level, XP, Coins anzeigen
-    const padding = 50;
+    const padding = 80;
     const xStart = 150;
     const yStart = 150;
 
@@ -185,15 +185,19 @@ export default {
     const levelText = `Level ${user.level}`;
     ctx.fillText(levelText, xStart, yStart);
     const levelWidth = ctx.measureText(levelText).width;
-    
+
     ctx.fillStyle = xpColor;
     const xpText = `${user.current_xp.toLocaleString('de-DE')} / ${user.xp_needed.toLocaleString('de-DE')} XP`;
     ctx.fillText(xpText, xStart + levelWidth + padding, yStart);
-    const xpWidth = ctx.measureText(xpText).width;
-    
+
+    // 💰 Coins-Zeile darunter anzeigen
     ctx.fillStyle = coinsColor;
     const coinsText = `${user.coins.toLocaleString('de-DE')} XS-Coins`;
-    ctx.fillText(coinsText, xStart + levelWidth + xpWidth + padding * 2, yStart);
+
+    // ✨ Neue Y-Position (z. B. +30 Pixel unter der ersten Zeile)
+    const coinsY = yStart + 50;
+
+    ctx.fillText(coinsText, xStart, coinsY);
     
     const buffer = canvas.toBuffer('image/png');
     const attachment = new AttachmentBuilder(buffer, { name: 'rank.png' });
