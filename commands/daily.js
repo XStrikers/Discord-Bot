@@ -40,7 +40,7 @@ export default {
                     
                 const embed = new EmbedBuilder()
                     .setTitle('<:xscoins:1346851584985792513> Beutel erhalten')
-                    .setDescription(`Du hast gerade einen **Beutel**, **${newCoins}** <:xscoins:1346851584985792513> und **${earnedXP} XP** erhalten!\nNutze \`/adventure\`, um noch mehr <:xscoins:1346851584985792513> zu sammeln.`)
+                    .setDescription(`Du hast gerade einen **Beutel**, **${newCoins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> und **${earnedXP} XP** erhalten!\nNutze \`/adventure\`, um noch mehr <:xscoins:1346851584985792513> zu sammeln.`)
                     .setColor(0x26d926)
 
                 return interaction.reply({ embeds: [embed] });
@@ -74,7 +74,7 @@ export default {
     
             const embed = new EmbedBuilder()
                 .setTitle('<:xscoins:1346851584985792513> eingesammelt')
-                .setDescription(`Du hast gerade **${newCoins - rows[0].coins}** <:xscoins:1346851584985792513> und **${earnedXP} XP** eingesammelt.\nIn deinem XS-Coins Beutel befinden sich **${newCoins}** <:xscoins:1346851584985792513>`)
+                .setDescription(`Du hast gerade **${newCoins - rows[0].coins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> und **${earnedXP} XP** eingesammelt.\nIn deinem XS-Coins Beutel befinden sich **${newCoins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513>`)
                 .setColor(0x26d926)
 
             // Wenn der Benutzer ein Level-Up erreicht hat, sende eine Nachricht in den definierten Level-Up-Channel
