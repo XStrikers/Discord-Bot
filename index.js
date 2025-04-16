@@ -73,7 +73,7 @@ client.once('ready', async () => {
         await registerCommands();
 
         // Starte den Datenbank-Ping
-        startDbPing();
+        startDbPing(client);
 
         console.log("📡 Starte Twitch Stream-Checker...");
         setInterval(() => checkTwitchStreams(client), 10 * 60 * 1000);
