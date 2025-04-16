@@ -179,7 +179,7 @@ export default {
                 return interaction.reply({
                     embeds: [new EmbedBuilder()
                         .setTitle('🌾 Dein Farming-Status')
-                        .setDescription(`**Du bist aktuell **Lvel ${level}**.\nAktuell hat Du auf deiner Farm **${current_xp} / ${xp_needed} XP** gesammelt.\n\n${statusMessage}`)
+                        .setDescription(`Du bist aktuell **Lvel ${level}**.\nAktuell hast Du auf deiner Farm **${current_xp} / ${xp_needed} XP** gesammelt.\n\n${statusMessage}`)
                         .setColor(0x26d926)]
                 });
             }
