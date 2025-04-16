@@ -1,5 +1,6 @@
 import 'dotenv/config';
 import './misc/protocol.js';
+import { startDbPing } from './misc/db_ping.js';
 import { Client, GatewayIntentBits, Collection, REST, Routes } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join, dirname } from 'path';
@@ -70,6 +71,9 @@ client.once('ready', async () => {
     try {
         await loadCommands();
         await registerCommands();
+
+        // Starte den Datenbank-Ping
+        startDbPing();
 
         console.log("📡 Starte Twitch Stream-Checker...");
         setInterval(() => checkTwitchStreams(client), 10 * 60 * 1000);
