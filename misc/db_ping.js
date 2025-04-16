@@ -6,25 +6,27 @@ const CHANNEL_ID = process.env.CHANNEL_ID;
 export const startDbPing = (client) => {
     setInterval(async () => {
         try {
-            await pool.query('SELECT 1');
+            const connection = await pool.getConnection();
+            await connection.query('SELECT 1');
+            connection.release();
+
             console.log('🔄 Datenbank-Ping erfolgreich');
 
-            // Nachricht im Discord-Channel senden
             const channel = await client.channels.fetch(CHANNEL_ID);
             if (channel) {
-                await channel.send('✅ Datenbank-Ping erfolgreich ausgeführt!');
-                console.log("✅ PIng an die Datenbank gesendet");
-            } else {
-                console.warn('⚠️ Ping-Channel nicht gefunden.');
+                channel.send('✅ Datenbank-Ping erfolgreich ausgeführt!');
             }
         } catch (error) {
             console.error('❌ Datenbank-Ping fehlgeschlagen:', error);
 
-            // Fehler im Channel melden
-            const channel = await client.channels.fetch(CHANNEL_ID);
-            if (channel) {
-                channel.send('❌ Fehler beim Datenbank-Ping! Details in der Konsole.');
+            try {
+                const channel = await client.channels.fetch(CHANNEL_ID);
+                if (channel) {
+                    channel.send('❌ Fehler beim Datenbank-Ping! ECONNRESET – Verbindung wurde zurückgesetzt.');
+                }
+            } catch (e) {
+                console.error('⚠️ Fehler beim Senden an Discord:', e);
             }
         }
-    }, 10 * 60 * 1000); // alle 10 Minuten
+    }, 10 * 60 * 1000);
 };
