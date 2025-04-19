@@ -22,7 +22,8 @@ export default {
                 const embed = new EmbedBuilder()
                     .setTitle('❌ Kein Profil gefunden')
                     .setDescription('Du hast noch kein Profil. Nutze `/daily`, um dein Abenteuer zu starten.')
-                    .setColor(0xd92626);
+                    .setColor(0xd92626)
+                    .setImage('https://xstrikers.de/discord/images/levelup.png');
 
                 await interaction.editReply({ embeds: [embed] });
                 return;
@@ -41,7 +42,8 @@ export default {
                         : '💰 Noch keine Coins gefunden. Nutze `/daily`, um welche zu erhalten.'
                     }`
                 )
-                .setColor(0x26d926);
+                .setColor(0x26d926)
+                .setImage('https://xstrikers.de/discord/images/levelup.png');
 
             await interaction.editReply({ embeds: [embed] });
 
