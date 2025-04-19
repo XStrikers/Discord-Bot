@@ -68,7 +68,7 @@ export default {
                         return interaction.reply({
                             embeds: [new EmbedBuilder()
                                 .setTitle('⏳ Deine Pflanze wächst noch')
-                                .setDescription(`Warte **${Math.ceil(requiredTime - timeDiff)} Minuten**, bevor du etwas Neues pflanzt.`)
+                                .setDescription(`Warte **${Math.ceil(requiredTime - timeDiff)} Minuten**, bevor du etwas neues pflanzt.`)
                                 .setColor(0xd92626)]
                         });
                     }
