@@ -67,7 +67,8 @@ export default {
             .setColor('Blue')
             .setDescription(`**${interaction.user.displayName}** wettet mit **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> und :game_die: würfelt eine **${userRoll1}** und **${userRoll2}**.
             
-            Warte auf den Bot, dass er würfelt.`);
+            Warte auf den Bot, dass er würfelt.`)
+            .setImage('https://xstrikers.de/discord/images/dice.png');
 
         let initialMessage = await interaction.editReply({ embeds: [initialEmbed] });
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -77,7 +78,8 @@ export default {
             .setColor('Blue')
             .setDescription(`**${interaction.user.displayName}** wettet mit **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> und :game_die: würfelt eine **${userRoll1}** und **${userRoll2}**.
             
-            Der **Bot** wirft die :game_die: Würfel und hat eine **${botRoll1}** und **${botRoll2}** geworfen.`);
+            Der **Bot** wirft die :game_die: Würfel und hat eine **${botRoll1}** und **${botRoll2}** geworfen.`)
+            .setImage('https://xstrikers.de/discord/images/dice.png');
 
         await interaction.editReply({ embeds: [botRollEmbed] });
         await new Promise(resolve => setTimeout(resolve, 2000));
@@ -91,7 +93,8 @@ export default {
                 .setColor(0x26d926)
                 .setDescription(`**${interaction.user.displayName}** hat mit **${userTotalRoll}** gegen den **Bot** mit **${botTotalRoll}** gewonnen.
                 
-                **${interaction.user.displayName}** hat **${reward.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> gewonnen.`);
+                **${interaction.user.displayName}** hat **${reward.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> gewonnen.`)
+                .setImage('https://xstrikers.de/discord/images/lost_dice.png');
         } else if (userTotalRoll < botTotalRoll) {
             await pool.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [bet, userId]);
             finalEmbed = new EmbedBuilder()
@@ -99,14 +102,16 @@ export default {
                 .setColor(0xd92626)
                 .setDescription(`**${interaction.user.displayName}** hat mit **${userTotalRoll}** gegen den **Bot** mit **${botTotalRoll}** verloren.
                 
-                **${interaction.user.displayName}** hat seinen Einsatz **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> verloren.`);
+                **${interaction.user.displayName}** hat seinen Einsatz **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> verloren.`)
+                .setImage('https://xstrikers.de/discord/images/lost_dice.png');
         } else {
             finalEmbed = new EmbedBuilder()
                 .setTitle(':game_die: Dice unentschieden')
                 .setColor(0xd98226)
                 .setDescription(`**${interaction.user.displayName}** hat mit **${userTotalRoll}** gegen den **Bot** mit **${botTotalRoll}** ein Unentschieden erzielt.
                 
-                **${interaction.user.displayName}** erhält seine **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> zurück.`);
+                **${interaction.user.displayName}** erhält seine **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> zurück.`)
+                .setImage('https://xstrikers.de/discord/images/lost_dice.png');
         }
 
         await interaction.editReply({ embeds: [finalEmbed] });
