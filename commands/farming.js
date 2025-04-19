@@ -156,6 +156,7 @@ export default {
                             .setTitle('🎉 Level Up!')
                             .setDescription(`Du hast Level **${newLevel}** erreicht!`)
                             .setColor(0xf1c40f)
+                            .setImage('https://xstrikers.de/discord/images/levelup.png');
                         );
                     }
                 }
