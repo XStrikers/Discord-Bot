@@ -69,7 +69,9 @@ export default {
                             embeds: [new EmbedBuilder()
                                 .setTitle('⏳ Deine Pflanze wächst noch')
                                 .setDescription(`Warte **${Math.ceil(requiredTime - timeDiff)} Minuten**, bevor du etwas neues pflanzt.`)
-                                .setColor(0xd92626)]
+                                .setColor(0xd92626)
+                                .setImage('https://xstrikers.de/discord/images/cultivation.png')
+                            ]
                         });
                     }
                 }
