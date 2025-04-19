@@ -52,14 +52,16 @@ export default {
                     const embed = new EmbedBuilder()
                         .setTitle('🧭 Neues Abenteuer gestartet!')
                         .setDescription(`Du hast dein letztes Abenteuer abgeschlossen und **${earnedCoins}** <:xscoins:1346851584985792513> sowie **${earnedXP} XP** erhalten!\nAktuell hast du in deinem XS-Coins Beutel **${newCoins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> gesammelt.\n\nDu hast ein neues Abenteuer begonnen, kehre in **1 Stunde** zurück.`)
-                        .setColor(0x26d926);
+                        .setColor(0x26d926)
+                        .setImage('https://xstrikers.de/discord/images/adventure.png');
 
                     if (newLevel > level) {
                         const channel = await client.channels.fetch(process.env.LEVEL_UP_CHANNEL);
                         const levelUpEmbed = new EmbedBuilder()
                             .setTitle('<:epic:1346851964389953546> Level Up')
                             .setDescription(`**${interaction.user.displayName}**, du hast das **Level ${newLevel}** erreicht <:epic:1346851964389953546>\nMach weiter so und stürze dich ins nächste Abenteuer.`)
-                            .setColor(0x26d926);
+                            .setColor(0x26d926)
+                            .setImage('https://xstrikers.de/discord/images/levelup.png');
                         await channel.send({ embeds: [levelUpEmbed] });
                     }
 
@@ -69,8 +71,9 @@ export default {
                     const embed = new EmbedBuilder()
                         .setTitle('🧭 Aktives Abenteuer')
                         .setDescription(`Du bist noch auf einem Abenteuer! \nIn **${remainingTime} Minuten** hast du dein Abenteuer beendet und kannst dann deine <:xscoins:1346851584985792513> zur Belohnung abholen.`)
-                        .setColor(0xd98226);
-                    return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
+                        .setColor(0xd98226)
+                        .setImage('https://xstrikers.de/discord/images/adventure.png');
+                    return interaction.reply({ embeds: [embed] });
                 }
             }
 
@@ -79,7 +82,8 @@ export default {
             const embed = new EmbedBuilder()
                 .setTitle('🧭 Erstes Abenteuer gestartet')
                 .setDescription(`Du hast dein erstes Abenteuer begonnen.\nKehre in **1 Stunde** zurück und nutze \`/adventure\`, um deine Belohnung zu erhalten.`)
-                .setColor(0x26d926);
+                .setColor(0x26d926)
+                .setImage('https://xstrikers.de/discord/images/adventure.png');
 
             return interaction.reply({ embeds: [embed] });
 
