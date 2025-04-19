@@ -52,8 +52,9 @@ export default {
                     .setTitle('<:xscoins:1346851584985792513> bereits eingesammelt')
                     .setDescription('Deine tägliche <:xscoins:1346851584985792513> hast du bereits eingesammelt.\nMorgen kannst du neue <:xscoins:1346851584985792513> einsammeln. Gebe den Befehl \`/adventure\` ein, um weitere <:xscoins:1346851584985792513> zu sammeln.')
                     .setColor(0xd92626)
+                    .setImage('https://xstrikers.de/discord/images/open_chest.png')
 
-                    return interaction.reply({ embeds: [embed], flags: MessageFlags.Ephemeral });
+                    return interaction.reply({ embeds: [embed] });
             }
     
             newCoins = rows[0].coins + newCoins;
@@ -63,10 +64,10 @@ export default {
 
             // Level-Up-Logik
             while (currentXP >= xpNeeded) {
-                level++; // Level erhöhen
-                let overflowXP = currentXP - xpNeeded;  // Berechne überschüssige XP nach dem Level-Up
-                xpNeeded = Math.floor(xpNeeded * 1.5); // XP für das nächste Level erhöhen
-                currentXP = overflowXP; // Überschüssige XP bleiben
+                level++;
+                let overflowXP = currentXP - xpNeeded;
+                xpNeeded = Math.floor(xpNeeded * 1.5);
+                currentXP = overflowXP;
             }
     
             // Datenbank aktualisieren
@@ -76,6 +77,7 @@ export default {
                 .setTitle('<:xscoins:1346851584985792513> eingesammelt')
                 .setDescription(`Du hast gerade **${newCoins - rows[0].coins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> und **${earnedXP} XP** eingesammelt.\nIn deinem XS-Coins Beutel befinden sich **${newCoins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513>`)
                 .setColor(0x26d926)
+                .setImage('https://xstrikers.de/discord/images/chest.png')
 
             // Wenn der Benutzer ein Level-Up erreicht hat, sende eine Nachricht in den definierten Level-Up-Channel
             if (level > rows[0].level) {
@@ -83,7 +85,8 @@ export default {
                 const levelUpEmbed = new EmbedBuilder()
                     .setTitle('<:epic:1346851964389953546> Level Up')
                     .setDescription(`**${interaction.user.displayName}**, du hast das **Level ${level}** erreicht <:epic:1346851964389953546>\nMach weiter so und stürze dich ins nächste Abenteuer.`)
-                    .setColor(0x26d926);
+                    .setColor(0x26d926)
+                    .setImage('https://xstrikers.de/discord/images/levelup.png');
 
                 await channel.send({ embeds: [levelUpEmbed] });
             }
