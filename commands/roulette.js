@@ -61,7 +61,8 @@ export default {
                 const embed = new EmbedBuilder()
                     .setTitle('💥 BAMM')
                     .setDescription(`**${interaction.user.displayName}** hat in Runde **${round}** und seinen Einsatz von **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> verloren.`)
-                    .setColor(0xd92626);
+                    .setColor(0xd92626)
+                    .setImage('https://xstrikers.de/discord/images/russia_roulette.png');
                 await i.update({ embeds: [embed], components: [] });
                 return collector.stop('lost');
             }
@@ -75,7 +76,8 @@ export default {
                 .setDescription(`🔫 Runde **${round}**
                 Du hast bisher **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> angesammelt.\n
                 Deine Überlebenschance beträgt **${((1 - chanceToLose) * 100).toFixed(1)}%**.`)
-                .setColor(0x26d926);
+                .setColor(0x26d926)
+                .setImage('https://xstrikers.de/discord/images/russia_roulette.png');
             
             const buttonRow = new ActionRowBuilder().addComponents(
                 new ButtonBuilder().setCustomId('shoot').setLabel('Abzug drücken').setStyle('4'),
@@ -89,7 +91,8 @@ export default {
             .setTitle(':dart: Russisches Roulette')
             .setDescription(`🔫 **Runde 1** gestartet.\n
                 Dein aktueller Einsatz: **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513>.`)
-            .setColor(0x26d926);
+            .setColor(0x26d926)
+            .setImage('https://xstrikers.de/discord/images/russia_roulette.png');
         
         const buttonRow = new ActionRowBuilder().addComponents(
             new ButtonBuilder().setCustomId('shoot').setLabel('Abzug drücken').setStyle('3'),
@@ -114,7 +117,8 @@ export default {
                 const embed = new EmbedBuilder()
                     .setTitle('<:laughing:1346851741714612265> Gewinn gesichert')
                     .setDescription(`**${interaction.user.displayName}** hat sich entschieden aufzuhören und seinen Gewinn von **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> zu nehmen.`)
-                    .setColor(0x26d926);
+                    .setColor(0x26d926)
+                    .setImage('https://xstrikers.de/discord/images/russia_roulette.png');
                 await i.update({ embeds: [embed], components: [] });
                 return collector.stop('cashout');
             }
@@ -129,7 +133,8 @@ export default {
                 const embed = new EmbedBuilder()
                     .setTitle('⌛ Zeit abgelaufen')
                     .setDescription(`**${interaction.user.displayName}** hat weder den Gewinn genommen noch den Abzug gedrückt und ist mit leeren Händen gegangen.`)
-                    .setColor(0xd92626);
+                    .setColor(0xd92626)
+                    .setImage('https://xstrikers.de/discord/images/russia_roulette.png');
                 await interaction.editReply({ embeds: [embed], components: [] });
             }
         });
