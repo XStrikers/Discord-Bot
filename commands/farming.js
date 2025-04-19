@@ -3,10 +3,10 @@ import { pool } from '../economy.js';
 import cooldowns from '../cooldowns.js';
 
 const plants = {
-    "🌾 Weizen": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30 },
-    "🥔 Kartoffeln": { level: 5, cost: 50, rewardMin: 80, rewardMax: 130, xp: 20, cooldown: 60 },
-    "🥕 Karotten": { level: 10, cost: 100, rewardMin: 130, rewardMax: 180, xp: 30, cooldown: 90 },
-    "🍅 Tomaten": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120 }
+    "🌾 Weizen": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30, image: "https://xstrikers.de/discord/images/wheat.png" },
+    "🥔 Kartoffeln": { level: 5, cost: 50, rewardMin: 80, rewardMax: 130, xp: 20, cooldown: 60, image: "https://xstrikers.de/discord/images/kartoffeln.png" },
+    "🥕 Karotten": { level: 10, cost: 100, rewardMin: 130, rewardMax: 180, xp: 30, cooldown: 90, image: "https://xstrikers.de/discord/images/karotten.png" },
+    "🍅 Tomaten": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120, image: "https://xstrikers.de/discord/images/tomatos.png" }
 };
 
 export default {
@@ -93,7 +93,9 @@ export default {
                     embeds: [new EmbedBuilder()
                         .setTitle(`${plantName} gepflanzt`)
                         .setDescription(`Deine **${plantName}**-Farm wurde gepflanzt. Kehre in **${plant.cooldown} Minuten** zurück.`)
-                        .setColor(0x26d926)]
+                        .setColor(0x26d926)
+                        .setImage('https://xstrikers.de/discord/images/cultivation.png')
+                    ]
                 });
             }
 
@@ -117,7 +119,9 @@ export default {
                         embeds: [new EmbedBuilder()
                             .setTitle('⏳ Noch nicht bereit')
                             .setDescription(`Deine **${plant_type}**-Farm ist noch nicht reif. Warte **${Math.ceil(plant.cooldown - timeDiff)} Minuten**.`)
-                            .setColor(0xd92626)]
+                            .setColor(0xd92626)
+                            .setImage('https://xstrikers.de/discord/images/growing.png')
+                        ]
                     });
                 }
 
@@ -129,8 +133,9 @@ export default {
 
                 let embeds = [new EmbedBuilder()
                     .setTitle('🌾 Ernte erfolgreich')
-                    .setDescription(`Du hast **${reward} Coins** und **${xpGain} XP** erhalten!`)
+                    .setDescription(`Du hast **${reward} Coins** und **${xpGain} XP** erhalten für deine Ernte.`)
                     .setColor(0x26d926)
+                    .setImage(plant.image)
                 ];
             
                 if (newXP >= xp_needed) {
@@ -144,7 +149,7 @@ export default {
                         embeds.push(new EmbedBuilder()
                             .setTitle('🎉 Level Up!')
                             .setDescription(`Du hast **Level ${newLevel}** erreicht und folgende Pflanze freigeschaltet:\n**${unlockedPlants.join(', ')}**.`)
-                            .setColor(0xf1c40f) // Goldene Farbe für Level-Up
+                            .setColor(0xf1c40f)
                         );
                     } else {
                         embeds.push(new EmbedBuilder()
@@ -180,7 +185,9 @@ export default {
                     embeds: [new EmbedBuilder()
                         .setTitle('🌾 Dein Farming-Status')
                         .setDescription(`Du bist aktuell **Lvel ${level}**.\nAktuell hast Du auf deiner Farm **${current_xp} / ${xp_needed} XP** gesammelt.\n\n${statusMessage}`)
-                        .setColor(0x26d926)]
+                        .setColor(0x26d926)
+                        .setImage('https://xstrikers.de/discord/images/farm.png')
+                    ]
                 });
             }
 
