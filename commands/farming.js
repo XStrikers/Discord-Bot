@@ -3,11 +3,18 @@ import { pool } from '../economy.js';
 import cooldowns from '../cooldowns.js';
 
 const plants = {
-    "🌾 Weizen": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30, image: "https://xstrikers.de/discord/images/wheat.png" },
-    "🥔 Kartoffeln": { level: 5, cost: 50, rewardMin: 80, rewardMax: 130, xp: 20, cooldown: 60, image: "https://xstrikers.de/discord/images/kartoffeln.png" },
-    "🥕 Karotten": { level: 10, cost: 100, rewardMin: 130, rewardMax: 180, xp: 30, cooldown: 90, image: "https://xstrikers.de/discord/images/karotten.png" },
-    "🍅 Tomaten": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120, image: "https://xstrikers.de/discord/images/tomatos.png" }
+    "🥕 Karotten": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30, image: "https://xstrikers.de/discord/images/carrots.png" },
+    "🥔 Kartoffeln": { level: 5, cost: 50, rewardMin: 80, rewardMax: 130, xp: 20, cooldown: 60, image: "https://xstrikers.de/discord/images/potatos.png" },
+    "🍅 Tomaten": { level: 10, cost: 100, rewardMin: 130, rewardMax: 180, xp: 30, cooldown: 90, image: "https://xstrikers.de/discord/images/tomatos.png" },
+    "🌾 Weizen": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120, image: "https://xstrikers.de/discord/images/wheat.png" }
 };
+
+const slots = [
+    { type: 'plant_type', time: 'plant_time' },
+    { type: 'plant_type2', time: 'plant_time2' },
+    { type: 'plant_type3', time: 'plant_time3' },
+    { type: 'plant_type4', time: 'plant_time4' }
+];
 
 export default {
     data: new SlashCommandBuilder()
@@ -32,171 +39,204 @@ export default {
                 .setDescription('Zeigt deinen Farming-Fortschritt.')
         ),
 
-    async execute(interaction) {
-        const userId = interaction.user.id;
-        const currentDate = new Date();
+        async execute(interaction) {
+            const userId = interaction.user.id;
+            const currentDate = new Date();
+        
+            try {
+                const [farmRows] = await pool.execute('SELECT * FROM farming WHERE discord_id = ?', [userId]);
 
-        try {
-            const [farmRows] = await pool.execute('SELECT * FROM farming WHERE discord_id = ?', [userId]);
-            if (farmRows.length === 0) {
-                await pool.execute('INSERT INTO farming (discord_id) VALUES (?)', [userId]);
-            }
+                let farmData;
 
-            const { level, current_xp, xp_needed, plant_type, plant_time } = farmRows.length > 0 ? farmRows[0] : { level: 0, current_xp: 0, xp_needed: 100, plant_type: null, plant_time: null };
-
-            // --------------- 🌱 Pflanzen ----------------
-            if (interaction.options.getSubcommand() === 'plant') {
-                const plantName = interaction.options.getString('pflanze');
-                if (!plants[plantName]) return interaction.reply({ content: 'Ungültige Pflanze.', ephemeral: true });
-                const plant = plants[plantName];
-
-                if (level < plant.level) {
-                    return interaction.reply({
-                        embeds: [new EmbedBuilder()
-                            .setTitle('🚫 Level zu niedrig')
-                            .setDescription(`Du musst mindestens Level **${plant.level}** sein, um **${plantName}** zu pflanzen.`)
-                            .setColor(0xd92626)],
-                            flags: 64
-                    });
+                if (farmRows.length === 0) {
+                    await pool.execute('INSERT INTO farming (discord_id) VALUES (?)', [userId]);
+                    const [newFarmRows] = await pool.execute('SELECT * FROM farming WHERE discord_id = ?', [userId]);
+                    farmData = newFarmRows[0];
+                } else {
+                    farmData = farmRows[0];
                 }
-
-                // Nur fortfahren, wenn du keine Pflanze hast, oder eine existierende Pflanze keine Zeit mehr benötigt
-                if (plant_time !== null) {
-                    const timeDiff = (currentDate - new Date(plant_time)) / 60000;
-                    const requiredTime = plants[plant_type] ? plants[plant_type].cooldown : 60;
-                    if (timeDiff < requiredTime) {
+        
+                const { level, current_xp, xp_needed } = farmData;
+        
+                // --------------- 🌱 Pflanzen ----------------
+                if (interaction.options.getSubcommand() === 'plant') {
+                    const plantName = interaction.options.getString('pflanze');
+                    const plant = plants[plantName];
+        
+                    if (!plant) {
+                        return interaction.reply({ content: 'Ungültige Pflanze.', ephemeral: true });
+                    }
+        
+                    if (level < plant.level) {
                         return interaction.reply({
                             embeds: [new EmbedBuilder()
-                                .setTitle('⏳ Deine Pflanze wächst noch')
-                                .setDescription(`Warte **${Math.ceil(requiredTime - timeDiff)} Minuten**, bevor du etwas neues pflanzt.`)
-                                .setColor(0xd92626)
-                                .setImage('https://xstrikers.de/discord/images/cultivation.png')
-                            ]
+                                .setTitle('🚫 Level zu niedrig')
+                                .setDescription(`Du musst mindestens Level **${plant.level}** sein, um **${plantName}** zu pflanzen.`)
+                                .setColor(0xd92626)],
+                            flags: 64
                         });
                     }
-                }
-
-                const [userRows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
-                let userCoins = userRows.length > 0 ? userRows[0].coins : 0;
-                if (userCoins < plant.cost) {
-                    return interaction.reply({
-                        embeds: [new EmbedBuilder()
-                            .setTitle('❌ Nicht genug Coins')
-                            .setDescription(`Du brauchst **${plant.cost} Coins**, um **${plantName}** anzubauen.`)
-                            .setColor(0xd92626)],
-                            flags: 64
-                    });
-                }
-
-                await pool.execute('UPDATE farming SET plant_type = ?, plant_time = ? WHERE discord_id = ?', [plantName, currentDate, userId]);
-                await pool.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [plant.cost, userId]);
-
-                return interaction.reply({
-                    embeds: [new EmbedBuilder()
-                        .setTitle(`${plantName} gepflanzt`)
-                        .setDescription(`Deine **${plantName}**-Farm wurde gepflanzt. Kehre in **${plant.cooldown} Minuten** zurück.`)
-                        .setColor(0x26d926)
-                        .setImage('https://xstrikers.de/discord/images/cultivation.png')
-                    ]
-                });
-            }
-
-            // --------------- 🌾 Ernten ----------------
-            if (interaction.options.getSubcommand() === 'harvest') {
-                if (plant_type === null) {
-                    return interaction.reply({
-                        embeds: [new EmbedBuilder()
-                            .setTitle('❌ Keine Farm zum Ernten')
-                            .setDescription('Du hast nichts gepflanzt oder es ist noch nicht bereit zur Ernte.')
-                            .setColor(0xd92626)],
-                            flags: 64
-                    });
-                }
-
-                const plant = plants[plant_type];
-                const timeDiff = (currentDate - new Date(plant_time)) / 60000;
-
-                if (timeDiff < plant.cooldown) {
-                    return interaction.reply({
-                        embeds: [new EmbedBuilder()
-                            .setTitle('⏳ Noch nicht bereit')
-                            .setDescription(`Deine **${plant_type}**-Farm ist noch nicht reif. Warte **${Math.ceil(plant.cooldown - timeDiff)} Minuten**.`)
-                            .setColor(0xd92626)
-                            .setImage('https://xstrikers.de/discord/images/growing.png')
-                        ]
-                    });
-                }
-
-                const reward = Math.floor(Math.random() * (plant.rewardMax - plant.rewardMin + 1)) + plant.rewardMin;
-                const xpGain = plant.xp;
-                let newXP = current_xp + xpGain;
-                let newLevel = level;
-                let newXPNeeded = xp_needed;
-
-                let embeds = [new EmbedBuilder()
-                    .setTitle('🌾 Ernte erfolgreich')
-                    .setDescription(`Du hast **${reward} Coins** und **${xpGain} XP** erhalten für deine Ernte.`)
-                    .setColor(0x26d926)
-                    .setImage(plant.image)
-                ];
-            
-                if (newXP >= xp_needed) {
-                    newLevel++;
-                    newXP = 0;
-                    newXPNeeded = Math.floor(xp_needed * 1.2);
-            
-                    // Prüfen, ob eine neue Pflanze freigeschaltet wurde
-                    const unlockedPlants = Object.keys(plants).filter(p => plants[p].level === newLevel);
-                    if (unlockedPlants.length > 0) {
-                        embeds.push(new EmbedBuilder()
-                            .setTitle('🎉 Level Up!')
-                            .setDescription(`Du hast **Level ${newLevel}** erreicht und folgende Pflanze freigeschaltet:\n**${unlockedPlants.join(', ')}**.`)
-                            .setColor(0xf1c40f)
-                            .setImage('https://xstrikers.de/discord/images/levelup.png');
-                        );
-                    } else {
-                        embeds.push(new EmbedBuilder()
-                            .setTitle('🎉 Level Up!')
-                            .setDescription(`Du hast Level **${newLevel}** erreicht!`)
-                            .setColor(0xf1c40f)
-                            .setImage('https://xstrikers.de/discord/images/levelup.png');
-                        );
+        
+                    // Du hast diese Pflanze schon gepflanzt?
+                    const alreadyPlanted = slots.some(slot => farmData[slot.type] === plantName);
+                    if (alreadyPlanted) {
+                        return interaction.reply({
+                            content: `Du hast bereits **${plantName}** angebaut. Jede Sorte darf nur einmal angepflanzt werden.`,
+                            falgs: 64
+                        });
                     }
+        
+                    // Freien Slot finden
+                    const emptySlot = slots.find(slot => !farmData[slot.type]);
+                    if (!emptySlot) {
+                        return interaction.reply({
+                            content: `Du hast bereits alle 4 Pflanzenslots belegt.`,
+                            ephemeral: true
+                        });
+                    }
+        
+                    const [userRows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
+                    const userCoins = userRows[0]?.coins || 0;
+        
+                    if (userCoins < plant.cost) {
+                        return interaction.reply({
+                            embeds: [new EmbedBuilder()
+                                .setTitle('❌ Nicht genug Coins')
+                                .setDescription(`Du brauchst **${plant.cost} Coins**, um **${plantName}** anzubauen.`)
+                                .setColor(0xd92626)],
+                            flags: 64
+                        });
+                    }
+        
+                    await pool.execute(`UPDATE farming SET ${emptySlot.type} = ?, ${emptySlot.time} = ? WHERE discord_id = ?`,
+                        [plantName, currentDate, userId]);
+                    await pool.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [plant.cost, userId]);
+        
+                    return interaction.reply({
+                        embeds: [new EmbedBuilder()
+                            .setTitle(`${plantName} gepflanzt`)
+                            .setDescription(`Du hast **${plantName}** angebaut. In **${plant.cooldown} Minuten** kannst du es ernten.`)
+                            .setColor(0x26d926)
+                            .setImage('https://xstrikers.de/discord/images/cultivation.png')]
+                    });
                 }
-            
-                await pool.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [reward, userId]);
-                await pool.execute('UPDATE farming SET current_xp = ?, level = ?, xp_needed = ?, plant_type = NULL, plant_time = NULL WHERE discord_id = ?', 
-                    [newXP, newLevel, newXPNeeded, userId]);
-            
-                return interaction.reply({ embeds });
-            }
 
-            // --------------- 📊 Status ----------------
-            if (interaction.options.getSubcommand() === 'status') {
-                let statusMessage = '🌱 Es wurde nichts angebaut.';
+                // --------------- 🌾 Ernten ----------------
+                if (interaction.options.getSubcommand() === 'harvest') {
+                    let harvestedPlants = [];
+                    let totalReward = 0;
+                    let totalXP = 0;
+                
+                    for (const slot of slots) {
+                        const plantName = farmData[slot.type];
+                        const plantTime = farmData[slot.time];
+                
+                        if (plantName && plantTime) {
+                            const plant = plants[plantName];
+                            const timeDiff = (currentDate - new Date(plantTime)) / 60000;
+                
+                            if (timeDiff >= plant.cooldown) {
+                                const reward = Math.floor(Math.random() * (plant.rewardMax - plant.rewardMin + 1)) + plant.rewardMin;
+                                const xpGain = plant.xp;
+                
+                                totalReward += reward;
+                                totalXP += xpGain;
+                                harvestedPlants.push({ name: plantName, reward, xp: xpGain, image: plant.image });
+                
+                                // Slot zurücksetzen
+                                await pool.execute(
+                                    `UPDATE farming SET ${slot.type} = NULL, ${slot.time} = NULL WHERE discord_id = ?`,
+                                    [userId]
+                                );
+                            }
+                        }
+                    }
+                
+                    if (harvestedPlants.length === 0) {
+                        return interaction.reply({
+                            embeds: [new EmbedBuilder()
+                                .setTitle('❌ Nichts bereit zur Ernte')
+                                .setDescription('Keine deiner Pflanzen ist momentan bereit zum Ernten.')
+                                .setColor(0xd92626)],
+                            flags: 64
+                        });
+                    }
+                
+                    let newXP = current_xp + totalXP;
+                    let newLevel = level;
+                    let newXPNeeded = xp_needed;
+                    let levelUpEmbeds = [];
+                
+                    while (newXP >= newXPNeeded) {
+                        newXP -= newXPNeeded;
+                        newLevel++;
+                        newXPNeeded = Math.floor(newXPNeeded * 1.2);
+                
+                        const unlockedPlants = Object.keys(plants).filter(p => plants[p].level === newLevel);
+                        levelUpEmbeds.push(new EmbedBuilder()
+                            .setTitle('🎉 Level Up!')
+                            .setDescription(unlockedPlants.length > 0
+                                ? `Du hast **Level ${newLevel}** erreicht und neue Pflanzen freigeschaltet:\n**${unlockedPlants.join(', ')}**`
+                                : `Du hast **Level ${newLevel}** erreicht!`)
+                            .setColor(0xf1c40f)
+                            .setImage('https://xstrikers.de/discord/images/levelup.png'));
+                    }
+                
+                    // Coins & XP aktualisieren
 
-                if (plant_type !== null && plants[plant_type]) {
-                    const plant = plants[plant_type];
-                    const timeDiff = (currentDate - new Date(plant_time)) / 60000;
-                    statusMessage = timeDiff < plant.cooldown
-                        ? `**${plant_type}** wächst noch und kann erst in **${Math.ceil(plant.cooldown - timeDiff)} Minuten** geerntet werden.`
-                        : `**${plant_type} ist bereit zur Ernte!**`;
-                } else {
-                    statusMessage ='🌱 Du hast momentan nichts gepflanzt.'
-                }
+                    let harvestImage;
 
-                return interaction.reply({
-                    embeds: [new EmbedBuilder()
-                        .setTitle('🌾 Dein Farming-Status')
-                        .setDescription(`Du bist aktuell **Lvel ${level}**.\nAktuell hast Du auf deiner Farm **${current_xp} / ${xp_needed} XP** gesammelt.\n\n${statusMessage}`)
+                    if (harvestedPlants.length === 1) {
+                        harvestImage = harvestedPlants[0].image;
+                    } else {
+                        harvestImage = 'https://xstrikers.de/discord/images/farming.png';
+                    }
+
+                    await pool.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [totalReward, userId]);
+                    await pool.execute('UPDATE farming SET current_xp = ?, level = ?, xp_needed = ? WHERE discord_id = ?',
+                        [newXP, newLevel, newXPNeeded, userId]);
+                
+                    const embed = new EmbedBuilder()
+                        .setTitle('🚜 Ernte erfolgreich')
+                        .setDescription(harvestedPlants.map(p =>
+                            `Bei deinem **${p.name}-Feld** hast du **${p.reward} XS-Coins** und **${p.xp} XP** erhalten.`
+                        ).join('\n') + `\n\nDeine gesamte Ernte hat dir **${totalReward} XS-Coins** und **${totalXP} XP** eingebracht.`)
                         .setColor(0x26d926)
-                        .setImage('https://xstrikers.de/discord/images/farm.png')
-                    ]
-                });
+                        .setImage(harvestImage);
+                
+                    return interaction.reply({ embeds: [embed, ...levelUpEmbeds] });
+                }
+                        
+                // --------------- 📊 Status ----------------
+                if (interaction.options.getSubcommand() === 'status') {
+                    let planted = [];
+                    for (const slot of slots) {
+                        const plantName = farmData[slot.type];
+                        if (plantName) {
+                            const plant = plants[plantName];
+                            const timeDiff = (currentDate - new Date(farmData[slot.time])) / 60000;
+                            if (timeDiff >= plant.cooldown) {
+                                planted.push(`**${plantName}** ist bereit zur Ernte!`);
+                            } else {
+                                planted.push(`**${plantName}** wächst noch **${Math.ceil(plant.cooldown - timeDiff)} Minuten**.`);
+                            }
+                        }
+                    }
+        
+                    const statusMsg = planted.length > 0 ? planted.join('\n') : '🌱 Du hast momentan nichts gepflanzt.';
+        
+                    return interaction.reply({
+                        embeds: [new EmbedBuilder()
+                            .setTitle('🌾 Dein Farming-Status')
+                            .setDescription(`Level: **${level}**\nXP: **${current_xp} / ${xp_needed}**\n\n${statusMsg}`)
+                            .setColor(0x26d926)
+                            .setImage('https://xstrikers.de/discord/images/farm.png')]
+                    });
+                }
+        
+            } catch (error) {
+                console.error(error);
+                return interaction.reply({ content: 'Es ist ein Fehler aufgetreten.', ephemeral: true });
             }
-
-        } catch (error) {
-            console.error(error);
         }
-    }
 };
