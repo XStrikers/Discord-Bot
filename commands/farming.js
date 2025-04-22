@@ -72,7 +72,7 @@ export default {
                             embeds: [new EmbedBuilder()
                                 .setTitle('🚫 Level zu niedrig')
                                 .setDescription(`Du musst mindestens Level **${plant.level}** sein, um **${plantName}** zu pflanzen.`)
-                                .setColor(0xd92626)]
+                                .setColor(0xd92626)],
                             flags: 64
                         });
                     }
