@@ -64,7 +64,7 @@ export default {
                     const plant = plants[plantName];
         
                     if (!plant) {
-                        return interaction.reply({ content: 'Ungültige Pflanze.', ephemeral: true });
+                        return interaction.reply({ content: 'Ungültige Pflanze.', flags: 64 });
                     }
         
                     if (level < plant.level) {
@@ -84,7 +84,7 @@ export default {
                             embeds: [new EmbedBuilder()
                                 .setTitle(`${plantName}-Farm`)
                                 .setDescription(`Du hast bereits **${plantName}** angebaut. Jede Sorte darf nur einmal angepflanzt werden.`)
-                                .setColor(0xd92626)]
+                                .setColor(0xd92626)
                                 .setImage('https://xstrikers.de/discord/images/cultivation.png')]
                         });
                     }
@@ -94,7 +94,7 @@ export default {
                     if (!emptySlot) {
                         return interaction.reply({
                             content: `Du hast bereits alle 4 Pflanzenslots belegt.`,
-                            ephemeral: true
+                            flags: 64
                         });
                     }
         
@@ -239,7 +239,7 @@ export default {
         
             } catch (error) {
                 console.error(error);
-                return interaction.reply({ content: 'Es ist ein Fehler aufgetreten.', ephemeral: true });
+                return interaction.reply({ content: 'Es ist ein Fehler aufgetreten.', flags: 64 });
             }
         }
 };
