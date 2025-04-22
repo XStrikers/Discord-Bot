@@ -62,7 +62,7 @@ export default {
                     .setTitle('💥 BAMM')
                     .setDescription(`**${interaction.user.displayName}** hat in Runde **${round}** und seinen Einsatz von **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> verloren.`)
                     .setColor(0xd92626)
-                    .setImage('https://xstrikers.de/discord/images/russia_roulette.png');
+                    .setImage('https://xstrikers.de/discord/images/r_lose.png');
                 await i.update({ embeds: [embed], components: [] });
                 return collector.stop('lost');
             }
@@ -118,7 +118,7 @@ export default {
                     .setTitle('<:laughing:1346851741714612265> Gewinn gesichert')
                     .setDescription(`**${interaction.user.displayName}** hat sich entschieden aufzuhören und seinen Gewinn von **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> zu nehmen.`)
                     .setColor(0x26d926)
-                    .setImage('https://xstrikers.de/discord/images/russia_roulette.png');
+                    .setImage('https://xstrikers.de/discord/images/win.png');
                 await i.update({ embeds: [embed], components: [] });
                 return collector.stop('cashout');
             }
