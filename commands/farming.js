@@ -72,7 +72,7 @@ export default {
                             embeds: [new EmbedBuilder()
                                 .setTitle('🚫 Level zu niedrig')
                                 .setDescription(`Du musst mindestens Level **${plant.level}** sein, um **${plantName}** zu pflanzen.`)
-                                .setColor(0xd92626)],
+                                .setColor(0xd92626)]
                             flags: 64
                         });
                     }
@@ -80,9 +80,12 @@ export default {
                     // Du hast diese Pflanze schon gepflanzt?
                     const alreadyPlanted = slots.some(slot => farmData[slot.type] === plantName);
                     if (alreadyPlanted) {
-                        return interaction.reply({
-                            content: `Du hast bereits **${plantName}** angebaut. Jede Sorte darf nur einmal angepflanzt werden.`,
-                            falgs: 64
+                         return interaction.reply({
+                            embeds: [new EmbedBuilder()
+                                .setTitle(`${plantName}-Farm`)
+                                .setDescription(`Du hast bereits **${plantName}** angebaut. Jede Sorte darf nur einmal angepflanzt werden.`)
+                                .setColor(0xd92626)]
+                                .setImage('https://xstrikers.de/discord/images/cultivation.png')]
                         });
                     }
         
