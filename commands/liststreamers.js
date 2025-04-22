@@ -12,14 +12,6 @@ export default {
         .setDescription('Zeigt die Liste aller hinzugefügten Streamer'),
 
     async execute(interaction) {
-        const ownerId = process.env.OWNER_ID;
-        if (interaction.user.id !== ownerId) {
-            return interaction.reply({
-                content: '🚫 Du darfst diesen Befehl nicht verwenden.',
-                flags: 64
-            });
-        }
-
         let streamers = [];
         try {
             const fileContent = fs.readFileSync(streamersPath, 'utf-8');
