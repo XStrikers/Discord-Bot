@@ -94,7 +94,7 @@ export default {
                 .setDescription(`**${interaction.user.displayName}** hat mit **${userTotalRoll}** gegen den **Bot** mit **${botTotalRoll}** gewonnen.
                 
                 **${interaction.user.displayName}** hat **${reward.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> gewonnen.`)
-                .setImage('https://xstrikers.de/discord/images/lost_dice.png');
+                .setImage('https://xstrikers.de/discord/images/win.png');
         } else if (userTotalRoll < botTotalRoll) {
             await pool.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [bet, userId]);
             finalEmbed = new EmbedBuilder()
