@@ -5,6 +5,7 @@ export default {
     data: new SlashCommandBuilder()
         .setName('addstreamer')
         .setDescription('Fügt einen neuen Twitch-Streamer zur Liste hinzu')
+        .setDefaultMemberPermissions('0')
         .addStringOption(option =>
             option.setName('name')
                 .setDescription('Twitch-Username (ohne URL)')
@@ -12,10 +13,19 @@ export default {
         ),
 
     async execute(interaction) {
+        const ownerId = process.env.OWNER_ID;
+
+        if (interaction.user.id !== ownerId) {
+            return interaction.reply({
+                content: '🚫 Du darfst diesen Befehl nicht verwenden.',
+                ephemeral: true
+            });
+        }
+
         const streamerName = interaction.options.getString('name').toLowerCase();
 
         try {
-            await interaction.deferReply({ flags: 64 });
+            await interaction.deferReply({ ephemeral: true });
 
             const { streamers } = await getStreamersFromGitHub();
 
