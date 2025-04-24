@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1365040727691755551",
+    "title": "[FSK18] Ich teste da mal wie das geht, mit Sport  !dc !10% !instant !yt !pokehelp",
+    "viewers": 4,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2909202",
+    "cacheBuster": 2909202
   },
   "happyendttv": {
     "isLive": false,
