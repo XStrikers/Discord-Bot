@@ -18,14 +18,5 @@
   "kimneele97": {
     "isLive": false,
     "announced": false
-  },
-  "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1370727043024814251",
-    "title": "[GTV24/7] ✶ 001 - Tobi & Erik retten... Omas schäbige Ranch! ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 1822,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=2911461",
-    "cacheBuster": 2911461
   }
 }
