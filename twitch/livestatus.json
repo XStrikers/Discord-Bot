@@ -20,12 +20,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1370690371549397042",
-    "title": "[GTV24/7] ✶ 994 - Vergangene Versprechen ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 2118,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29114474",
-    "cacheBuster": 29114474
+    "isLive": false,
+    "announced": false
   }
 }
