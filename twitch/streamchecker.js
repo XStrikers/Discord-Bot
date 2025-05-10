@@ -81,8 +81,14 @@ export async function checkTwitchStreams(client) {
 
             const title = isLive.title;
             const viewers = isLive.viewer_count;
-            const cacheBuster = Math.floor(now.getTime() / (10 * 60 * 1000));
+            const cacheBuster = Math.floor(now.getTime() / (60 * 1000));
             const thumbnail = `https://static-cdn.jtvnw.net/previews-ttv/live_user_${isLive.user_login}-640x360.jpg?cb=${cacheBuster}`;
+
+            const startedAt = new Date(isLive.started_at);
+            const diffMs = now - startedAt;
+            const diffHrs = Math.floor(diffMs / 3600000);
+            const diffMin = Math.floor((diffMs % 3600000) / 60000);
+            const streamUptime = `${diffHrs > 0 ? `${diffHrs}h ` : ''}${diffMin}min`;
 
 
 
@@ -94,6 +100,7 @@ export async function checkTwitchStreams(client) {
                 .addFields(
                     { name: '🎮 Spiel', value: `${isLive.game_name || 'Unbekannt'}`, inline: true },
                     { name: '👥 Zuschauer', value: `${viewers.toLocaleString('de-DE')}`, inline: true },
+                    { name: '🕒 Laufzeit', value: streamUptime, inline: true },
                     { name: '\u200B', value: '\u200B', inline: false },
                     { name: '🔗 Link', value: `https://twitch.tv/${isLive.user_login}`, inline: false }
                 )
