@@ -18,14 +18,14 @@ export default {
         if (interaction.user.id !== ownerId) {
             return interaction.reply({
                 content: '🚫 Du darfst diesen Befehl nicht verwenden.',
-                ephemeral: true
+                flags: 64
             });
         }
 
         const streamerName = interaction.options.getString('name').toLowerCase();
 
         try {
-            await interaction.deferReply({ ephemeral: true });
+            await interaction.deferReply({ flags: 64 });
 
             const { streamers } = await getStreamersFromGitHub();
 
