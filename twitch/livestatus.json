@@ -20,12 +20,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1370697921338540042",
-    "title": "[GTV24/7] ✶ 995 - Forever Alone ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 2081,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29114504",
-    "cacheBuster": 29114504
+    "isLive": false,
+    "announced": false
   }
 }
