@@ -16,7 +16,12 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1370854074274156635",
+    "title": "[FSK18+] Nach getaner Arbeit soll man zocken :D !sr !points !dc !ts !commands !socials",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2911512",
+    "cacheBuster": 2911512
   }
 }
