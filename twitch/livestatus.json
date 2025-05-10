@@ -20,12 +20,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1370707987739578480",
-    "title": "[GTV24/7] ✶ 034 - Schweinegatter Extended, unvollendet! ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 1897,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29114544",
-    "cacheBuster": 29114544
+    "isLive": false,
+    "announced": false
   }
 }
