@@ -18,12 +18,12 @@ export default {
         if (interaction.user.id !== ownerId) {
             return interaction.reply({
                 content: '🚫 Du darfst diesen Befehl nicht verwenden.',
-                ephemeral: true
+                flags: 64
             });
         }
 
         try {
-            await interaction.deferReply({ ephemeral: true });
+            await interaction.deferReply({ flags: 64 });
 
             const streamerName = interaction.options.getString('name').toLowerCase().trim();
 
@@ -54,7 +54,7 @@ export default {
             } else {
                 await interaction.reply({
                     content: '❌ Es ist ein Fehler aufgetreten. Bitte versuche es erneut.',
-                    ephemeral: true
+                    flags: 64
                 });
             }
         }
