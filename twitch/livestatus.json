@@ -20,12 +20,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1370678770264178740",
-    "title": "[GTV24/7] ✶ 992 - Na, na, na, Nordkorea! ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 2228,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29114428",
-    "cacheBuster": 29114428
+    "isLive": false,
+    "announced": false
   }
 }
