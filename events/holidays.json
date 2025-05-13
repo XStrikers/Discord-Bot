@@ -7,6 +7,14 @@
     "date_start": "2026-01-01",
     "date_end": "2026-01-05"
   },
+  "!krebs": {
+    "event": "Weltkrebstag",
+    "type": "xp_coins",
+    "amount": 402,
+    "reason": "Weltkrebstag 2026",
+    "date_start": "2026-02-04",
+    "date_end": "2026-02-08"
+  },
   "!womansday": {
     "event": "Frauentag",
     "type": "xp_coins",
