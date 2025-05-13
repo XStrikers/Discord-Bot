@@ -1,0 +1,90 @@
+{
+  "!newyear2026": {
+    "event": "Neujahr",
+    "type": "xp_coins",
+    "amount": 2026,
+    "reason": "Neujahr 2026",
+    "date_start": "2026-01-01",
+    "date_end": "2026-01-05"
+  },
+  "!womansday": {
+    "event": "Frauentag",
+    "type": "xp_coins",
+    "amount": 803,
+    "reason": "Frauentag 2026",
+    "date_start": "2026-03-08",
+    "date_end": "2026-03-12"
+  },
+  "!goodfriday": {
+    "event": "Karfreitag",
+    "type": "xp_coins",
+    "amount": 304,
+    "reason": "Karfreitag 2026",
+    "date_start": "2026-04-03",
+    "date_end": "2026-04-07"
+  },
+  "!easter26": {
+    "event": "Ostern",
+    "type": "xp_coins",
+    "amount": 504,
+    "reason": "Ostern 2026",
+    "date_start": "2026-04-05",
+    "date_end": "2026-04-09"
+  },
+  "!chrishim": {
+    "event": "Christi Himmelfahrt",
+    "type": "xp_coins",
+    "amount": 1405,
+    "reason": "Christi Himmelfahrt 2025",
+    "date_start": "2025-05-14",
+    "date_end": "2025-05-18"
+  },
+  "!pfingsten": {
+    "event": "Pfingsten",
+    "type": "xp_coins",
+    "amount": 806,
+    "reason": "Pfingsten 2025",
+    "date_start": "2025-06-08",
+    "date_end": "2025-06-12"
+  },
+  "!fronleichnam": {
+    "event": "Fronleichnam",
+    "type": "xp_coins",
+    "amount": 1906,
+    "reason": "Fronleichnam 2025",
+    "date_start": "2025-06-19",
+    "date_end": "2025-06-23"
+  },
+  "!tdde": {
+    "event": "Tag der deutschen Einheit",
+    "type": "xp_coins",
+    "amount": 310,
+    "reason": "Tag der deutschen Einheit 2025",
+    "date_start": "2025-10-03",
+    "date_end": "2025-10-07"
+  },
+  "!reform": {
+    "event": "Reformationstag",
+    "type": "xp_coins",
+    "amount": 3110,
+    "reason": "Reformationstag 2025",
+    "date_start": "2025-10-31",
+    "date_end": "2025-11-04"
+  },
+  "!xmas25": {
+    "event": "Weihnachten",
+    "type": "xp_coins",
+    "amount": 2412,
+    "reason": "Weihnachten 2025",
+    "date_start": "2025-12-24",
+    "date_end": "2025-12-28"
+  },
+  "!test": {
+    "event": "Testing",
+    "type": "xp_coins",
+    "amount": 10,
+    "reason": "!-Befehle testen für Feiertage & Events.",
+    "date_start": "2025-06-11",
+    "date_end": "2025-06-11"
+  }
+}
