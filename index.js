@@ -70,6 +70,7 @@ client.once('ready', async () => {
 
     try {
         await loadCommands();
+        await loadEvents();
         await registerCommands();
 
         // Starte den Datenbank-Ping
@@ -82,6 +83,17 @@ client.once('ready', async () => {
         console.error("❌ Fehler bei Initialisierung:", err);
     }
 });
+
+const loadEvents = async () => {
+    const eventFiles = readdirSync(join(__dirname, 'events')).filter(file => file.endsWith('.js'));
+    for (const file of eventFiles) {
+        const { default: event } = await import(`./events/${file}`);
+        if (event.name && event.execute) {
+            client.on(event.name, (...args) => event.execute(...args));
+            console.log(`📥 Event geladen: ${event.name}`);
+        }
+    }
+};
 
 client.on('interactionCreate', async interaction => {
     if (!interaction.isCommand()) return;
