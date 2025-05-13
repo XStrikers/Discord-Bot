@@ -8,8 +8,6 @@ const logPath = new URL('../events/eventlog.json', import.meta.url);
 export default {
   name: Events.MessageCreate,
   async execute(message) {
-    console.log(`[DEBUG] Nachricht erkannt: ${message.content}`);
-
     if (message.author.bot || !message.content.startsWith('!')) return;
 
     const command = message.content.trim().split(' ')[0].toLowerCase();
