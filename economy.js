@@ -67,3 +67,28 @@ export async function getAllUserStats() {
     `);
     return rows;
 }
+
+export async function addXPAndCoins(userId, xpAmount, coinAmount) {
+    try {
+        // Benutzer prüfen, ob vorhanden
+        const [rows] = await pool.execute('SELECT * FROM discord_user WHERE discord_id = ?', [userId]);
+
+        if (rows.length === 0) {
+            // Optional: Benutzer anlegen, falls nicht vorhanden
+            await pool.execute(
+                'INSERT INTO discord_user (discord_id, current_xp, coins) VALUES (?, ?, ?)',
+                [userId, xpAmount, coinAmount]
+            );
+        } else {
+            // XP und Coins addieren
+            await pool.execute(
+                'UPDATE discord_user SET current_xp = current_xp + ?, coins = coins + ? WHERE discord_id = ?',
+                [xpAmount, coinAmount, userId]
+            );
+        }
+
+        console.log(`✅ ${userId} hat ${xpAmount} XP und ${coinAmount} Coins erhalten.`);
+    } catch (error) {
+        console.error('❌ Fehler beim Hinzufügen von XP und Coins:', error);
+    }
+}
