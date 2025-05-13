@@ -16,7 +16,12 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1371900172375818321",
+    "title": "[FSK18+] Mais häckseln !sr !points !dc !ts !commands !socials",
+    "viewers": 4,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2911928",
+    "cacheBuster": 2911928
   }
 }
