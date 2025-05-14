@@ -39,6 +39,14 @@
     "date_start": "2026-04-05",
     "date_end": "2026-04-09"
   },
+  "!motherday": {
+    "event": "Muttertag",
+    "type": "xp_coins",
+    "amount": 1105,
+    "reason": "Muttertag 2026",
+    "date_start": "2025-05-11",
+    "date_end": "2025-05-15"
+  },
   "!chrishim": {
     "event": "Christi Himmelfahrt",
     "type": "xp_coins",
@@ -46,6 +54,14 @@
     "reason": "Christi Himmelfahrt 2025",
     "date_start": "2025-05-14",
     "date_end": "2025-05-18"
+  },
+  "!christfather": {
+    "event": "Christi Himmelfahrt & Vatertag",
+    "type": "xp_coins",
+    "amount": 1405,
+    "reason": "Christi Himmelfahrt und Vatertag 2025",
+    "date_start": "2025-05-29",
+    "date_end": "2025-06-03"
   },
   "!pfingsten": {
     "event": "Pfingsten",
