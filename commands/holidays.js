@@ -21,8 +21,18 @@ export default {
   data: new SlashCommandBuilder()
     .setName('holidays')
     .setDescription('Zeigt eine Liste der Feiertage mit Datum.'),
+    .setDefaultMemberPermissions(0)
 
   async execute(interaction) {
+  const ownerId = process.env.OWNER_ID;
+
+  if (interaction.user.id !== ownerId) {
+    return interaction.reply({
+      content: '🚫 Du darfst diesen Befehl nicht verwenden.',
+      flags: 64
+    });
+  }
+    
     try {
       const fileContent = await fs.readFile(holidaysPath, 'utf-8');
       const holidaysData = JSON.parse(fileContent);
