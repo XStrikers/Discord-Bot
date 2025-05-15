@@ -20,8 +20,8 @@ function formatGermanDate(isoDateString) {
 export default {
   data: new SlashCommandBuilder()
     .setName('holidays')
-    .setDescription('Zeigt eine Liste der Feiertage mit Datum.'),
-    .setDefaultMemberPermissions(0)
+    .setDescription('Zeigt eine Liste der Feiertage mit Datum.')
+    .setDefaultMemberPermissions(0),
 
   async execute(interaction) {
   const ownerId = process.env.OWNER_ID;
