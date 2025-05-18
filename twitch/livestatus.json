@@ -8,13 +8,8 @@
     "announced": false
   },
   "maexmisfit": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1373646114816790528",
-    "title": "🔥Schreib \"!wasgeht\" in den Chat!😏FOLLOW = Wasser trinken💧SUB = 1 Sekunde Lächeln😁CHEER = 1% Weniger Pech im Leben haben🍀",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_maexmisfit-640x360.jpg?cb=2912624",
-    "cacheBuster": 2912621
+    "isLive": false,
+    "announced": false
   },
   "jake4thegames": {
     "isLive": false,
