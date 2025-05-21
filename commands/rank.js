@@ -1,4 +1,4 @@
-import { SlashCommandBuilder, AttachmentBuilder } from 'discord.js';
+import { SlashCommandBuilder, EmbedBuilder, AttachmentBuilder } from 'discord.js';
 import { createCanvas, loadImage } from 'canvas';
 import { getAllUserStats, getUserStats } from '../economy.js';
 import path from 'path';
@@ -21,7 +21,13 @@ export default {
     const user = await getUserStats(userId);
 
     if (!user) {
-      await interaction.editReply('⚠️ Kein Profil gefunden. Nutze `/daily`, um loszulegen.');
+      const embed = new EmbedBuilder()
+      .setTitle('❌ Kein Profil gefunden')
+      .setDescription('Du hast noch kein Profil. Nutze `/daily`, um dein Abenteuer zu starten.')
+      .setColor(0xd92626)
+      .setImage('https://xstrikers.de/discord/images/levelup.png');
+
+      await interaction.editReply({ embeds: [embed] });
       return;
     }
 
