@@ -118,7 +118,7 @@ export default {
                     return interaction.reply({
                         embeds: [new EmbedBuilder()
                             .setTitle(`${plantName} gepflanzt`)
-                            .setDescription(`Du hast **${plantName}** angebaut. In **${plant.cooldown} Minuten** kannst du es ernten.`)
+                            .setDescription(`Du hast **${plantName}** angebaut. In **${plant.cooldown} Minuten** kannst du deine Ernte einholen.`)
                             .setColor(0x26d926)
                             .setImage('https://xstrikers.de/discord/images/cultivation.png')]
                     });
