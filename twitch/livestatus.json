@@ -4,8 +4,13 @@
     "announced": false
   },
   "happyendttv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1376960486452494398",
+    "title": "DBD Anfängerin gibs ein Happyend?😅💖",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2913938",
+    "cacheBuster": 2913938
   },
   "maexmisfit": {
     "isLive": false,
