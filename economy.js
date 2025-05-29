@@ -93,3 +93,13 @@ export async function addXPAndCoins(userId, xpAmount, coinAmount) {
         throw error;
     }
 }
+
+// Verbindung alle 5 Minuten testen, damit sie nicht einschläft
+setInterval(async () => {
+  try {
+    await pool.query('SELECT 1');
+    console.log('✅ MySQL-Verbindung aktiv');
+  } catch (err) {
+    console.warn('⚠️ MySQL Keep-Alive fehlgeschlagen:', err.message);
+  }
+}, 300_000); // alle 5 Minuten
