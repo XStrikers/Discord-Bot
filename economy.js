@@ -90,5 +90,6 @@ export async function addXPAndCoins(userId, xpAmount, coinAmount) {
         console.log(`✅ ${userId} hat ${xpAmount} XP und ${coinAmount} Coins erhalten.`);
     } catch (error) {
         console.error('❌ Fehler beim Hinzufügen von XP und Coins:', error);
+        throw error;
     }
 }
