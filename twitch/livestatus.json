@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1377735492321280041",
+    "title": "[FSK18] Was wollen wir machen? !dc !10% !instant !yt !pokehelp",
+    "viewers": 4,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2914246",
+    "cacheBuster": 2914246
   },
   "happyendttv": {
     "isLive": false,
