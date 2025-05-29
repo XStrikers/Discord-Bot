@@ -69,30 +69,37 @@ export async function getAllUserStats() {
 }
 
 export async function addXPAndCoins(userId, xpAmount, coinAmount) {
+  let attempt = 0;
+  while (attempt < 2) {
     try {
-        // Benutzer prüfen, ob vorhanden
-        const [rows] = await pool.execute('SELECT * FROM discord_user WHERE discord_id = ?', [userId]);
+      const [rows] = await pool.execute('SELECT * FROM discord_user WHERE discord_id = ?', [userId]);
 
-        if (rows.length === 0) {
-            // Optional: Benutzer anlegen, falls nicht vorhanden
-            await pool.execute(
-                'INSERT INTO discord_user (discord_id, current_xp, coins) VALUES (?, ?, ?)',
-                [userId, xpAmount, coinAmount]
-            );
-        } else {
-            // XP und Coins addieren
-            await pool.execute(
-                'UPDATE discord_user SET current_xp = current_xp + ?, coins = coins + ? WHERE discord_id = ?',
-                [xpAmount, coinAmount, userId]
-            );
-        }
+      if (rows.length === 0) {
+        await pool.execute(
+          'INSERT INTO discord_user (discord_id, current_xp, coins) VALUES (?, ?, ?)',
+          [userId, xpAmount, coinAmount]
+        );
+      } else {
+        await pool.execute(
+          'UPDATE discord_user SET current_xp = current_xp + ?, coins = coins + ? WHERE discord_id = ?',
+          [xpAmount, coinAmount, userId]
+        );
+      }
 
-        console.log(`✅ ${userId} hat ${xpAmount} XP und ${coinAmount} Coins erhalten.`);
+      console.log(`✅ ${userId} hat ${xpAmount} XP und ${coinAmount} Coins erhalten.`);
+      return;
     } catch (error) {
-        console.error('❌ Fehler beim Hinzufügen von XP und Coins:', error);
-        throw error;
+      if (error.code === 'ECONNRESET' && attempt < 1) {
+        console.warn('🔁 Verbindung wurde zurückgesetzt. Neuer Versuch...');
+        attempt++;
+        continue;
+      }
+      console.error('❌ Fehler beim Hinzufügen von XP und Coins:', error);
+      throw error;
     }
+  }
 }
+
 
 // Verbindung alle 5 Minuten testen, damit sie nicht einschläft
 setInterval(async () => {
