@@ -79,7 +79,11 @@ export default {
         date_time: formattedDateTime
       });
 
-      await fs.writeFile(logPath, JSON.stringify(logs, null, 2));
+      try {
+        await fs.writeFile(logPath, JSON.stringify(logs, null, 2));
+      } catch (writeErr) {
+        console.error("Fehler beim Schreiben von eventlog.json:", writeErr);
+      }
 
       // Erfolgsnachricht
         const embed = new EmbedBuilder()
