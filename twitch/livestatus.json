@@ -5,7 +5,7 @@
     "messageId": "1377735492321280041",
     "title": "[FSK18] Was wollen wir machen? !dc !10% !instant !yt !pokehelp",
     "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2914273",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2914274",
     "cacheBuster": 2914246
   },
   "happyendttv": {
@@ -17,13 +17,8 @@
     "announced": false
   },
   "jake4thegames": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1377738008979050556",
-    "title": "Jake4theGames Last of Us 2 Pt7",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_jake4thegames-640x360.jpg?cb=2914273",
-    "cacheBuster": 2914247
+    "isLive": false,
+    "announced": false
   },
   "kimneele97": {
     "isLive": false,
