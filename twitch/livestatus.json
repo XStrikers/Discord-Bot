@@ -4,8 +4,8 @@
     "announced": true,
     "messageId": "1378072714694230096",
     "title": "[FSK18] Plan Änderung! Ihr müsst mich alleine ertragen  !dc !10% !instant !yt !pokehelp",
-    "viewers": 8,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2914420",
+    "viewers": 7,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2914421",
     "cacheBuster": 2914380
   },
   "happyendttv": {
@@ -17,13 +17,8 @@
     "announced": false
   },
   "jake4thegames": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1378097880023306582",
-    "title": "Jake4theGames Last of Us 2 Pt8",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_jake4thegames-640x360.jpg?cb=2914420",
-    "cacheBuster": 2914390
+    "isLive": false,
+    "announced": false
   },
   "kimneele97": {
     "isLive": false,
