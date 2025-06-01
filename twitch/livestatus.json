@@ -25,7 +25,12 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1378746819307372585",
+    "title": "[GTV24/7] ✶ 016 - Auf dem Bodensatz der Tatsachen ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 1252,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29146487",
+    "cacheBuster": 29146487
   }
 }
