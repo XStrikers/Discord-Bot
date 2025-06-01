@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1378727026164371578",
+    "title": "[FSK18] Kommt das Beast in mir raus? !dc !10% !instant !yt !pokehelp",
+    "viewers": 4,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2914640",
+    "cacheBuster": 2914640
   },
   "happyendttv": {
     "isLive": false,
