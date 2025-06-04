@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1379854458426495079",
+    "title": "[FSK18] Feucht fröhliche Abenteuer mit @fur0ka !dc !10% !instant !yt !pokehelp",
+    "viewers": 2,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2915088",
+    "cacheBuster": 2915088
   },
   "happyendttv": {
     "isLive": false,
@@ -12,8 +17,8 @@
     "announced": true,
     "messageId": "1379836840856780860",
     "title": "Nostalgie pur *-*🔥Zeit für ein paar Diggidi-Dungeon-Runs🔥Schreib \"!wasgeht\" in den Chat!",
-    "viewers": 3,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_maexmisfit-640x360.jpg?cb=2915087",
+    "viewers": 2,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_maexmisfit-640x360.jpg?cb=2915088",
     "cacheBuster": 2915081
   },
   "jake4thegames": {
