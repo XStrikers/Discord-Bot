@@ -20,12 +20,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1380133900948340788",
-    "title": "[GTV24/7] ✶ 001 - Zugfahrt ins Nirgendwo ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 1061,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29151999",
-    "cacheBuster": 29151999
+    "isLive": false,
+    "announced": false
   }
 }
