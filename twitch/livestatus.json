@@ -25,7 +25,12 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1381392017216766002",
+    "title": "[GTV24/7] ✶ 015 - Nächste Mission.. äh.. Stierhoden%3F ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 797,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29156998",
+    "cacheBuster": 29156998
   }
 }
