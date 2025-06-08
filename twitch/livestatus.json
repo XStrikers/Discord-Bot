@@ -1,12 +1,7 @@
 {
   "moonlightizda": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1380956720175779901",
-    "title": "[FSK18] Heute im Programm? Herzinfakt frisch zubereitet !dc !10% !instant !yt !pokehelp",
-    "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2915568",
-    "cacheBuster": 2915526
+    "isLive": false,
+    "announced": false
   },
   "happyendttv": {
     "isLive": false,
