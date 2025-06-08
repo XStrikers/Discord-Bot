@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1381273810585653389",
+    "title": "[FSK18] Pure Verzweiflung in The Surge? !dc !10% !instant !yt !pokehelp",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2915652",
+    "cacheBuster": 2915652
   },
   "happyendttv": {
     "isLive": false,
