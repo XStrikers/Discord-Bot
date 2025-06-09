@@ -38,7 +38,7 @@ export default {
                         : '📈 Du hast noch kein Level. Nutze `/daily`, um XP zu sammeln.'
                     }\n\n` +
                     `${coins !== null 
-                        ? `In deinem Beutel befinden aktuell **${formattedCoins}** <:xscoins:1346851584985792513>` 
+                        ? `In deinem Beutel befinden sich aktuell **${formattedCoins}** <:xscoins:1346851584985792513>` 
                         : '💰 Noch keine Coins gefunden. Nutze `/daily`, um welche zu erhalten.'
                     }`
                 )
