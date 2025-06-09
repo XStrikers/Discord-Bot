@@ -20,12 +20,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1381627501977276529",
-    "title": "[GTV24/7] ✶ S01E037 - Warum Renate sterben musste ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 1901,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29157934",
-    "cacheBuster": 29157934
+    "isLive": false,
+    "announced": false
   }
 }
