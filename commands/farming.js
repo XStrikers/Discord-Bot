@@ -202,8 +202,8 @@ export default {
                     const embed = new EmbedBuilder()
                         .setTitle('🚜 Ernte erfolgreich')
                         .setDescription(harvestedPlants.map(p =>
-                            `Bei deinem **${p.name}-Feld** hast du **${p.reward} XS-Coins** und **${p.xp} XP** erhalten.`
-                        ).join('\n') + `\n\nDeine gesamte Ernte hat dir **${totalReward} XS-Coins** und **${totalXP} XP** eingebracht.`)
+                            `Bei deinem **${p.name}-Feld** hast du **${p.reward} <:xscoins:1346851584985792513>** und **${p.xp} XP** erhalten.`
+                        ).join('\n') + `\n\nDeine gesamte Ernte hat dir **${totalReward} <:xscoins:1346851584985792513>** und **${totalXP} XP** eingebracht.`)
                         .setColor(0x26d926)
                         .setImage(harvestImage);
                 
