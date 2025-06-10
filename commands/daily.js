@@ -13,6 +13,7 @@ export default {
         const username = interaction.user.username;
         const currentDate = new Date();
         const today = currentDate.toISOString().split('T')[0];
+        const coinsEarned = newCoins - rows[0].coins;
     
         try {
             // Prüfe, ob der Benutzer bereits in der Datenbank ist
@@ -75,7 +76,7 @@ export default {
     
             const embed = new EmbedBuilder()
                 .setTitle('<:xscoins:1346851584985792513> eingesammelt')
-                .setDescription(`Du hast gerade **${newCoins - rows[0].coins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> und **${earnedXP} XP** eingesammelt.\nIn deinem XS-Coins Beutel befinden sich **${newCoins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513>`)
+                .setDescription(`Du hast gerade **${coinsEarned.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> und **${earnedXP} XP** eingesammelt.\nIn deinem XS-Coins Beutel befinden sich **${newCoins.toLocaleString('de-DE')}** <:xscoins:1346851584985792513>`)
                 .setColor(0x26d926)
                 .setImage('https://xstrikers.de/discord/images/chest.png')
 
