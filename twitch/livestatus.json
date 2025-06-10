@@ -20,7 +20,12 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1382084021403648081",
+    "title": "[GTV24/7] ✶ 059 - Rattle of the Year ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 1220,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29159748",
+    "cacheBuster": 29159748
   }
 }
