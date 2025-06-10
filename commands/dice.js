@@ -19,7 +19,13 @@ export default {
 
         if (interaction.channelId !== allowedChannelId) {
             return interaction.reply({
-                content: 'Dieser Befehl kann nur noch im Channel <#1382047851512856667> verwendet werden.',
+                embeds: [
+                    new EmbedBuilder()
+                    .setTitle(':x: Game nicht vorhanden')
+                    .setDescription(`Das Minigame **Dice** befindet sich im Channel <#1382047851512856667> und kann nur noch dort gespielt werden.`)
+                    .setColor(0xd92626)
+                    .setImage('https://xstrikers.de/discord/images/truck_loading.png')
+                ],
                 flags: 64
             });
         }
