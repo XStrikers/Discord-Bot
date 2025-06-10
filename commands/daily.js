@@ -13,7 +13,6 @@ export default {
         const username = interaction.user.username;
         const currentDate = new Date();
         const today = currentDate.toISOString().split('T')[0];
-        const coinsEarned = newCoins - rows[0].coins;
     
         try {
             // Prüfe, ob der Benutzer bereits in der Datenbank ist
@@ -59,6 +58,7 @@ export default {
             }
     
             newCoins = rows[0].coins + newCoins;
+            const coinsEarned = newCoins - rows[0].coins;
             let currentXP = rows[0].current_xp + earnedXP;
             let level = rows[0].level;
             let xpNeeded = rows[0].xp_needed;
