@@ -14,6 +14,21 @@ export default {
         ),
 
     async execute(interaction) {
+
+        const allowedChannelId = '1382047851512856667';
+
+        if (interaction.channelId !== allowedChannelId) {
+            return interaction.reply({
+                embeds: [
+                    new EmbedBuilder()
+                    .setTitle(':x: Game nicht vorhanden')
+                    .setDescription(`Das Minigame **Roulette** befindet sich im Channel <#1382047851512856667> und kann nur noch dort gespielt werden.`)
+                    .setColor(0xd92626)
+                ],
+                flags: 64
+            });
+        }
+
         const userId = interaction.user.id;
         const username = interaction.user.username;
         let bet = interaction.options.getInteger('einsatz');
