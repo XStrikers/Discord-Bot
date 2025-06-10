@@ -14,6 +14,16 @@ export default {
         ),
 
     async execute(interaction) {
+
+        const allowedChannelId = '1382047851512856667';
+
+        if (interaction.channelId !== allowedChannelId) {
+            return interaction.reply({
+                content: 'Dieser Befehl kann nur noch im Channel <#1382047851512856667> verwendet werden.',
+                flags: 64
+            });
+        }
+        
         const userId = interaction.user.id;
         const bet = interaction.options.getInteger('einsatz');
         const cooldownTime = 10 * 60 * 1000;
