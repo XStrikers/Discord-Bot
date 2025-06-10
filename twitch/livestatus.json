@@ -20,7 +20,12 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1382131203909353634",
+    "title": "[GTV24/7] ✶ 034 - TRUTHAHN oder BLUTHAHN%3F ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 1579,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29159935",
+    "cacheBuster": 29159935
   }
 }
