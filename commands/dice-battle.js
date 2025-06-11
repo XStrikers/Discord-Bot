@@ -24,6 +24,22 @@ export default {
     ),
 
     async execute(interaction) {
+
+        const allowedChannelId = '1382047851512856667';
+
+        if (interaction.channelId !== allowedChannelId) {
+            return interaction.reply({
+                embeds: [
+                    new EmbedBuilder()
+                    .setTitle(':x: Game nicht vorhanden')
+                    .setDescription(`Das Minigame **🎲 Battle Dice** befindet sich im Channel <#1382047851512856667> und kann nur dort gespielt werden.`)
+                    .setColor(0xd92626)
+                    .setImage('https://xstrikers.de/discord/images/truck_loading.png')
+                ],
+                flags: 64
+            });
+        }
+
         const subcommand = interaction.options.getSubcommand();
         const challengerId = interaction.user.id;
 
