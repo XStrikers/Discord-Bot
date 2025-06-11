@@ -20,12 +20,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1382298210931839018",
-    "title": "[GTV24/7] ✶ LIFE IN THE WOODS [S01E015] - Star Trepp - The Next Generation ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 1268,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29160599",
-    "cacheBuster": 29160599
+    "isLive": false,
+    "announced": false
   }
 }
