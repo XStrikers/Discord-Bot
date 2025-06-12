@@ -20,7 +20,12 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1382829013806088202",
+    "title": "[GTV24/7] ✶ 042 - Der BUGGY ist.. BUGGY%3F ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 1209,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29162708",
+    "cacheBuster": 29162708
   }
 }
