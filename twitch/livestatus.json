@@ -5,7 +5,7 @@
     "messageId": "1383130962342187060",
     "title": "[FSK18]  Mal schauen was heute geht !dc !10% !instant !yt !pokehelp",
     "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2916410",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2916411",
     "cacheBuster": 2916390
   },
   "happyendttv": {
@@ -25,12 +25,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1383182770204971101",
-    "title": "[GTV24/7] ✶ 012 - König Burgred %% Tonna die Doppelzüngige ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 450,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29164114",
-    "cacheBuster": 29164114
+    "isLive": false,
+    "announced": false
   }
 }
