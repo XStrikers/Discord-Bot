@@ -25,7 +25,12 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1383185285084610844",
+    "title": "[GTV24/7] ✶ 012 - König Burgred %% Tonna die Doppelzüngige ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 483,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29164124",
+    "cacheBuster": 29164124
   }
 }
