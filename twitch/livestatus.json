@@ -1,12 +1,7 @@
 {
   "moonlightizda": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1383505927407141016",
-    "title": "[FSK18]  Horror Samstag! Ich hab jetzt schon keine Lust... !dc !10% !instant !yt !pokehelp",
-    "viewers": 12,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2916582",
-    "cacheBuster": 2916539
+    "isLive": false,
+    "announced": false
   },
   "happyendttv": {
     "isLive": false,
