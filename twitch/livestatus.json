@@ -5,7 +5,7 @@
     "messageId": "1384208054844789078",
     "title": "[FSK18]  Wir gehen rein! !dc !10% !instant !yt !pokehelp",
     "viewers": 8,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2916828",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2916829",
     "cacheBuster": 2916818
   },
   "happyendttv": {
@@ -25,12 +25,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1384234259447025814",
-    "title": "[GTV24/7] ✶ 018 - Die Räudigen Gläubigen Beräubigen ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 1058,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29168292",
-    "cacheBuster": 29168292
+    "isLive": false,
+    "announced": false
   }
 }
