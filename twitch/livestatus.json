@@ -25,7 +25,12 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1384234259447025814",
+    "title": "[GTV24/7] ✶ 018 - Die Räudigen Gläubigen Beräubigen ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 1058,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29168292",
+    "cacheBuster": 29168292
   }
 }
