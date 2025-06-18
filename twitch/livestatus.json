@@ -5,7 +5,7 @@
     "messageId": "1384942898189045841",
     "title": "[FSK18]  Wir bringen Immo zu Ende okey?  !dc !10% !instant !yt !pokehelp",
     "viewers": 9,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2917136",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2917137",
     "cacheBuster": 2917110
   },
   "maexmisfit": {
@@ -13,12 +13,7 @@
     "announced": false
   },
   "happyendttv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1385008331105632307",
-    "title": "DBD am Abend mit sayasblade_  Mitspieler immer herzlich willkommen 😅💖",
-    "viewers": 0,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2917136",
-    "cacheBuster": 2917136
+    "isLive": false,
+    "announced": false
   }
 }
