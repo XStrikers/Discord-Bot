@@ -12,7 +12,12 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1385335989014106305",
+    "title": "[GTV24/7] ✶ 031 - Wer verriet die Jarlskona~ ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 954,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29172670",
+    "cacheBuster": 29172670
   }
 }
