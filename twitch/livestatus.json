@@ -10,5 +10,14 @@
   "happyendttv": {
     "isLive": false,
     "announced": false
+  },
+  "gronkhtv": {
+    "isLive": true,
+    "announced": true,
+    "messageId": "1385324600073785374",
+    "title": "[GTV24/7] ✶ 030 - Vom Fischer und seyner Faust ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 922,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29172625",
+    "cacheBuster": 29172625
   }
 }
