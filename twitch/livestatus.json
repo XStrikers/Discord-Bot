@@ -12,12 +12,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1385388611473772746",
-    "title": "[GTV24/7] ✶ 079 - Der SHOWDOWN (ENDE) (+10h Credits) ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 1265,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29172879",
-    "cacheBuster": 29172879
+    "isLive": false,
+    "announced": false
   }
 }
