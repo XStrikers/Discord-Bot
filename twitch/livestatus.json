@@ -17,7 +17,12 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1385710135317631167",
+    "title": "[GTV24/7] ✶ 035 - Pupsilein ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 640,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29174157",
+    "cacheBuster": 29174157
   }
 }
