@@ -5,7 +5,7 @@
     "messageId": "1385685290366013543",
     "title": "[FSK18] Freitag Abenteuer mit @unicode27 @judgealterna  und @the_real_helo !dc !10% !instant !yt !pokehelp",
     "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2917414",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2917415",
     "cacheBuster": 2917405
   },
   "maexmisfit": {
@@ -17,12 +17,7 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1385710135317631167",
-    "title": "[GTV24/7] ✶ 035 - Pupsilein ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 640,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29174157",
-    "cacheBuster": 29174157
+    "isLive": false,
+    "announced": false
   }
 }
