@@ -1,12 +1,7 @@
 {
   "moonlightizda": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1385685290366013543",
-    "title": "[FSK18] Freitag Abenteuer mit @unicode27 @judgealterna  und @the_real_helo !dc !10% !instant !yt !pokehelp",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2917444",
-    "cacheBuster": 2917405
+    "isLive": false,
+    "announced": false
   },
   "maexmisfit": {
     "isLive": false,
