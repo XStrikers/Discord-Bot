@@ -12,8 +12,13 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1386452425023688926",
+    "title": "[GTV24/7] ✶ 040 - Unser alter Freund Cola ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
+    "viewers": 724,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29177106",
+    "cacheBuster": 29177106
   },
   "jake4thegames": {
     "isLive": false,
