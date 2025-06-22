@@ -12,13 +12,8 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1386278052065050625",
-    "title": "[GTV24/7] ✶ LIFE IN THE WOODS [S01E076] - WOW! Der WELTENBAUM! ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 1454,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29176414",
-    "cacheBuster": 29176414
+    "isLive": false,
+    "announced": false
   },
   "jake4thegames": {
     "isLive": false,
