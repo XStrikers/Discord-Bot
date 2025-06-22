@@ -12,13 +12,8 @@
     "announced": false
   },
   "gronkhtv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1386452425023688926",
-    "title": "[GTV24/7] ✶ 040 - Unser alter Freund Cola ✶ #DOSENWURST - Die 24/7 Dauerbeschallung",
-    "viewers": 724,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_gronkhtv-640x360.jpg?cb=29177106",
-    "cacheBuster": 29177106
+    "isLive": false,
+    "announced": false
   },
   "jake4thegames": {
     "isLive": false,
@@ -29,8 +24,8 @@
     "announced": true,
     "messageId": "1386444479954812969",
     "title": "[FSK18+] Gewitter !points !dc !ts !commands !socials",
-    "viewers": 5,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2917710",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2917711",
     "cacheBuster": 2917707
   }
 }
