@@ -135,10 +135,11 @@ export default {
             challenges.set(opponentId, { challengerId, bet, timestamp: Date.now() });
 
             return await interaction.reply({
+                content: `<@${opponentId}>`,
                 embeds: [
                     new EmbedBuilder()
                     .setTitle(':game_die: Herausforderung')
-                    .setDescription(`**<@${opponentId}>** wurde zu einem **🎲 Dice Battle** von **${challengerName}** um **${bet}** <:xscoins:1346851584985792513> herausgefordert. Die Herausforderung kann mit **\`/battle accept\`** angenommen oder mit **\`/battle reject\`** abgelehnt werden.`)
+                    .setDescription(`.....wurde zu einem **🎲 Dice Battle** von **${challengerName}** um **${bet}** <:xscoins:1346851584985792513> herausgefordert. Die Herausforderung kann mit **\`/battle accept\`** angenommen oder mit **\`/battle reject\`** abgelehnt werden.`)
                     .setColor(0xd98226)
                 ],
                 flags: 0
