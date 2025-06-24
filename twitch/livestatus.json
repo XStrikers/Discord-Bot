@@ -8,13 +8,8 @@
     "announced": false
   },
   "happyendttv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1387186867639816212",
-    "title": "DBD am Abend mit sayasblade_  Mitspieler immer herzlich willkommen 😅💖",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2918008",
-    "cacheBuster": 2918002
+    "isLive": false,
+    "announced": false
   },
   "gronkhtv": {
     "isLive": false,
