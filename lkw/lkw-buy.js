@@ -50,7 +50,7 @@ export default {
         embeds: [
           new EmbedBuilder()
             .setTitle('❌ Nicht genug TruckMiles')
-            .setDescription(`Du benötigst **${costForNextTruck.toLocaleString()}** <:truckmiles:1379087323400110120> um einen weiteren LKW zu kaufen.`)
+            .setDescription(`Du benötigst **${costForNextTruck.toLocaleString()}** <:truckmiles:1388239050963681362> um einen weiteren LKW zu kaufen.`)
             .setColor(0xd92626)
         ],
         flags: 64
