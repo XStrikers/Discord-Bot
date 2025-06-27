@@ -23,7 +23,7 @@ export default {
       return interaction.reply({
         embeds: [
           new EmbedBuilder()
-            .setTitle(`<:ets2:1379063466630971503> Bereits eingestellt`)
+            .setTitle(`<:ets2:1379062821924507721> Bereits eingestellt`)
             .setDescription(`Du bist bereits bei unserer Spedition registriert und eingestellt.\n\nVerwende bitte \`/lkw start\` um dir aktuelle Aufträge anzeigen zu lassen.`)
             .setColor(0xd98226)
             .setImage('https://xstrikers.de/discord/images/truck_start.png')
@@ -43,7 +43,7 @@ export default {
 
     // Embed-Bestätigung
     const embed = new EmbedBuilder()
-      .setTitle(`<:ets2:1379063466630971503> Willkommen bei deiner LKW Tour, ${displayName}`)
+      .setTitle(`<:ets2:1379062821924507721> Willkommen bei deiner LKW Tour, ${displayName}`)
         .setDescription(
         `Nachdem wir deine Unterlagen geprüft und ein Gespräch mit dir geführt haben, konnten wir dein Potenzial erkennen und dich in unser Team aufnehmen.\n\n` +
         `Du wurdest erfolgreich in unserem System registriert und hast deinen :articulated_lorry: **Starter-Truck** erhalten.\n` +
