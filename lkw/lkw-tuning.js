@@ -110,19 +110,19 @@ export default {
     // Berechne oder ersetze Kostenanzeige je nach maxLevel
     const costSpeed = speed_level >= tuningConfig.speed.maxLevel
       ? '🔒Maximales Level erreicht'
-      : `**Ksten:** ${getUpgradeCost('speed', speed_level).toLocaleString('de-DE')} <:truckmiles:1379087323400110120>`;
+      : `**Ksten:** ${getUpgradeCost('speed', speed_level).toLocaleString('de-DE')} <:truckmiles:1388239050963681362>`;
 
     const costTrailer = trailer_level >= tuningConfig.trailer.maxLevel
       ? '🔒 Maximales Level erreicht'
-      : `**Kosten:** ${getUpgradeCost('trailer', trailer_level).toLocaleString('de-DE')} <:truckmiles:1379087323400110120>`;
+      : `**Kosten:** ${getUpgradeCost('trailer', trailer_level).toLocaleString('de-DE')} <:truckmiles:1388239050963681362>`;
 
     const costEco = eco_level >= tuningConfig.eco.maxLevel
       ? '🔒 Maximales Level erreicht'
-      : `**Kosten:** ${getUpgradeCost('eco', eco_level).toLocaleString('de-DE')} <:truckmiles:1379087323400110120>`;
+      : `**Kosten:** ${getUpgradeCost('eco', eco_level).toLocaleString('de-DE')} <:truckmiles:1388239050963681362>`;
 
     const costTank = tank_level >= tuningConfig.tank.maxLevel
       ? '🔒 Maximales Level erreicht'
-      : `**Kosten:** ${getUpgradeCost('tank', tank_level).toLocaleString('de-DE')} <:truckmiles:1379087323400110120>`;
+      : `**Kosten:** ${getUpgradeCost('tank', tank_level).toLocaleString('de-DE')} <:truckmiles:1388239050963681362>`;
 
     // Embed aufbauen
     const embed = new EmbedBuilder()
@@ -203,7 +203,7 @@ export default {
           name: '📋 Hinweis',
           value:
             '\nNutze `/lkw tune` und entscheide dich zwischen **speed**, **trailer**, **economy** oder **tank**, um ein Upgrade durchzuführen.\n' +
-            'Wenn du nicht genügend <:truckmiles:1379087323400110120> hast, verdiene mehr durch Touren!',
+            'Wenn du nicht genügend <:truckmiles:1388239050963681362> hast, verdiene mehr durch Touren!',
           inline: false
         }
       )
