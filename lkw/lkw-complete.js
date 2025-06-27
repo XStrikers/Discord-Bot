@@ -135,7 +135,7 @@ export default {
     const rewardEmbed = new EmbedBuilder()
       .setTitle('✅ Auftrag erfolgreich abgeschlossen')
       .setDescription(
-        `Du bist sicher an dein Ziel angekommen und die Fracht **${tour.freight || 'Unbekannt'}** wurde ordnungsgemäß entladen.\n\n📦 **Belohnung erhalten:** ${earned_xp} Erfahrungspunkte & ${earned_truckmiles} <:truckmiles:1379087323400110120>\n\nDu hast damit deine Tour von **${tour.start_city}** nach **${tour.end_city}** erfolgreich beendet und kannst stolz auf deine Leistung sein.\nMach dich bereit für neue Herausforderungen, mit \`/lkw start\` beginnt dein nächstes Abenteuer auf den Straßen.`
+        `Du bist sicher an dein Ziel angekommen und die Fracht **${tour.freight || 'Unbekannt'}** wurde ordnungsgemäß entladen.\n\n📦 **Belohnung erhalten:** ${earned_xp} Erfahrungspunkte & ${earned_truckmiles} <:truckmiles:1388239050963681362>\n\nDu hast damit deine Tour von **${tour.start_city}** nach **${tour.end_city}** erfolgreich beendet und kannst stolz auf deine Leistung sein.\nMach dich bereit für neue Herausforderungen, mit \`/lkw start\` beginnt dein nächstes Abenteuer auf den Straßen.`
       )
       .setColor(0x26d926)
       .setImage('https://xstrikers.de/discord/images/truck_complete.png');
