@@ -25,6 +25,8 @@ import handleDriversTrucks from '../lkw/lkw-drivers-trucks.js';
 import handleDriverTour from '../lkw/lkw-driver-start.js';
 import handleHelp from '../lkw/lkw-help.js';
 
+const LKW_CHANNEL = '1381681079198548100';
+
 export default {
   data: new SlashCommandBuilder()
     .setName('lkw')
@@ -136,6 +138,13 @@ export default {
 
 
   async execute(interaction) {
+    if (interaction.channelId !== LKW_CHANNEL) {
+      return interaction.reply({
+        content: `❌ Dieser Befehl ist nur im <#${LKW_CHANNEL}> erlaubt.`,
+        flags: 64
+      });
+    }
+
     const subcommand = interaction.options.getSubcommand();
 
     switch (subcommand) {
