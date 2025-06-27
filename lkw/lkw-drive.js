@@ -71,7 +71,7 @@ export default {
                 .setDescription(
                   `Die Polizei hat **${displayName}** auf frischer Tat erwischt und haben einen Strafzettel vergeben.\n\n` +
                   `**Grund:** ${fine.reason}\n` +
-                  `**Bußgeld:** ${fine.amount.toLocaleString()} <:truckmiles:1379087323400110120>\n\n` +
+                  `**Bußgeld:** ${fine.amount.toLocaleString()} <:truckmiles:1388239050963681362>\n\n` +
                   `Erstellt am ${formattedDate}`
                 )
                 .setImage(fine.image)
