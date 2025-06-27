@@ -45,7 +45,7 @@ export default {
         embeds: [
           new EmbedBuilder()
             .setTitle('❌ Nicht genug TruckMiles')
-            .setDescription('Du benötigst mindestens 10.000 <:truckmiles:1379087323400110120>, um deine Logistik umzubenennen.')
+            .setDescription('Du benötigst mindestens 10.000 <:truckmiles:1388239050963681362>, um deine Logistik umzubenennen.')
             .setColor(0xd92626)
         ],
         flags: 64
