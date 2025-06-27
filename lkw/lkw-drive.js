@@ -40,8 +40,8 @@ export default {
           );
 
           const openFines = fineCountRows[0].count;
-          if (openFines >= 10) return; // Keine neuen Strafzettel mehr möglich
-
+          if (openFines >= 10) return;
+          
           const fine = fineReasons[Math.floor(Math.random() * fineReasons.length)];
           const code = generateFineCode();
 
