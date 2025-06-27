@@ -98,7 +98,7 @@ export default {
         embeds: [
           new EmbedBuilder()
             .setTitle('<:truckmiles:1379087323400110120> Nicht genug TruckMiles')
-            .setDescription(`Für dieses Upgrade benötigst du **${cost}** <:truckmiles:1379087323400110120>, du hast aber nur **${user.truckmiles}**.`)
+            .setDescription(`Für dieses Upgrade benötigst du **${cost}** <:truckmiles:1388239050963681362>, du hast aber nur **${user.truckmiles}**.`)
             .setColor(0xd92626)
         ],
        flags: 64
