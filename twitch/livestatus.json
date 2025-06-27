@@ -1,12 +1,7 @@
 {
   "moonlightizda": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1388189660227829853",
-    "title": "[FSK18] Freitags Dinge mit @unicode27 @judgealterna @the_real_helo ! !dc !10% !instant !yt !pokehelp",
-    "viewers": 9,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2918436",
-    "cacheBuster": 2918401
+    "isLive": false,
+    "announced": false
   },
   "maexmisfit": {
     "isLive": false,
