@@ -43,7 +43,7 @@ export default {
         embeds: [
           new EmbedBuilder()
             .setTitle('❌ Nicht genug TruckMiles')
-            .setDescription('Du hast nicht genügend <:truckmiles:1379087323400110120>, um eine Logistik zu gründen. Du benötigst mindestens 5.000 <:truckmiles:1379087323400110120>.')
+            .setDescription('Du hast nicht genügend <:truckmiles:1388239050963681362>, um eine Logistik zu gründen. Du benötigst mindestens 5.000 <:truckmiles:1388239050963681362>.')
             .setColor(0xd92626)
         ],
         flags: 64
