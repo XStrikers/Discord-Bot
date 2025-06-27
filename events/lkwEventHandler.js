@@ -93,8 +93,7 @@ export default {
       // 📥 In Haupt-Tour-Tabelle eintragen
       await pool.execute(`
         INSERT INTO lkw_tours (
-          discord_id, truck_id, start_city, end_city, freight, duration_minutes, start_time, end_time,
-          status, earned_xp, earned_truckmiles, accident, traffic_jam, fine_generated
+          discord_id, truck_id, start_city, end_city, freight, duration_minutes, loading_start_time, loading_end_time, status, earned_xp, earned_truckmiles, accident, traffic_jam, fine_generated
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       `, [
         userId,
