@@ -56,7 +56,7 @@ export default {
           embeds: [
             new EmbedBuilder()
               .setTitle('❌ Nicht genügend TruckMiles')
-              .setDescription(`Du hast nicht genügend TruckMiles, um diesen Strafzettel zu bezahlen. Dir fehlen noch **${missingAmount.toLocaleString()}** <:truckmiles:1379087323400110120>`)
+              .setDescription(`Du hast nicht genügend TruckMiles, um diesen Strafzettel zu bezahlen. Dir fehlen noch **${missingAmount.toLocaleString()}** <:truckmiles:1388239050963681362>`)
               .setColor(0xd92626)
           ],
           flags: 64
@@ -81,7 +81,7 @@ export default {
           new EmbedBuilder()
             .setTitle('✅ Strafzettel bezahlt')
             .setDescription(
-              `Du hast deinen Strafzettel **${fine.reason}** für **${amount.toLocaleString()}** <:truckmiles:1379087323400110120> bezahlt.\n\n` +
+              `Du hast deinen Strafzettel **${fine.reason}** für **${amount.toLocaleString()}** <:truckmiles:1388239050963681362> bezahlt.\n\n` +
               `Bitte fahre vorsichtig und fair auf den Straßen!`
             )
             .setColor(0x26d926)
