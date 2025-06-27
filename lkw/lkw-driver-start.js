@@ -104,14 +104,22 @@ export default {
     const endCity       = getRandomCity([startCity]);
     const freight       = getRandomFreightType();
 
-    // 3) Lade- und Fahrtzeiten berechnen
-    const now            = new Date();
-    const loadingDuration= 5; // 5 Min Ladezeit
-    const loadingStart   = now;
-    const loadingEnd     = new Date(now.getTime() + loadingDuration * 60_000);
-    const duration       = Math.floor(Math.random() * 61) + 60; // 60–120 Min.
-    const startTime      = loadingEnd;
-    const endTime        = new Date(startTime.getTime() + duration * 60_000);
+    // 3) Lade- und Fahrtzeiten berechnen (korrekte lokale Zeit als UTC-Date erzeugen)
+    const nowLocal = new Date();
+    // Baue ein Date, bei dem Year/Mon/Day/Hour/Min/Sec als UTC interpretiert werden:
+    const loadingStart = new Date(Date.UTC(
+      nowLocal.getFullYear(),
+      nowLocal.getMonth(),
+      nowLocal.getDate(),
+      nowLocal.getHours(),
+      nowLocal.getMinutes(),
+      nowLocal.getSeconds()
+    ));
+    const loadingEnd = new Date(loadingStart.getTime() + loadingDuration * 60_000);
+    
+    // Fahrtbeginn und -ende ebenfalls im UTC-Kontext
+    const startTime = loadingEnd;
+    const endTime   = new Date(startTime.getTime() + duration * 60_000);
 
     // 4) Tour in DB einfügen
     try {
