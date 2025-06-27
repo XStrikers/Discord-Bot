@@ -23,7 +23,7 @@ export default {
       const [users] = await pool.execute(`SELECT id FROM lkw_users WHERE discord_id = ?`, [userId]);
       if (users.length === 0) {
         const notRegistered = new EmbedBuilder()
-          .setTitle(`<:ets2:1379063466630971503> Nicht eingestellt`)
+          .setTitle(`<:ets2:1379062821924507721> Nicht eingestellt`)
           .setDescription(`Du bist noch nicht bei uns eingestellt.\nBitte führe zuerst \`/lkw begin\` aus, um deine Karriere zu starten.`)
           .setColor(0xd92626)
           .setImage('https://xstrikers.de/discord/images/truck_fail.png');
@@ -104,11 +104,11 @@ export default {
           `📦 **1. ${job1.freightName}**\n\n` +
           `**Start ➜ Ziel**\n${job1.startCity} ➜ ${job1.endCity}\n\n` +
           `**Fahrtzeit:** ${job1Duration} Minuten\n\n` +
-          `**Erfahrung & TruckMiles**\n${job1Xp.toLocaleString()} XP´s & ${job1Miles.toLocaleString()} <:truckmiles:1379087323400110120>\n\n\n\n` +
+          `**Erfahrung & TruckMiles**\n${job1Xp.toLocaleString()} XP´s & ${job1Miles.toLocaleString()} <:truckmiles:1388239050963681362>\n\n\n\n` +
           `📦 **2. ${job2.freightName}**\n\n` +
           `**Start ➜ Ziel**\n${job2.startCity} ➜ ${job2.endCity}\n\n` +
           `**Fahrtzeit:** ${job2Duration} Minuten\n\n` +
-          `**Erfahrung & TruckMiles**\n${job2Xp.toLocaleString()} XP´s & ${job2Miles.toLocaleString()} <:truckmiles:1379087323400110120>`
+          `**Erfahrung & TruckMiles**\n${job2Xp.toLocaleString()} XP´s & ${job2Miles.toLocaleString()} <:truckmiles:1388239050963681362>`
         )
         .setColor(0x26d926)
         .setImage('https://xstrikers.de/discord/images/clipboards.png');
