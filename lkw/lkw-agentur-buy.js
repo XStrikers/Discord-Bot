@@ -70,7 +70,7 @@ export default {
         embeds: [
           new EmbedBuilder()
             .setTitle('❌ Nicht genug TruckMiles')
-            .setDescription(`Du benötigst **${costForNextDriver.toLocaleString()}** <:truckmiles:1379087323400110120> um einen weiteren Fahrer einzustellen.`)
+            .setDescription(`Du benötigst **${costForNextDriver.toLocaleString()}** <:truckmiles:1388239050963681362> um einen weiteren Fahrer einzustellen.`)
             .setColor(0xd92626)
         ],
         flags: 64
