@@ -44,7 +44,7 @@ export default {
           .setTitle(`🚨 Strafzettel CODE: ${row.code}`)
           .setDescription(
             `**Grund der Strafe:** ${row.reason}\n` +
-            `**Höhe des Bußgeldes:** ${row.amount.toLocaleString()} <:truckmiles:1379087323400110120>\n\n` +
+            `**Höhe des Bußgeldes:** ${row.amount.toLocaleString()} <:truckmiles:1388239050963681362>\n\n` +
             `Erstellt am ${new Date(row.issued_at).toLocaleString('de-DE')}`
           )
           .setColor(0xd92626)
