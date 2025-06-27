@@ -50,7 +50,7 @@ export default {
           .setTitle('🚚 Willkommen im LKW-Shop')
           .setDescription(
             `Im LKW-Shop kannst du neue LKWs für deine Logistik erwerben.\n\n` +
-            `**Preis pro LKW beträgt ${costForNextTruck.toLocaleString()}** <:truckmiles:1379087323400110120>\n\n` +
+            `**Preis pro LKW beträgt ${costForNextTruck.toLocaleString()}** <:truckmiles:1388239050963681362>\n\n` +
             `Wenn du genug TruckMiles hast, kannst du einen LKW durch den Befehl \`/lkw buy\` kaufen.\n\n` +
             `Viel Spaß beim Einkaufen und gutes Gelingen auf deinen zukünftigen Touren.`
           )
