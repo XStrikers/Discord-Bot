@@ -31,7 +31,7 @@ export default {
 
       for (const delayMinutes of timings) {
         setTimeout(async () => {
-          const giveFine = Math.random() < 0.0; // 0% Chance einen Strafzettel zu bekommen
+          const giveFine = Math.random() < 0.25;
           if (!giveFine) return;
 
           const [fineCountRows] = await pool.execute(
