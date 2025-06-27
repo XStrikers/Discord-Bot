@@ -124,7 +124,7 @@ export default {
           `**Start ➜ Ziel**\n${job.start_city} ➜ ${job.end_city}\n\n` +
           `**Fahrtzeit:** ${Math.floor(modDuration / 60)} Std ${modDuration % 60} Min\n\n` +
           `${multiplierNotice}`+       
-          `**Erfahrung & TruckMiles**\n${modXp} XP • ${modTruckMiles} <:truckmiles:1379087323400110120>\n\n` +
+          `**Erfahrung & TruckMiles**\n${modXp} XP • ${modTruckMiles} <:truckmiles:1388239050963681362>\n\n` +
           `Starte jetzt mit \`/lkw load\`, um deinen LKW zu beladen.`
         )
         .setColor(0x26d926)
