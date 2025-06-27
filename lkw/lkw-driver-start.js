@@ -169,7 +169,7 @@ export default {
           `**Start ➜ Ziel**\n${startCity} ➜ ${endCity}\n\n` +
           `**Fracht:** ${freight.name}\n` +
           `**Ankunftszeit:** ${arrivalTime} Uhr\n\n` +
-          `**TruckMiles:** ${freight.baseMiles.toLocaleString()} <:truckmiles:1379087323400110120>\n\n\n\n` 
+          `**TruckMiles:** ${freight.baseMiles.toLocaleString()} <:truckmiles:1388239050963681362>\n\n\n\n` 
         )
       .setImage('https://xstrikers.de/discord/images/truck_drive.png')
 
