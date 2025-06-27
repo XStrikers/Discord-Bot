@@ -5,7 +5,7 @@
     "messageId": "1388189660227829853",
     "title": "[FSK18] Freitags Dinge mit @unicode27 @judgealterna @the_real_helo ! !dc !10% !instant !yt !pokehelp",
     "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2918424",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2918425",
     "cacheBuster": 2918401
   },
   "maexmisfit": {
@@ -13,8 +13,13 @@
     "announced": false
   },
   "happyendttv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1388251039249203270",
+    "title": "DBD am Abend mit sayasblade_  Mitspieler immer herzlich willkommen 😅💖",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2918425",
+    "cacheBuster": 2918425
   },
   "gronkhtv": {
     "isLive": false,
