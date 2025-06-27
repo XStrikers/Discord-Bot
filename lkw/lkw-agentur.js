@@ -60,7 +60,7 @@ export default {
           .setTitle('💼 Willkommen bei der Driver-Agentur')
           .setDescription(
             `Du kannst hier einen neuen Fahrer für deine Logistik einstellen.\n\n` +
-            `**Preis für den nächsten Fahrer beträgt ${costForNextDriver.toLocaleString()}** <:truckmiles:1379087323400110120>\n\n` +
+            `**Preis für den nächsten Fahrer beträgt ${costForNextDriver.toLocaleString()}** <:truckmiles:1388239050963681362>\n\n` +
             `Wenn du genug TruckMiles hast, kannst du einen Fahrer durch den Befehl \`/lkw da-buy\` kaufen.\n\n` +
             `Viel Spaß beim Einkaufen!`
           )
