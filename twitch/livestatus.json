@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1388851399093125130",
+    "title": "[FSK18] #2 Moonicode-Stream / 50% Skill, 50% Glück, 100% Chaos! !dc !10% !instant !yt !pokehelp",
+    "viewers": 6,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2918663",
+    "cacheBuster": 2918663
   },
   "maexmisfit": {
     "isLive": false,
