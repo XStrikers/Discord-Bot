@@ -206,7 +206,7 @@ export default {
 
     await pool.execute(
       `UPDATE lkw_tours SET status = 'driving', start_time = ?, end_time = ?, loading_start_time = NULL, loading_end_time = NULL WHERE id = ?`,
-      [now, end, tour.id]
+      [berlinNow, end, tour.id]
     );
     
     schedulePoliceChecks(userId, tour.duration_minutes, interaction);
