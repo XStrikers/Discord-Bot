@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1389655313413574707",
+    "title": "[FSK18] Story Dienstag geht weiter !dc !10% !instant !yt !pokehelp",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2918983",
+    "cacheBuster": 2918983
   },
   "maexmisfit": {
     "isLive": false,
@@ -29,7 +34,7 @@
     "messageId": "1389594913934409819",
     "title": "LOL SUPRISE",
     "viewers": 3,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2918982",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2918983",
     "cacheBuster": 2918959
   }
 }
