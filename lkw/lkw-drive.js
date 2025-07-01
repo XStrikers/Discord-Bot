@@ -194,7 +194,7 @@ export default {
     
     // Erzeuge "jetzt" als UTC-Timestamp plus +2h (Sommerzeit)
     const nowUtc    = Date.now();
-    const berlinNow = new Date(nowUtc * 60 * 60 * 1000);
+    const berlinNow = new Date(nowUtc * 60 * 1000);
     
     // Fahrende Endzeit ebenfalls in Berliner Zeit
     const end = new Date(berlinNow.getTime() + tour.duration_minutes * 60 * 1000);
