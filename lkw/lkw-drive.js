@@ -189,10 +189,16 @@ export default {
       });
     }
 
-    // ✅ Tour kann gestartet werden
+    // ✅ Tour kann gestartet werden (Berliner Zeit)
     const tour = tours[0];
-    const now = new Date();
-    const end = new Date(now.getTime() + tour.duration_minutes * 60 * 1000);
+    
+    // Erzeuge "jetzt" als UTC-Timestamp plus +2h (Sommerzeit)
+    const nowUtc    = Date.now();
+    const berlinNow = new Date(nowUtc + 2 * 60 * 60 * 1000);
+    
+    // Fahrende Endzeit ebenfalls in Berliner Zeit
+    const end = new Date(berlinNow.getTime() + tour.duration_minutes * 60 * 1000);
+
 
     const hours = Math.floor(tour.duration_minutes / 60);
     const minutes = tour.duration_minutes % 60;
@@ -219,7 +225,8 @@ export default {
     const arrivalTime = end.toLocaleTimeString('de-DE', {
       hour: '2-digit',
       minute: '2-digit',
-      second: '2-digit'
+      second: '2-digit',
+      timeZone: 'Europe/Berlin'
     });
 
     return interaction.reply({
