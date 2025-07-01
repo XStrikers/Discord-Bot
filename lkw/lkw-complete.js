@@ -37,6 +37,8 @@ export default {
     const tour = tours[0];
     const now = new Date();
 
+    const endTime = new Date(tour.end_time);
+
     // 2. Falls Zeit abgelaufen: Status auf 'complete' setzen
     if (tour.status === 'driving' && now >= endTime) {
     await pool.execute(
