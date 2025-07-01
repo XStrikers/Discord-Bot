@@ -122,7 +122,7 @@ export default {
       const embed = new EmbedBuilder()
         .setTitle(`📋 Auftrag ${job.freight} angenommen`)
         .setDescription(
-          `**LKW Fahrer:** ${displayName}` +
+          `**Auftragnehmer:** ${displayName}` +
           `**Start ➜ Ziel**\n${job.start_city} ➜ ${job.end_city}\n\n` +
           `**Fahrtzeit:** ${Math.floor(modDuration / 60)} Std ${modDuration % 60} Min\n\n` +
           `${multiplierNotice}`+       
