@@ -192,13 +192,8 @@ export default {
     // ✅ Tour kann gestartet werden (Berliner Zeit)
     const tour = tours[0];
     
-    // Erzeuge "jetzt" als UTC-Timestamp plus +2h (Sommerzeit)
-    const nowUtc    = Date.now();
-    const berlinNow = new Date(nowUtc * 60 * 1000);
-    
-    // Fahrende Endzeit ebenfalls in Berliner Zeit
-    const end = new Date(berlinNow.getTime() + tour.duration_minutes * 60 * 1000);
-
+    const now = new Date();
+    const end = new Date(now.getTime() + tour.duration_minutes * 60 * 1000);
 
     const hours = Math.floor(tour.duration_minutes / 60);
     const minutes = tour.duration_minutes % 60;
@@ -206,7 +201,7 @@ export default {
 
     await pool.execute(
       `UPDATE lkw_tours SET status = 'driving', start_time = ?, end_time = ?, loading_start_time = NULL, loading_end_time = NULL WHERE id = ?`,
-      [berlinNow, end, tour.id]
+      [now, end, tour.id]
     );
     
     schedulePoliceChecks(userId, tour.duration_minutes, interaction);
