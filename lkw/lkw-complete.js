@@ -53,7 +53,7 @@ export default {
     // 3. Wenn noch nicht abgeschlossen
     if (tour.status !== 'complete') {
 
-      const arrivalTime = end.toLocaleTimeString('de-DE', {
+      const arrivalTime = endTime.toLocaleTimeString('de-DE', {
         hour: '2-digit',
         minute: '2-digit',
         second: '2-digit',
