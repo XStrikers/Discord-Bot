@@ -8,6 +8,7 @@ export default {
     if (!interaction.customId.startsWith('select_job_')) return;
 
     const userId = interaction.user.id;
+    const displayName = interaction.member?.displayName || interaction.user.username;
     const jobIndex = parseInt(interaction.customId.split('_').pop(), 10) - 1;
 
     // 🧾 Aktive Tour prüfen
