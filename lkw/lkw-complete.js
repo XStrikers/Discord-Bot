@@ -36,18 +36,17 @@ export default {
 
     const tour = tours[0];
     const now = new Date();
-    const endTime = new Date(tour.end_time);
-
-    const end = new Date(now.getTime() + tour.duration_minutes * 60 * 1000);
 
     // 2. Falls Zeit abgelaufen: Status auf 'complete' setzen
     if (tour.status === 'driving' && now >= endTime) {
-      await pool.execute(
-        `UPDATE lkw_tours SET status = 'complete', end_time = ? WHERE id = ?`,
-        [tour.id, end]
-      );
-      tour.status = 'complete';
-    }
+    await pool.execute(
+      `UPDATE lkw_tours 
+          SET status = 'complete' 
+        WHERE id = ?`,
+      [tour.id]
+    );
+     tour.status = 'complete';
+   }
 
     // 3. Wenn noch nicht abgeschlossen
     if (tour.status !== 'complete') {
