@@ -1,12 +1,7 @@
 {
   "moonlightizda": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1389655313413574707",
-    "title": "[FSK18] Story Dienstag geht weiter !dc  !instant !yt !pokehelp",
-    "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2918998",
-    "cacheBuster": 2918983
+    "isLive": false,
+    "announced": false
   },
   "maexmisfit": {
     "isLive": false,
@@ -17,8 +12,8 @@
     "announced": true,
     "messageId": "1389673607650869270",
     "title": "Wir spielen das erste mal killer (Bin noch nicht so gut)Gespielt wird die kotzerei😅💖",
-    "viewers": 4,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2918998",
+    "viewers": 3,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2918999",
     "cacheBuster": 2918990
   },
   "gronkhtv": {
@@ -38,8 +33,8 @@
     "announced": true,
     "messageId": "1389594913934409819",
     "title": "LOL suprise",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2918998",
+    "viewers": 4,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2918999",
     "cacheBuster": 2918959
   }
 }
