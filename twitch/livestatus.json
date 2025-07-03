@@ -5,7 +5,7 @@
     "messageId": "1390375715010248928",
     "title": "[FSK18] #3 Moonicode-Stream / Wir carryen uns gegenseitig ins Grab ! !dc  !instant !yt !pokehelp",
     "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2919285",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2919286",
     "cacheBuster": 2919269
   },
   "maexmisfit": {
@@ -13,8 +13,13 @@
     "announced": false
   },
   "happyendttv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1390418498798354457",
+    "title": "DBD Abend gibt's ein happyEnd 🤔😅💖",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2919286",
+    "cacheBuster": 2919286
   },
   "gronkhtv": {
     "isLive": false,
