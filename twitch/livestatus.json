@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1390375715010248928",
+    "title": "[FSK18] #3 Moonicode-Stream / Wir carryen uns gegenseitig ins Grab ! !dc  !instant !yt !pokehelp",
+    "viewers": 6,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2919269",
+    "cacheBuster": 2919269
   },
   "maexmisfit": {
     "isLive": false,
@@ -29,7 +34,7 @@
     "messageId": "1390320350348447825",
     "title": "League of Madness",
     "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2919268",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2919269",
     "cacheBuster": 2919247
   }
 }
