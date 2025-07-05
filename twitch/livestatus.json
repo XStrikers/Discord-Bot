@@ -5,7 +5,7 @@
     "messageId": "1391160182943518800",
     "title": "[FSK18] Horror Samstag für euch | !dc  !instant !yt !pokehelp",
     "viewers": 10,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2919597",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2919598",
     "cacheBuster": 2919581
   },
   "maexmisfit": {
@@ -29,7 +29,12 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1391202966689550346",
+    "title": "League soloQ Waldbrand oder so",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2919598",
+    "cacheBuster": 2919598
   }
 }
