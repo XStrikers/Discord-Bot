@@ -1,12 +1,7 @@
 {
   "moonlightizda": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1391160182943518800",
-    "title": "[FSK18] Horror Samstag für euch | !dc  !instant !yt !pokehelp",
-    "viewers": 8,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2919608",
-    "cacheBuster": 2919581
+    "isLive": false,
+    "announced": false
   },
   "maexmisfit": {
     "isLive": false,
@@ -34,7 +29,7 @@
     "messageId": "1391202966689550346",
     "title": "League soloQ Mitte und so",
     "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2919608",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2919609",
     "cacheBuster": 2919598
   }
 }
