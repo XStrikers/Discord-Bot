@@ -8,8 +8,13 @@
     "announced": false
   },
   "happyendttv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1391474546057547989",
+    "title": "DBD Abend gibt's ein happyEnd 🤔😅💖",
+    "viewers": 2,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2919706",
+    "cacheBuster": 2919706
   },
   "gronkhtv": {
     "isLive": false,
@@ -28,8 +33,8 @@
     "announced": true,
     "messageId": "1391461962726244463",
     "title": "fangen spielen für große",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2919705",
+    "viewers": 2,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2919706",
     "cacheBuster": 2919701
   }
 }
