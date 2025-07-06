@@ -76,6 +76,26 @@ export default {
         return await interaction.editReply({ embeds: [statusEmbed] });
       }
 
+      const [cached] = await pool.execute(
+        `SELECT id FROM lkw_tours_cache WHERE discord_id = ? LIMIT 1`,
+        [userId]
+      );
+      if (cached.length > 0) {
+        return interaction.editReply({
+          embeds: [
+            new EmbedBuilder()
+              .setTitle('❌ Bereits Frachtangebote ausstehend')
+              .setDescription(
+                'Du hast dir bereits zwei Frachtaufträge anzeigen lassen.\n' +
+                'Bitte wähle zuerst einen davon aus, bevor du `/lkw start` erneut benutzt.'
+              )
+              .setColor(0xd92626)
+          ],
+          components: [],
+          flags: 64
+        });
+      }
+
       // ✅ Keine aktive Tour → Neue Aufträge generieren
       const [tuningRows] = await pool.execute(
         `SELECT speed_level, eco_level, trailer_level, tank_level FROM lkw_trucks WHERE discord_id = ? AND active = 1 LIMIT 1`,
