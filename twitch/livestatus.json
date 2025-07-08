@@ -24,12 +24,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1391927530855989369",
-    "title": "League eine Runde auf entspannt",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2919888",
-    "cacheBuster": 2919886
+    "isLive": false,
+    "announced": false
   }
 }
