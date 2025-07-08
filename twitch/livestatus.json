@@ -5,7 +5,7 @@
     "messageId": "1392179190278651995",
     "title": "[FSK18] Wir gehen in eines meiner Lieblings Games rein rein | !dc  !instant !yt !pokehelp",
     "viewers": 7,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2919994",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2919995",
     "cacheBuster": 2919986
   },
   "maexmisfit": {
@@ -29,7 +29,12 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1392201841009492041",
+    "title": "DBD mit den besten",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2919995",
+    "cacheBuster": 2919995
   }
 }
