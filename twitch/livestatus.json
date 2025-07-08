@@ -24,12 +24,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1392201841009492041",
-    "title": "Northgard nach langem wieder mal spielen",
-    "viewers": 4,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2920021",
-    "cacheBuster": 2919995
+    "isLive": false,
+    "announced": false
   }
 }
