@@ -8,8 +8,13 @@
     "announced": false
   },
   "happyendttv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1392579326175744141",
+    "title": "DBD Abend gibt's ein happyEnd 🤔😅💖",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2920145",
+    "cacheBuster": 2920145
   },
   "gronkhtv": {
     "isLive": false,
