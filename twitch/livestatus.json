@@ -24,12 +24,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1392581843999789238",
-    "title": "DBD auf der Suche nach den Party Totems",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2920174",
-    "cacheBuster": 2920146
+    "isLive": false,
+    "announced": false
   }
 }
