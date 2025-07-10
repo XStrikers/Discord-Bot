@@ -8,8 +8,13 @@
     "announced": false
   },
   "happyendttv": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1392818401805860917",
+    "title": "freunde der sonne 🌞 diamond painting machen und reden",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2920240",
+    "cacheBuster": 2920240
   },
   "gronkhtv": {
     "isLive": false,
