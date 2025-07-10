@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1392914032519938243",
+    "title": "[FSK18] #4 Moonicode-Stream | Wir ballern – wohin auch immer | !dc  !instant !yt !pokehelp",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2920278",
+    "cacheBuster": 2920278
   },
   "maexmisfit": {
     "isLive": false,
