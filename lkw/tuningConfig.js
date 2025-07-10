@@ -38,7 +38,7 @@ const tuningConfig = {
     tankMultiplier: 0.05,
     xpMultiplier: 0.05,
     truckmilesMultiplier: 0.05,
-    durationMultiplier: -0.15,
+    durationMultiplier: 0.15,
     description: "Erhöht die Tankkapazität, sodass längere Strecken gefahren werden können."
   }
 };
