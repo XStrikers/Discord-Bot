@@ -4,8 +4,8 @@ const tuningConfig = {
     maxLevel: 10,
     baseCost: 500,
     costMultiplier: 1.5,
-    fuelMultiplier: 0.5,
-    riskMultiplier: 2.0,
+    fuelMultiplier: 0.05,
+    riskMultiplier: 0.01,
     durationMultiplier: -0.15,
     description: "Reduziert die Fahrtzeit."
   },
@@ -15,8 +15,8 @@ const tuningConfig = {
     maxLevel: 10,
     baseCost: 400,
     costMultiplier: 1.4,
-    xpMultiplier: 0.5,
-    truckmilesMultiplier: 0.5,
+    xpMultiplier: 0.05,
+    truckmilesMultiplier: 0.05,
     description: "Erhöht die Ladekapazität des LKWs."
   },
 
@@ -25,8 +25,8 @@ const tuningConfig = {
     maxLevel: 10,
     baseCost: 300,
     costMultiplier: 1.3,
-    fuelMultiplier: -0.5,
-    riskMultiplier: -0.5,
+    fuelMultiplier: -0.05,
+    riskMultiplier: -0.05,
     description: "Reduziert Kraftstoffverbrauch und Unfallwahrscheinlichkeit."
   },
 
@@ -35,7 +35,10 @@ const tuningConfig = {
     maxLevel: 10,
     baseCost: 600,
     costMultiplier: 1.6,
-    tankMultiplier: 0.5,
+    tankMultiplier: 0.05,
+    xpMultiplier: 0.05,
+    truckmilesMultiplier: 0.05,
+    durationMultiplier: -0.15,
     description: "Erhöht die Tankkapazität, sodass längere Strecken gefahren werden können."
   }
 };
