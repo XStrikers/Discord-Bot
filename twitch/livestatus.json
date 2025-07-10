@@ -5,7 +5,7 @@
     "messageId": "1392914032519938243",
     "title": "[FSK18] #4 Moonicode-Stream | Wir ballern – wohin auch immer | !dc  !instant !yt !pokehelp",
     "viewers": 4,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2920280",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2920281",
     "cacheBuster": 2920278
   },
   "maexmisfit": {
@@ -29,7 +29,12 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1392921583256998171",
+    "title": "Um jeden Preis entkommen auch auf kosten von anderen",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2920281",
+    "cacheBuster": 2920281
   }
 }
