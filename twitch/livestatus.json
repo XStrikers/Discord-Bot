@@ -24,12 +24,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1393605092355215541",
-    "title": "Once Human mit dem Wolf Chan",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2920562",
-    "cacheBuster": 2920552
+    "isLive": false,
+    "announced": false
   }
 }
