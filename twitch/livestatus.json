@@ -24,12 +24,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1393673039987867801",
-    "title": "riperino Leute",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2920607",
-    "cacheBuster": 2920579
+    "isLive": false,
+    "announced": false
   }
 }
