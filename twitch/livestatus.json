@@ -24,7 +24,12 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1394430532858679329",
+    "title": "DBD mit den Besten",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2920880",
+    "cacheBuster": 2920880
   }
 }
