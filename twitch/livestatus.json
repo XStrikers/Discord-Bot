@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1394717422992232680",
+    "title": "[FSK18] Wie oft kann man in Paris sterben? | !dc  !instant !yt !pokehelp",
+    "viewers": 4,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2920994",
+    "cacheBuster": 2920994
   },
   "maexmisfit": {
     "isLive": false,
