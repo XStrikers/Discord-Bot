@@ -1,12 +1,7 @@
 {
   "moonlightizda": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1395094911333957727",
-    "title": "[FSK18] „Wir hören Stimmen...  | !dc  !instant !yt !pokehelp",
-    "viewers": 8,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2921172",
-    "cacheBuster": 2921144
+    "isLive": false,
+    "announced": false
   },
   "maexmisfit": {
     "isLive": false,
@@ -34,7 +29,7 @@
     "messageId": "1395162861181079665",
     "title": "Surv am Limit",
     "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2921172",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2921173",
     "cacheBuster": 2921171
   }
 }
