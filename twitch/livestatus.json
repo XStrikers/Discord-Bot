@@ -1,12 +1,7 @@
 {
   "moonlightizda": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1395467367143968771",
-    "title": "[FSK18] „Französisch für Anfänger: Baguette, Guillotine, Aua“  | !dc  !instant !yt !pokehelp",
-    "viewers": 8,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2921317",
-    "cacheBuster": 2921292
+    "isLive": false,
+    "announced": false
   },
   "maexmisfit": {
     "isLive": false,
