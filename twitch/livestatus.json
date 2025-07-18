@@ -24,12 +24,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1395547898577420340",
-    "title": "Northgard Ranked Madness",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2921339",
-    "cacheBuster": 2921324
+    "isLive": false,
+    "announced": false
   }
 }
