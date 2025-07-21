@@ -24,12 +24,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1396920597606305812",
-    "title": "Tief in der Botlane / Carry oder Tilt?",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2921882",
-    "cacheBuster": 2921870
+    "isLive": false,
+    "announced": false
   }
 }
