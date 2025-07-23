@@ -61,15 +61,16 @@ export default {
         
                 // --------------- 🌱 Pflanzen ----------------
                 if (interaction.options.getSubcommand() === 'plant') {
+                    await interaction.deferReply();
                     const plantName = interaction.options.getString('pflanze');
                     const plant = plants[plantName];
         
                     if (!plant) {
-                        return interaction.reply({ content: 'Ungültige Pflanze.', flags: 64 });
+                        return interaction.editReply({ content: 'Ungültige Pflanze.', flags: 64 });
                     }
         
                     if (level < plant.level) {
-                        return interaction.reply({
+                        return interaction.editReply({
                             embeds: [new EmbedBuilder()
                                 .setTitle('🚫 Level zu niedrig')
                                 .setDescription(`Du musst mindestens Level **${plant.level}** sein, um **${plantName}** zu pflanzen.`)
@@ -81,7 +82,7 @@ export default {
                     // Du hast diese Pflanze schon gepflanzt?
                     const alreadyPlanted = slots.some(slot => farmData[slot.type] === plantName);
                     if (alreadyPlanted) {
-                         return interaction.reply({
+                         return interaction.editReply({
                             embeds: [new EmbedBuilder()
                                 .setTitle(`${plantName}-Farm`)
                                 .setDescription(`Du hast bereits **${plantName}** angebaut. Jede Sorte darf nur einmal angepflanzt werden.`)
@@ -93,7 +94,7 @@ export default {
                     // Freien Slot finden
                     const emptySlot = slots.find(slot => !farmData[slot.type]);
                     if (!emptySlot) {
-                        return interaction.reply({
+                        return interaction.editReply({
                             content: `Du hast bereits alle 4 Pflanzenslots belegt.`,
                             flags: 64
                         });
@@ -103,12 +104,11 @@ export default {
                     const userCoins = userRows[0]?.coins || 0;
         
                     if (userCoins < plant.cost) {
-                        return interaction.reply({
+                        return interaction.editReply({
                             embeds: [new EmbedBuilder()
                                 .setTitle('❌ Nicht genug Coins')
                                 .setDescription(`Du brauchst **${plant.cost} Coins**, um **${plantName}** anzubauen.`)
                                 .setColor(0xd92626)],
-                            flags: 64
                         });
                     }
         
@@ -116,7 +116,7 @@ export default {
                         [plantName, currentDate, userId]);
                     await pool.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [plant.cost, userId]);
         
-                    return interaction.reply({
+                    return interaction.editReply({
                         embeds: [new EmbedBuilder()
                             .setTitle(`${plantName} gepflanzt`)
                             .setDescription(`Du hast **${plantName}** angebaut. In **${plant.cooldown} Minuten** kannst du deine Ernte einholen.`)
