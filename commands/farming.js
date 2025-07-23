@@ -158,7 +158,7 @@ export default {
                     }
                 
                     if (harvestedPlants.length === 0) {
-                        return interaction.reply({
+                        return interaction.editReply({
                             embeds: [new EmbedBuilder()
                                 .setTitle('❌ Nichts bereit zur Ernte')
                                 .setDescription('Keine deiner Pflanzen ist momentan bereit zum Ernten.')
@@ -209,7 +209,7 @@ export default {
                         .setColor(0x26d926)
                         .setImage(harvestImage);
                 
-                    return interaction.reply({ embeds: [embed, ...levelUpEmbeds] });
+                    return interaction.editReply({ embeds: [embed, ...levelUpEmbeds] });
                 }
                         
                 // --------------- 📊 Status ----------------
@@ -241,7 +241,11 @@ export default {
         
             } catch (error) {
                 console.error(error);
-                return interaction.reply({ content: 'Es ist ein Fehler aufgetreten.', flags: 64 });
+                if (interaction.deferred || interaction.replied) {
+                    await interaction.editReply({ content: 'Es ist ein Fehler aufgetreten.', ephemeral: true });
+                } else {
+                    await interaction.reply({ content: 'Es ist ein Fehler aufgetreten.', ephemeral: true });
+                }
             }
         }
 };
