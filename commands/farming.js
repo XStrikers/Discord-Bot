@@ -163,7 +163,6 @@ export default {
                                 .setTitle('❌ Nichts bereit zur Ernte')
                                 .setDescription('Keine deiner Pflanzen ist momentan bereit zum Ernten.')
                                 .setColor(0xd92626)],
-                            flags: 64
                         });
                     }
                 
