@@ -6,7 +6,8 @@ const plants = {
     "🥕 Karotten": { level: 0, cost: 20, rewardMin: 50, rewardMax: 100, xp: 10, cooldown: 30, image: "https://xstrikers.de/discord/images/carrots.png" },
     "🥔 Kartoffeln": { level: 5, cost: 50, rewardMin: 80, rewardMax: 130, xp: 20, cooldown: 60, image: "https://xstrikers.de/discord/images/potatos.png" },
     "🍅 Tomaten": { level: 10, cost: 100, rewardMin: 130, rewardMax: 180, xp: 30, cooldown: 90, image: "https://xstrikers.de/discord/images/tomatos.png" },
-    "🌾 Weizen": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120, image: "https://xstrikers.de/discord/images/wheat.png" }
+    "🌾 Weizen": { level: 15, cost: 150, rewardMin: 180, rewardMax: 230, xp: 40, cooldown: 120, image: "https://xstrikers.de/discord/images/wheat.png" },
+    "🍇 Weintrauben": { level: 20, cost: 200, rewardMin: 230, rewardMax: 280, xp: 50, cooldown: 150, image: "https://xstrikers.de/discord/images/wheat.png" }
 };
 
 const slots = [
