@@ -61,7 +61,7 @@ export default {
         
                 // --------------- 🌱 Pflanzen ----------------
                 if (interaction.options.getSubcommand() === 'plant') {
-                    await interaction.deferReply();
+                    await interaction.deferReply({ ephemeral: true });
                     const plantName = interaction.options.getString('pflanze');
                     const plant = plants[plantName];
         
@@ -127,7 +127,7 @@ export default {
 
                 // --------------- 🌾 Ernten ----------------
                 if (interaction.options.getSubcommand() === 'harvest') {
-                    await interaction.deferReply();
+                    await interaction.deferReply({ ephemeral: true });
                     let harvestedPlants = [];
                     let totalReward = 0;
                     let totalXP = 0;
