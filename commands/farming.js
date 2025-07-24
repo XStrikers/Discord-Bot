@@ -14,7 +14,8 @@ const slots = [
     { type: 'plant_type', time: 'plant_time' },
     { type: 'plant_type2', time: 'plant_time2' },
     { type: 'plant_type3', time: 'plant_time3' },
-    { type: 'plant_type4', time: 'plant_time4' }
+    { type: 'plant_type4', time: 'plant_time4' },
+    { type: 'plant_type5', time: 'plant_time5' }
 ];
 
 export default {
@@ -61,7 +62,7 @@ export default {
         
                 // --------------- 🌱 Pflanzen ----------------
                 if (interaction.options.getSubcommand() === 'plant') {
-                    await interaction.deferReply({ ephemeral: true });
+                    await interaction.deferReply();
                     const plantName = interaction.options.getString('pflanze');
                     const plant = plants[plantName];
         
