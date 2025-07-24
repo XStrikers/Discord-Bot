@@ -12,6 +12,8 @@ export default {
     ),
 
   async execute(interaction) {
+    await interaction.deferReply({ ephemeral: true });
+
     const userId = interaction.user.id;
     const displayName = interaction.member?.displayName || interaction.user.username;
 
@@ -22,7 +24,7 @@ export default {
     );
 
     if (tours.length === 0) {
-      return interaction.reply({
+      return interaction.editReply({
         embeds: [
           new EmbedBuilder()
             .setTitle('⛔ Kein laufender Auftrag')
@@ -61,7 +63,7 @@ export default {
       });
 
 
-      return interaction.reply({
+      return interaction.editReply({
         embeds: [
           new EmbedBuilder()
             .setTitle('🕓 Tour läuft noch')
@@ -84,7 +86,7 @@ export default {
     );
 
     if (userDataRows.length === 0) {
-      return interaction.reply({
+      return interaction.editReply({
         content: 'Fehler: Benutzerprofil nicht gefunden.',
         flags: 64
       });
@@ -155,7 +157,7 @@ export default {
       embeds.push(levelUpEmbed);
     }
 
-    return interaction.reply({
+    return interaction.editReply({
       embeds,
       flags: 0
     });
