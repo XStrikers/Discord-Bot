@@ -45,7 +45,7 @@ export default {
           .setDescription(
             `**Angestellte:** ${numberOfDrivers || 'Keine Angestellte'}\n` +
             `**Trucks:** ${numberOfTrucks || 'Keine Trucks'}\n\n` +
-            `**Einnahmen:** ${logistics.income_tm.toLocaleString()} <:truckmiles:1379087323400110120>\n` +
+            `**Einnahmen:** ${logistics.income_tm.toLocaleString()} <:truckmiles:1388239050963681362>\n` +
             `**Touren:** ${logistics.total_tours}\n\n` +
             `**Aktuelle Platzierung:** ???\n\n` +
             `Mögen die Logistiken fair zu einander bleiben und sich nicht gegenseitig auf den Straßen so wie bei den Aufträgen behindern.`
