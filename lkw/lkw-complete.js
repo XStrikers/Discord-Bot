@@ -12,7 +12,7 @@ export default {
     ),
 
   async execute(interaction) {
-    await interaction.deferReply({ ephemeral: true });
+    await interaction.deferReply();
 
     const userId = interaction.user.id;
     const displayName = interaction.member?.displayName || interaction.user.username;
