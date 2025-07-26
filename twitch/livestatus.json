@@ -20,13 +20,8 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1398750315083337839",
-    "title": "[FSK18+] Heute doch LS :D !sr !points !dc !ts !commands !socials",
-    "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2922615",
-    "cacheBuster": 2922597
+    "isLive": false,
+    "announced": false
   },
   "sayasblade_": {
     "isLive": false,
