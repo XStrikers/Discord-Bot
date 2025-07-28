@@ -20,13 +20,8 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1399455477456437411",
-    "title": "[FSK18+] Zeit zum Ausbruch !sr !points !dc !ts !commands !socials",
-    "viewers": 4,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2922898",
-    "cacheBuster": 2922877
+    "isLive": false,
+    "announced": false
   },
   "sayasblade_": {
     "isLive": false,
