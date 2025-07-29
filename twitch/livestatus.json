@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1399823212212125697",
+    "title": "[FSK18] „Französisch kann ich nicht, sterben schon!“ | !dc  !instant !yt !pokehelp",
+    "viewers": 2,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2923023",
+    "cacheBuster": 2923023
   },
   "maexmisfit": {
     "isLive": false,
