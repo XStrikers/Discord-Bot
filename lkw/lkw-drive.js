@@ -31,7 +31,7 @@ export default {
 
       for (const delayMinutes of timings) {
         setTimeout(async () => {
-          const giveFine = Math.random() < 0.25;
+          const giveFine = Math.random() < 0.15;
           if (!giveFine) return;
 
           const [fineCountRows] = await pool.execute(
