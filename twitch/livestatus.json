@@ -4,8 +4,8 @@
     "announced": true,
     "messageId": "1400160906305998910",
     "title": "[FSK18] Erklimmen wir den Berg?| !dc  !instant !yt !pokehelp",
-    "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2923174",
+    "viewers": 4,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2923175",
     "cacheBuster": 2923157
   },
   "maexmisfit": {
@@ -13,13 +13,8 @@
     "announced": false
   },
   "happyendttv": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1400191105869545646",
-    "title": "Sagt mir freunde der sonne gibt es ein happyEnd?🤔😂",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_happyendttv-640x360.jpg?cb=2923174",
-    "cacheBuster": 2923169
+    "isLive": false,
+    "announced": false
   },
   "gronkhtv": {
     "isLive": false,
