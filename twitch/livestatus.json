@@ -1,7 +1,12 @@
 {
   "moonlightizda": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1400160906305998910",
+    "title": "[FSK18] Erklimmen wir den Berg?| !dc  !instant !yt !pokehelp",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_moonlightizda-640x360.jpg?cb=2923157",
+    "cacheBuster": 2923157
   },
   "maexmisfit": {
     "isLive": false,
@@ -25,7 +30,7 @@
     "messageId": "1400155871836635247",
     "title": "[FSK18+] Zeit zum Ackern !sr !points !dc !ts !commands !socials",
     "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2923156",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2923157",
     "cacheBuster": 2923155
   },
   "sayasblade_": {
