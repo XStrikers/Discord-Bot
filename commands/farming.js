@@ -128,7 +128,7 @@ export default {
 
                 // --------------- 🌾 Ernten ----------------
                 if (interaction.options.getSubcommand() === 'harvest') {
-                    await interaction.deferReply({ ephemeral: true });
+                    await interaction.deferReply();
                     let harvestedPlants = [];
                     let totalReward = 0;
                     let totalXP = 0;
