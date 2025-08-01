@@ -18,6 +18,14 @@ export default {
     const userId = interaction.user.id;
     const displayName = interaction.member?.displayName || interaction.user.username;
 
+    // EU-Zeitzone
+    const berlinFormatter = new Intl.DateTimeFormat('de-DE', {
+      hour:   '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      timeZone: 'Europe/Berlin'
+    });
+
     // Hilfsfunktion für random Fine Code
     function generateFineCode(length = 5) {
       return crypto.randomBytes(length).toString('base64').replace(/[^A-Z]/gi, '').substring(0, length).toUpperCase();
@@ -217,12 +225,7 @@ export default {
     // Zufällig eine Beschreibung auswählen
     const selectedDescription = tourDescriptions[Math.floor(Math.random() * tourDescriptions.length)];
 
-    const arrivalTime = end.toLocaleTimeString('de-DE', {
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-      timeZone: 'Europe/Berlin'
-    });
+    const arrivalTime = berlinFormatter.format(end);
 
     return interaction.reply({
       embeds: [
