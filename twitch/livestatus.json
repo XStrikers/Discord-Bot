@@ -16,8 +16,13 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1401264059260600330",
+    "title": "[FSK18+] Es ist Samstag also zeit zum Ackern !sr !points !dc !ts !commands !socials",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2923596",
+    "cacheBuster": 2923596
   },
   "sayasblade_": {
     "isLive": false,
