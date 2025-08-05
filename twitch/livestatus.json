@@ -20,12 +20,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1402379674604277760",
-    "title": "Northgard Madness",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2924060",
-    "cacheBuster": 2924039
+    "isLive": false,
+    "announced": false
   }
 }
