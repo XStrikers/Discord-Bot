@@ -20,12 +20,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1406602503482638356",
-    "title": "Helft mir Wach zu bleiben",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2925744",
-    "cacheBuster": 2925717
+    "isLive": false,
+    "announced": false
   }
 }
