@@ -20,12 +20,21 @@
     "announced": true,
     "messageId": "1407027807300747408",
     "title": "[FSK18+] Neuer Start in die nächste Woche !sr !points !dc !ts !commands !socials",
-    "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2925905",
+    "viewers": 5,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2925906",
     "cacheBuster": 2925886
   },
   "sayasblade_": {
     "isLive": false,
     "announced": false
+  },
+  "xstrikers_gaming": {
+    "isLive": true,
+    "announced": true,
+    "messageId": "1407078139330564109",
+    "title": "👨‍🍳 Lasst uns zusammen kochen 🍳",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2925906",
+    "cacheBuster": 2925906
   }
 }
