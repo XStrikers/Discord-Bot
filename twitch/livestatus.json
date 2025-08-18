@@ -16,8 +16,13 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1407027807300747408",
+    "title": "[FSK18+] Neuer Start in die nächste Woche !sr !points !dc !ts !commands !socials",
+    "viewers": 2,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2925886",
+    "cacheBuster": 2925886
   },
   "sayasblade_": {
     "isLive": false,
