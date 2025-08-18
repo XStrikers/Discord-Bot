@@ -16,13 +16,8 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1407027807300747408",
-    "title": "[FSK18+] Neuer Start in die nächste Woche !sr !points !dc !ts !commands !socials",
-    "viewers": 5,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2925906",
-    "cacheBuster": 2925886
+    "isLive": false,
+    "announced": false
   },
   "sayasblade_": {
     "isLive": false,
@@ -33,8 +28,8 @@
     "announced": true,
     "messageId": "1407078139330564109",
     "title": "👨‍🍳 Lasst uns zusammen kochen 🍳",
-    "viewers": 0,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2925906",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2925907",
     "cacheBuster": 2925906
   }
 }
