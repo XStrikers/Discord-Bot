@@ -16,20 +16,20 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1407762653199466506",
-    "title": "[FSK18+] 'Bergfest ! Marsch Ahoi ! !sr !points !dc !ts !commands !socials",
-    "viewers": 8,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2926193",
-    "cacheBuster": 2926178
+    "isLive": false,
+    "announced": false
   },
   "sayasblade_": {
     "isLive": false,
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1407803229655531591",
+    "title": "👨‍🍳 Lasst uns zusammen kochen 🍳",
+    "viewers": 3,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2926194",
+    "cacheBuster": 2926194
   }
 }
