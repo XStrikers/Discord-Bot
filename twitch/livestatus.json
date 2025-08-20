@@ -24,12 +24,7 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1407803229655531591",
-    "title": "👨‍🍳 Lasst uns zusammen kochen 🍳",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2926214",
-    "cacheBuster": 2926194
+    "isLive": false,
+    "announced": false
   }
 }
