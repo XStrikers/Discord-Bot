@@ -16,8 +16,13 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1408520455123370025",
+    "title": "[FSK18+] 1...2...3... Wochenende!  Marsch Ahoi ! !sr !points !dc !ts !commands !socials",
+    "viewers": 4,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2926479",
+    "cacheBuster": 2926479
   },
   "sayasblade_": {
     "isLive": false,
