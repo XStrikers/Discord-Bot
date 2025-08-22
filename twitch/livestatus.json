@@ -24,12 +24,7 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1408528007236288565",
-    "title": "🌴 [ParadiseV] 👮 Ophelio als Sheriff 👮 Server Vorstellung 🌴",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2926507",
-    "cacheBuster": 2926482
+    "isLive": false,
+    "announced": false
   }
 }
