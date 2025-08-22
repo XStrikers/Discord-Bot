@@ -20,8 +20,8 @@
     "announced": true,
     "messageId": "1408520455123370025",
     "title": "[FSK18+] 1...2...3... Wochenende!  Marsch Ahoi ! !sr !points !dc !ts !commands !socials",
-    "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2926481",
+    "viewers": 7,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2926482",
     "cacheBuster": 2926479
   },
   "sayasblade_": {
@@ -29,7 +29,12 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1408528007236288565",
+    "title": "🌴 [ParadiseV] 👮 Ophelio als Sheriff 👮 Server Vorstellung 🌴",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2926482",
+    "cacheBuster": 2926482
   }
 }
