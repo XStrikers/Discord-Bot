@@ -16,8 +16,13 @@
     "announced": false
   },
   "kimneele97": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1409934776869191760",
+    "title": "[FSK18+] Neue Woche neues Glück! Marsch Ahoi ! !sr !points !dc !ts !commands !socials",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2927041",
+    "cacheBuster": 2927041
   },
   "sayasblade_": {
     "isLive": false,
