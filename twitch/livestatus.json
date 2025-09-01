@@ -20,8 +20,8 @@
     "announced": true,
     "messageId": "1412104078720372888",
     "title": "[FSK18+] Montagsblues  !sr !points !dc !ts !commands !socials",
-    "viewers": 4,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2927921",
+    "viewers": 6,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_kimneele97-640x360.jpg?cb=2927922",
     "cacheBuster": 2927903
   },
   "sayasblade_": {
@@ -29,7 +29,12 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1412151895082012684",
+    "title": "🌴 [ParadiseV] 👮 Ophelio als Sheriff 👮 Was ist Roxwood 🌴",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2927922",
+    "cacheBuster": 2927922
   }
 }
