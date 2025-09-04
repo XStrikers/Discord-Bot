@@ -106,7 +106,12 @@ export default {
 
     // 3) Lade- und Fahrtzeiten berechnen
     const loadingDuration = Math.floor(Math.random() * 6) + 5; // 5–10 Min
-    const duration = freight.baseMinutes; // wenn du in freightTypes.js eine Dauer definiert hast
+    
+    // Basisfahrzeit (z. B. 60 Minuten)
+    const baseMinutes = 60; 
+    
+    // Fahrtzeit abhängig vom Frachttyp
+    const duration = Math.floor(baseMinutes * freight.durationMultiplier);
     
     const nowLocal = new Date();
     const loadingStart = new Date(Date.UTC(
@@ -187,4 +192,5 @@ export default {
     await interaction.reply({ embeds: [embed] });
   }
 };
+
 
