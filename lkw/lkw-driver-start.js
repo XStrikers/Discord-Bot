@@ -78,8 +78,8 @@ export default {
     try {
       const [activeTours] = await pool.query(
         `SELECT id FROM lkw_tours
-         WHERE truck_id = ? AND discord_id = ? AND status = 'driving'`,
-        [truck.id, discordId]
+         WHERE truck_id = ? AND discord_id = ? AND driver_name = ? AND status = 'driving'`,
+        [truck.id, discordId, driverName]
       );
       if (activeTours.length > 0) {
         return interaction.reply({
@@ -127,14 +127,15 @@ export default {
     try {
       await pool.query(
         `INSERT INTO lkw_tours
-         (discord_id, truck_id, loading_start_time, loading_end_time,
+         (discord_id, truck_id, driver_name, loading_start_time, loading_end_time,
           start_city, end_city, freight, duration_minutes,
           start_time, end_time, status, earned_xp, earned_truckmiles,
           accident, traffic_jam, fine_generated)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
         [
           discordId,
           truck.id,
+          driverName,
           loadingStart,
           loadingEnd,
           startCity,
@@ -186,4 +187,5 @@ export default {
     await interaction.reply({ embeds: [embed] });
   }
 };
+
 
