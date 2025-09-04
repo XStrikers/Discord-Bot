@@ -56,7 +56,7 @@ export default {
       });
     }
 
-        // === Fahrername aus lkw_driver_truck_assignment laden ===
+    // === Fahrername aus lkw_driver_truck_assignment laden ===
     let driverName = 'unbekannter Fahrer';
     try {
       const [assignRows] = await pool.query(
@@ -74,7 +74,7 @@ export default {
       console.error('DB-Fehler beim Laden des Fahrers:', err);
     }
 
-    // ─────────────── NEU: Prüfen, ob bereits eine Tour läuft ───────────────
+    // ─────────────── Prüfen, ob bereits eine Tour läuft ───────────────
     try {
       const [activeTours] = await pool.query(
         `SELECT id FROM lkw_tours
@@ -86,7 +86,7 @@ export default {
           embeds: [
             new EmbedBuilder()
               .setTitle('🚛 Bereits unterwegs')
-              .setDescription(`Dein Angestellter **${driverName}** ist mit dem LKW **${truckName}** bereits auf einer Tour und kann keine weitere Aufträge annehmen.`)
+              .setDescription(`Dein Angestellter **${driverName}** ist mit dem LKW **${truckName}** bereits auf einer Tour und kann keine weiteren Aufträge annehmen.`)
               .setColor(0xd98226)
               .setImage('https://xstrikers.de/discord/images/logistics_infos.png')
           ],
@@ -95,24 +95,19 @@ export default {
       }
     } catch (err) {
       console.error('DB-Fehler beim Active-Tour-Check:', err);
-      // Wir lassen den User in Ruhe weiterfahren, falls diese Prüfung scheitert
     }
-    // ────────────────────────────────────────────────────────────────────────
 
     // 2) Zufällige Städte und Fracht
-    const startCity     = getRandomCity();
-    const endCity       = getRandomCity([startCity]);
-    const freight       = getRandomFreightType();
+    const startCity = getRandomCity();
+    const endCity   = getRandomCity([startCity]);
+    const freight   = getRandomFreightType();
 
     // 3) Lade- und Fahrtzeiten berechnen
     const loadingDuration = Math.floor(Math.random() * 6) + 5; // 5–10 Min
-    
-    // Basisfahrzeit (z. B. 60 Minuten)
-    const baseMinutes = 60;
-    
-    // Fahrtzeit abhängig vom Frachttyp
+    const baseMinutes = 60; // Standardzeit für einfache Tour
     const duration = Math.floor(baseMinutes * freight.durationMultiplier);
-    
+
+    // Lokale Zeit als UTC speichern
     const nowLocal = new Date();
     const loadingStart = new Date(Date.UTC(
       nowLocal.getFullYear(),
@@ -123,7 +118,7 @@ export default {
       nowLocal.getSeconds()
     ));
     const loadingEnd = new Date(loadingStart.getTime() + loadingDuration * 60_000);
-    
+
     // Fahrtbeginn und -ende
     const startTime = loadingEnd;
     const endTime   = new Date(startTime.getTime() + duration * 60_000);
@@ -170,29 +165,24 @@ export default {
       });
     }
 
+    // 5) Rückmeldung im Discord
     const arrivalTime = new Date(endTime).toLocaleTimeString('de-DE', {
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit'
     });
 
-    // 5) Rückmeldung im Discord
     const embed = new EmbedBuilder()
       .setTitle(`🚛 Tour mit ${driverName} gestartet`)
-        .setDescription(
-          `\n\n` +
-          `**Start ➜ Ziel**\n${startCity} ➜ ${endCity}\n\n` +
-          `**Fracht:** ${freight.name}\n` +
-          `**Ankunftszeit:** ${arrivalTime} Uhr\n\n` +
-          `**TruckMiles:** ${freight.baseMiles.toLocaleString()} <:truckmiles:1388239050963681362>\n\n\n\n` 
-        )
-      .setImage('https://xstrikers.de/discord/images/truck_drive.png')
-
+      .setDescription(
+        `\n\n` +
+        `**Start ➜ Ziel**\n${startCity} ➜ ${endCity}\n\n` +
+        `**Fracht:** ${freight.name}\n` +
+        `**Ankunftszeit:** ${arrivalTime} Uhr\n\n` +
+        `**TruckMiles:** ${freight.baseMiles.toLocaleString()} <:truckmiles:1388239050963681362>\n\n\n\n`
+      )
+      .setImage('https://xstrikers.de/discord/images/truck_drive.png');
 
     await interaction.reply({ embeds: [embed] });
   }
 };
-
-
-
-
