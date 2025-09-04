@@ -108,7 +108,7 @@ export default {
     const loadingDuration = Math.floor(Math.random() * 6) + 5; // 5–10 Min
     
     // Basisfahrzeit (z. B. 60 Minuten)
-    const baseMinutes = 60; 
+    const baseMinutes = 60;
     
     // Fahrtzeit abhängig vom Frachttyp
     const duration = Math.floor(baseMinutes * freight.durationMultiplier);
@@ -192,5 +192,6 @@ export default {
     await interaction.reply({ embeds: [embed] });
   }
 };
+
 
 
