@@ -77,10 +77,15 @@ export default {
     // ─────────────── Prüfen, ob bereits eine Tour läuft ───────────────
     try {
       const [activeTours] = await pool.query(
-        `SELECT id FROM lkw_tours
-         WHERE truck_id = ? AND discord_id = ? AND driver_name = ? AND status = 'driving'`,
+        `SELECT id 
+         FROM lkw_tours
+         WHERE truck_id = ? 
+           AND discord_id = ? 
+           AND driver_name = ? 
+           AND status = 'driving'`,
         [truck.id, discordId, driverName]
       );
+      
       if (activeTours.length > 0) {
         return interaction.reply({
           embeds: [
@@ -187,5 +192,6 @@ export default {
     await interaction.reply({ embeds: [embed] });
   }
 };
+
 
 
