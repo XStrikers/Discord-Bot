@@ -78,8 +78,8 @@ export default {
     try {
       const [activeTours] = await pool.query(
         `SELECT id FROM lkw_tours
-         WHERE truck_id = ? AND status = 'driving'`,
-        [truck.id]
+         WHERE truck_id = ? AND discord_id = ? AND status = 'driving'`,
+        [truck.id, discordId]
       );
       if (activeTours.length > 0) {
         return interaction.reply({
@@ -186,3 +186,4 @@ export default {
     await interaction.reply({ embeds: [embed] });
   }
 };
+
