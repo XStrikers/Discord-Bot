@@ -104,9 +104,11 @@ export default {
     const endCity       = getRandomCity([startCity]);
     const freight       = getRandomFreightType();
 
-    // 3) Lade- und Fahrtzeiten berechnen (korrekte lokale Zeit als UTC-Date erzeugen)
+    // 3) Lade- und Fahrtzeiten berechnen
+    const loadingDuration = Math.floor(Math.random() * 6) + 5; // 5–10 Min
+    const duration = freight.baseMinutes; // wenn du in freightTypes.js eine Dauer definiert hast
+    
     const nowLocal = new Date();
-    // Baue ein Date, bei dem Year/Mon/Day/Hour/Min/Sec als UTC interpretiert werden:
     const loadingStart = new Date(Date.UTC(
       nowLocal.getFullYear(),
       nowLocal.getMonth(),
@@ -117,7 +119,7 @@ export default {
     ));
     const loadingEnd = new Date(loadingStart.getTime() + loadingDuration * 60_000);
     
-    // Fahrtbeginn und -ende ebenfalls im UTC-Kontext
+    // Fahrtbeginn und -ende
     const startTime = loadingEnd;
     const endTime   = new Date(startTime.getTime() + duration * 60_000);
 
@@ -185,3 +187,4 @@ export default {
     await interaction.reply({ embeds: [embed] });
   }
 };
+
