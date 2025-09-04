@@ -33,7 +33,13 @@ export default {
 
       // 🕵️ Aktive Tour prüfen
       const [latestTourRows] = await pool.execute(
-        `SELECT * FROM lkw_tours WHERE discord_id = ? AND status IN ('accept', 'loading', 'ready_to_drive', 'driving') ORDER BY id DESC LIMIT 1`,
+        `SELECT * 
+         FROM lkw_tours 
+         WHERE discord_id = ? 
+           AND driver_name IS NULL 
+           AND status IN ('accept', 'loading', 'ready_to_drive', 'driving') 
+         ORDER BY id DESC 
+         LIMIT 1`,
         [userId]
       );
 
@@ -161,3 +167,4 @@ export default {
     }
   }
 };
+
