@@ -24,7 +24,12 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1413600084796641444",
+    "title": "🌴 [ParadiseV] [Drops] 👮 Ophelio als Sheriff 👮 Roxwood & Sherrif 🌴",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2928498",
+    "cacheBuster": 2928498
   }
 }
