@@ -24,7 +24,12 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1416137761932705922",
+    "title": "👨‍🍳 Lasst uns zusammen kochen 🍳 !gewürze",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2929506",
+    "cacheBuster": 2929506
   }
 }
