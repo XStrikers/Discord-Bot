@@ -28,8 +28,17 @@
     "announced": true,
     "messageId": "1422994266988220457",
     "title": "🐄 [#3 New Ranch] 2 Doofe Bauern & 1 Ranch 🐓 @onefour89",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2932232",
+    "viewers": 3,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2932233",
     "cacheBuster": 2932231
+  },
+  "onefour89": {
+    "isLive": true,
+    "announced": true,
+    "messageId": "1423000040854523955",
+    "title": "2 Bauern, 1 Ranch & jede Menge Chaos! @xstrikers_gaming",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_onefour89-640x360.jpg?cb=2932233",
+    "cacheBuster": 2932233
   }
 }
