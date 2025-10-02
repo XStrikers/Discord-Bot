@@ -1,7 +1,12 @@
 {
   "maexmisfit": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1423291959237148772",
+    "title": "Wer das liest muss subben !wasgeht",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_maexmisfit-640x360.jpg?cb=2932349",
+    "cacheBuster": 2932349
   },
   "happyendttv": {
     "isLive": false,
