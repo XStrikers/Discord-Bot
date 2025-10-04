@@ -24,13 +24,8 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1423797792119328829",
-    "title": "🐄 Möge das Gewächshaus leben 🐓",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2932565",
-    "cacheBuster": 2932550
+    "isLive": false,
+    "announced": false
   },
   "onefour89": {
     "isLive": false,
