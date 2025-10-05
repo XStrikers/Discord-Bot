@@ -1,12 +1,7 @@
 {
   "maexmisfit": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1424393075282804876",
-    "title": "ICH BIN SÜCHTIG NACH DIESEM MODE! Wer das liest muss subben !wasgeht",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_maexmisfit-640x360.jpg?cb=2932811",
-    "cacheBuster": 2932786
+    "isLive": false,
+    "announced": false
   },
   "happyendttv": {
     "isLive": false,
