@@ -24,8 +24,13 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1424838507192651776",
+    "title": "🐄 Das Ende naht 🐓",
+    "viewers": 2,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2932963",
+    "cacheBuster": 2932963
   },
   "onefour89": {
     "isLive": false,
