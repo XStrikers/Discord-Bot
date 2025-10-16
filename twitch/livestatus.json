@@ -1,7 +1,12 @@
 {
   "maexmisfit": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1428365811315249152",
+    "title": "Hallo. Ich bins! !wasgeht",
+    "viewers": 2,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_maexmisfit-640x360.jpg?cb=2934365",
+    "cacheBuster": 2934365
   },
   "happyendttv": {
     "isLive": false,
