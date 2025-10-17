@@ -24,8 +24,13 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1428821312700153898",
+    "title": "👧 [NEW GAME] Eine wahre Begebenheit 👧",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2934546",
+    "cacheBuster": 2934546
   },
   "onefour89": {
     "isLive": false,
