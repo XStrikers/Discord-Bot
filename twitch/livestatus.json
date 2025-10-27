@@ -24,8 +24,13 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1432461249492553891",
+    "title": "👧 [Episode 2] Eine wahre Begebenheit 👧",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2935992",
+    "cacheBuster": 2935992
   },
   "onefour89": {
     "isLive": false,
