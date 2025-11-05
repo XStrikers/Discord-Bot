@@ -12,13 +12,8 @@
     "announced": false
   },
   "jake4thegames": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1435703877633703996",
-    "title": "Jake4theGames Resident Evil 0 Pt2 (ResiMarathon 2nd Round)",
-    "viewers": 3,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_jake4thegames-640x360.jpg?cb=2937309",
-    "cacheBuster": 2937281
+    "isLive": false,
+    "announced": false
   },
   "kimneele97": {
     "isLive": false,
