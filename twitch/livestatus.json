@@ -24,13 +24,8 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1436491720950026301",
-    "title": "🐲 [NEW GAME] Healing Monster-Center 🩹",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2937611",
-    "cacheBuster": 2937594
+    "isLive": false,
+    "announced": false
   },
   "onefour89": {
     "isLive": false,
