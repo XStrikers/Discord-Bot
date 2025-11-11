@@ -24,13 +24,8 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1437532532902985788",
-    "title": "🐲 Monster-Center is open 🩹",
-    "viewers": 3,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2938050",
-    "cacheBuster": 2938008
+    "isLive": false,
+    "announced": false
   },
   "onefour89": {
     "isLive": false,
