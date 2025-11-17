@@ -12,13 +12,8 @@
     "announced": false
   },
   "jake4thegames": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1440058757664079972",
-    "title": "Jake4theGames Resident Evil Code Veronica Pt2 (ResiMarathon 2nd Round)",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_jake4thegames-640x360.jpg?cb=2939035",
-    "cacheBuster": 2939011
+    "isLive": false,
+    "announced": false
   },
   "kimneele97": {
     "isLive": false,
