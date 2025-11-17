@@ -24,13 +24,8 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1439696372625309888",
-    "title": "✨ [New Home Roleplay] Server Vorstellung ✨ !server !bsg",
-    "viewers": 6,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2938900",
-    "cacheBuster": 2938867
+    "isLive": false,
+    "announced": false
   },
   "onefour89": {
     "isLive": false,
