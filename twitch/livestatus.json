@@ -12,8 +12,13 @@
     "announced": false
   },
   "jake4thegames": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1440881828146843759",
+    "title": "Jake4theGames Resident Evil Code Veronica Pt3 (ResiMarathon 2nd Round)",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_jake4thegames-640x360.jpg?cb=2939338",
+    "cacheBuster": 2939338
   },
   "kimneele97": {
     "isLive": false,
@@ -29,7 +34,7 @@
     "messageId": "1440796262810128474",
     "title": "✨ [New Home Roleplay] Server Vorstellung #2 ✨ !server !bsg",
     "viewers": 4,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2939337",
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2939338",
     "cacheBuster": 2939304
   },
   "onefour89": {
