@@ -21,7 +21,7 @@ client.once("ready", () => {
         } catch (error) {
             console.error("❌ Fehler beim Senden der Keep-Alive Nachricht:", error);
         }
-    }, 5 * 60 * 1000);
+    }, 2 * 60 * 1000);
 });
 
 // Bot einloggen
