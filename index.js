@@ -91,7 +91,7 @@ client.once('ready', async () => {
 
         // Twitch-Check starten
         console.log("📡 Starte Twitch Stream-Checker...");
-        setInterval(() => checkTwitchStreams(client), 10 * 60 * 1000);
+        setInterval(() => checkTwitchStreams(client), 5 * 60 * 1000);
         console.log("🔄 Twitch Stream-Check ausgeführt...");
     } catch (err) {
         console.error("❌ Fehler bei Initialisierung:", err);
