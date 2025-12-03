@@ -24,8 +24,13 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1445859005363654830",
+    "title": "⛄ [NewHome Roleplay] Ophelio Paradise - Minijobs & Geschenke ❄️ !server !bsg !rules",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2941316",
+    "cacheBuster": 2941316
   },
   "onefour89": {
     "isLive": false,
