@@ -24,8 +24,13 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1448406000939040810",
+    "title": "⛄ [NewHome Roleplay] Ophelio Paradise - Schneeweiß ist die Stadt ❄️ !server !code !bsg !rules",
+    "viewers": 0,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2942328",
+    "cacheBuster": 2942328
   },
   "onefour89": {
     "isLive": false,
