@@ -1,7 +1,12 @@
 {
   "jake4thegames": {
-    "isLive": false,
-    "announced": false
+    "isLive": true,
+    "announced": true,
+    "messageId": "1451306075516174366",
+    "title": "Jake4theGames Resident Evil Revelations 2 - Pt3 Stalker Mode on (ResiMarathon 2nd Round)",
+    "viewers": 1,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_jake4thegames-640x360.jpg?cb=2943481",
+    "cacheBuster": 2943481
   },
   "xstrikers_gaming": {
     "isLive": false,
