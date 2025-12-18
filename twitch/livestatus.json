@@ -8,12 +8,7 @@
     "announced": false
   },
   "sayasblade_": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1451033316760359034",
-    "title": "Northgard Rumble",
-    "viewers": 1,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_sayasblade_-640x360.jpg?cb=2943397",
-    "cacheBuster": 2943372
+    "isLive": false,
+    "announced": false
   }
 }
