@@ -4,13 +4,8 @@
     "announced": false
   },
   "xstrikers_gaming": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1451664689237987409",
-    "title": "🐲 [New Game] 3 Deppen gegen wilde Tiere 🔥",
-    "viewers": 2,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xstrikers_gaming-640x360.jpg?cb=2943667",
-    "cacheBuster": 2943623
+    "isLive": false,
+    "announced": false
   },
   "sayasblade_": {
     "isLive": false,
