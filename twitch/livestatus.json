@@ -1,12 +1,7 @@
 {
   "jake4thegames": {
-    "isLive": true,
-    "announced": true,
-    "messageId": "1451995621472079872",
-    "title": "Jake4theGames Resident Evil Revelations 2 - Pt 4 Finale Claire(ResiMarathon 2nd Round)",
-    "viewers": 4,
-    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_jake4thegames-640x360.jpg?cb=2943763",
-    "cacheBuster": 2943755
+    "isLive": false,
+    "announced": false
   },
   "xstrikers_gaming": {
     "isLive": false,
