@@ -10,5 +10,14 @@
   "sayasblade_": {
     "isLive": false,
     "announced": false
+  },
+  "xflorianx2": {
+    "isLive": true,
+    "announced": true,
+    "messageId": "1455220561121906932",
+    "title": "(New Home Roleyplay.) Mahmud leik  heute ruhig! (PC)",
+    "viewers": 4,
+    "thumbnail": "https://static-cdn.jtvnw.net/previews-ttv/live_user_xflorianx2-640x360.jpg?cb=2945036",
+    "cacheBuster": 2945036
   }
 }
