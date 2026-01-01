@@ -46,8 +46,10 @@ export const updateLiveStatusOnGitHub = async (liveStatus) => {
             sha
         }, {
             headers: {
-                Authorization: `Bearer ${token}`
+                Authorization: `token ${token}`,
+                Accept: 'application/vnd.github+json'
             }
+
         });
 
         console.log('✅ livestatus.json erfolgreich auf GitHub aktualisiert!');
@@ -56,4 +58,5 @@ export const updateLiveStatusOnGitHub = async (liveStatus) => {
         console.error(error.response?.data?.message || error.message);
     }
 };
+
 
