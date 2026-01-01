@@ -9,8 +9,10 @@ export const getLiveStatusFromGitHub = async () => {
     try {
         const response = await axios.get(githubUrl, {
             headers: {
-                Authorization: `Bearer ${token}`
+              Authorization: `token ${token}`,
+              Accept: 'application/vnd.github+json'
             }
+
         });
 
         const content = Buffer.from(response.data.content, 'base64').toString('utf-8');
@@ -54,3 +56,4 @@ export const updateLiveStatusOnGitHub = async (liveStatus) => {
         console.error(error.response?.data?.message || error.message);
     }
 };
+
