@@ -40,7 +40,14 @@ export async function checkTwitchStreams(client) {
         logToFile('errors.log', `❌ Fehler beim Lesen der streamers.json: ${err.message}`);
     }
 
-    const { status: liveStatus } = await getLiveStatusFromGitHub();
+    const gitHubData = await getLiveStatusFromGitHub();
+    const liveStatus = Object.keys(gitHubData.status || {}).length
+        ? gitHubData.status
+        : JSON.parse(fs.readFileSync(
+            path.join(__dirname, 'livestatus.json'),
+            'utf-8'
+        ));
+
     const userQuery = streamers.map(s => `user_login=${s}`).join('&');
 
     const res = await fetch(`https://api.twitch.tv/helix/streams?${userQuery}`, {
@@ -193,4 +200,5 @@ export async function checkTwitchStreams(client) {
 
       await updateLiveStatusOnGitHub(liveStatus);
 }
+
 
