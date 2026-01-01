@@ -1,10 +1,20 @@
 {
+  "xstrikers_gaming": {
+    "isLive": false,
+    "announced": false,
+    "messageId": null
+  },
   "jake4thegames": {
     "isLive": false,
     "announced": false,
     "messageId": null
   },
-  "xstrikers_gaming": {
+  "maexmisfit": {
+    "isLive": false,
+    "announced": false,
+    "messageId": null
+  },
+  "happyendttv": {
     "isLive": false,
     "announced": false,
     "messageId": null
