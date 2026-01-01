@@ -119,6 +119,7 @@ export async function checkTwitchStreams(client) {
                 const sent = await channel.send({ content: '||@everyone||', embeds: [embed] });
 
                 liveStatus[streamer] = {
+                    ...liveStatus[streamer],
                     isLive: true,
                     announced: true,
                     messageId: sent.id,
@@ -168,6 +169,7 @@ export async function checkTwitchStreams(client) {
             console.log(`📴 ${streamer} ist jetzt offline.`);
 
             liveStatus[streamer] = {
+                ...liveStatus[streamer],
                 isLive: false,
                 announced: false
             };
@@ -182,6 +184,7 @@ export async function checkTwitchStreams(client) {
             logToFile('streams.log', `📴 ${streamer} ist offline`);
 
             liveStatus[streamer] = {
+                ...liveStatus[streamer],
                 isLive: false,
                 announced: false
             };
@@ -190,3 +193,4 @@ export async function checkTwitchStreams(client) {
 
       await updateLiveStatusOnGitHub(liveStatus);
 }
+
