@@ -1,18 +1,22 @@
 {
   "jake4thegames": {
     "isLive": false,
-    "announced": false
+    "announced": false.
+    "messageId": null
   },
   "xstrikers_gaming": {
     "isLive": false,
-    "announced": false
+    "announced": false,
+    "messageId": null
   },
   "sayasblade_": {
     "isLive": false,
-    "announced": false
+    "announced": false,
+    "messageId": null
   },
   "xflorianx2": {
     "isLive": false,
-    "announced": false
+    "announced": false,
+    "messageId": null
   }
 }
