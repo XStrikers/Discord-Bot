@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -19,7 +19,7 @@ export default {
     const newName = interaction.options.getString('new-name');
 
     // Überprüfen, ob der Benutzer eine Logistik hat
-    const [logistics] = await pool.execute(
+    const [logistics] = await db.execute(
       `SELECT * FROM lkw_logistics WHERE discord_id = ?`,
       [userId]
     );
@@ -37,7 +37,7 @@ export default {
     }
 
     // Überprüfen, ob der Benutzer genügend TruckMiles hat (z. B. 10.000)
-    const [userRows] = await pool.execute(`SELECT truckmiles FROM lkw_users WHERE discord_id = ?`, [userId]);
+    const [userRows] = await db.execute(`SELECT truckmiles FROM lkw_users WHERE discord_id = ?`, [userId]);
     const userTruckMiles = userRows[0].truckmiles;
 
     if (userTruckMiles < 10000) {
@@ -54,10 +54,10 @@ export default {
 
     try {
       // Logistik umbenennen
-      await pool.execute(`UPDATE lkw_logistics SET logistic = ? WHERE discord_id = ?`, [newName, userId]);
+      await db.execute(`UPDATE lkw_logistics SET logistic = ? WHERE discord_id = ?`, [newName, userId]);
 
       // TruckMiles abziehen
-      await pool.execute(`UPDATE lkw_users SET truckmiles = truckmiles - 10000 WHERE discord_id = ?`, [userId]);
+      await db.execute(`UPDATE lkw_users SET truckmiles = truckmiles - 10000 WHERE discord_id = ?`, [userId]);
 
       return interaction.reply({
         embeds: [
@@ -83,3 +83,4 @@ export default {
     }
   }
 };
+
