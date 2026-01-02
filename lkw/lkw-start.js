@@ -1,7 +1,7 @@
 import { SlashCommandBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle, EmbedBuilder } from 'discord.js';
 import { generateAndStoreJobs } from './jobService.js';
 import { calculateModifiedJob } from './tuningHelper.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -20,7 +20,7 @@ export default {
       const displayName = interaction.member?.displayName || interaction.user.username;
 
       // 🧾 Benutzerprüfung
-      const [users] = await pool.execute(`SELECT id FROM lkw_users WHERE discord_id = ?`, [userId]);
+      const [users] = await db.execute(`SELECT id FROM lkw_users WHERE discord_id = ?`, [userId]);
       if (users.length === 0) {
         const notRegistered = new EmbedBuilder()
           .setTitle(`<:ets2:1379062821924507721> Nicht eingestellt`)
@@ -32,7 +32,7 @@ export default {
       }
 
       // 🕵️ Aktive Tour prüfen
-      const [latestTourRows] = await pool.execute(
+      const [latestTourRows] = await db.execute(
         `SELECT * 
          FROM lkw_tours 
          WHERE discord_id = ? 
@@ -82,7 +82,7 @@ export default {
         return await interaction.editReply({ embeds: [statusEmbed] });
       }
 
-      const [cached] = await pool.execute(
+      const [cached] = await db.execute(
         `SELECT id FROM lkw_tours_cache WHERE discord_id = ? LIMIT 1`,
         [userId]
       );
@@ -103,7 +103,7 @@ export default {
       }
 
       // ✅ Keine aktive Tour → Neue Aufträge generieren
-      const [tuningRows] = await pool.execute(
+      const [tuningRows] = await db.execute(
         `SELECT speed_level, eco_level, trailer_level, tank_level FROM lkw_trucks WHERE discord_id = ? AND active = 1 LIMIT 1`,
         [userId]
       );
@@ -167,4 +167,5 @@ export default {
     }
   }
 };
+
 
