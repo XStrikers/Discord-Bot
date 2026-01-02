@@ -43,7 +43,7 @@ export async function checkTwitchStreams(client) {
         accessToken = await getAccessToken();
     }
 
-    const streamers = JSON.parse(fs.readFileSync(streamersPath, 'utf-8'));
+    SELECT streamer FROM twitch_livestatus
     const userQuery = streamers.map(s => `user_login=${s}`).join('&');
 
     const res = await fetch(`https://api.twitch.tv/helix/streams?${userQuery}`, {
@@ -217,6 +217,7 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
 
 
