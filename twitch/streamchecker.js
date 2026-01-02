@@ -44,6 +44,7 @@ export async function checkTwitchStreams(client) {
     }
 
     SELECT streamer FROM twitch_livestatus
+    const streamers = rows.map(r => r.streamer);
     const userQuery = streamers.map(s => `user_login=${s}`).join('&');
 
     const res = await fetch(`https://api.twitch.tv/helix/streams?${userQuery}`, {
@@ -217,6 +218,7 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
 
 
