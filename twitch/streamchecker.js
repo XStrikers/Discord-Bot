@@ -194,10 +194,3 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
-
-
-
-
-
-
-
