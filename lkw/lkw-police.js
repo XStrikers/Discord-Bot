@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -19,7 +19,7 @@ export default {
 
     try {
       // Alle offenen Strafzettel abrufen
-      const [rows] = await pool.execute(
+      const [rows] = await db.execute(
         `SELECT * FROM lkw_fines WHERE discord_id = ? AND paid = false ORDER BY issued_at DESC LIMIT 10`,
         [userId]
       );
@@ -71,3 +71,4 @@ export default {
     }
   }
 };
+
