@@ -1,4 +1,3 @@
-// db_ping.js
 import { db } from '../economy.js';
 
 const CHANNEL_ID = process.env.CHANNEL_ID;
@@ -18,6 +17,10 @@ export const startDbPing = (client) => {
             //}
         } catch (error) {
             console.error('❌ Datenbank-Ping fehlgeschlagen:', error);
+
+            if (error.code === 'ECONNRESET') {
+                console.warn('⚠️ ECONNRESET erkannt: DB-Verbindung wurde zurückgesetzt.');
+            }
 
             try {
                 const channel = await client.channels.fetch(CHANNEL_ID);
