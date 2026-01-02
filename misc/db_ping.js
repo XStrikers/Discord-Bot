@@ -1,12 +1,12 @@
 // db_ping.js
-import { pool } from '../economy.js';
+import { db } from './economy.js';
 
 const CHANNEL_ID = process.env.CHANNEL_ID;
 
 export const startDbPing = (client) => {
     setInterval(async () => {
         try {
-            const connection = await pool.getConnection();
+            const connection = await db.getConnection();
             await connection.query('SELECT 1');
             connection.release();
 
