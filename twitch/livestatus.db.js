@@ -2,7 +2,7 @@ import { db } from '../economy.js';
 
 export async function getLiveStatus(streamer) {
     const [rows] = await db.query(
-        'SELECT * FROM twitch_live_status WHERE streamer = ?',
+        'SELECT * FROM twitch_livestatus WHERE streamer = ?',
         [streamer]
     );
     return rows[0] || null;
