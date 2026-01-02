@@ -12,10 +12,10 @@ export const startDbPing = (client) => {
 
             console.log('🔄 Datenbank-Ping erfolgreich');
 
-            const channel = await client.channels.fetch(CHANNEL_ID);
-            if (channel) {
-                channel.send('✅ Datenbank-Ping erfolgreich ausgeführt!');
-            }
+            //const channel = await client.channels.fetch(CHANNEL_ID);
+            //if (channel) {
+            //    channel.send('✅ Datenbank-Ping erfolgreich ausgeführt!');
+            //}
         } catch (error) {
             console.error('❌ Datenbank-Ping fehlgeschlagen:', error);
 
