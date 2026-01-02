@@ -65,6 +65,7 @@ export async function checkTwitchStreams(client) {
 
         const title = isLive.title;
         const viewers = isLive.viewer_count;
+        const game = isLive.game_name;
 
         const userRes = await fetch(
             `https://api.twitch.tv/helix/users?login=${streamer}`,
@@ -205,6 +206,7 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
 
 
