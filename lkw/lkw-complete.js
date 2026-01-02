@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -18,7 +18,7 @@ export default {
     const displayName = interaction.member?.displayName || interaction.user.username;
 
     // 1. Tour mit Status 'driving' oder 'complete' finden
-    const [tours] = await pool.execute(
+    const [tours] = await db.execute(
       `SELECT * FROM lkw_tours WHERE discord_id = ? AND status IN ('driving', 'complete') ORDER BY id DESC LIMIT 1`,
       [userId]
     );
@@ -43,7 +43,7 @@ export default {
 
     // 2. Falls Zeit abgelaufen: Status auf 'complete' setzen
     if (tour.status === 'driving' && now >= endTime) {
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_tours 
           SET status = 'complete' 
         WHERE id = ?`,
@@ -80,7 +80,7 @@ export default {
     const earned_truckmiles = tour.earned_truckmiles || tour.truckmiles || 0;
 
     // 5. Benutzerprofil abrufen
-    const [userDataRows] = await pool.execute(
+    const [userDataRows] = await db.execute(
       `SELECT level, current_xp, needed_xp, truckmiles, total_tours FROM lkw_users WHERE discord_id = ?`,
       [userId]
     );
@@ -110,26 +110,26 @@ export default {
     }
 
     // 7. Benutzer aktualisieren
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_users SET level = ?, current_xp = ?, needed_xp = ?, truckmiles = ?, total_tours = ? WHERE discord_id = ?`,
       [newLevel, current_xp, needed_xp, currentTruckMiles, total_tours, userId]
     );
 
     // 8. Tour löschen
-    await pool.execute(
+    await db.execute(
       `DELETE FROM lkw_tours WHERE id = ?`,
       [tour.id]
     );
 
     // 9. Überprüfen, ob der Benutzer eine Logistik hat
-    const [logistics] = await pool.execute(
+    const [logistics] = await db.execute(
       `SELECT * FROM lkw_logistics WHERE discord_id = ?`,
       [userId]
     );
 
     if (logistics.length > 0) {
       // 10. Logistik: income_tm und total_tours in lkw_logistics Tabelle aktualisieren
-      await pool.execute(
+      await db.execute(
         `UPDATE lkw_logistics SET income_tm = income_tm + ?, total_tours = total_tours + 1 WHERE discord_id = ?`,
         [earned_truckmiles, userId]
       );
@@ -163,3 +163,4 @@ export default {
     });
   }
 };
+
