@@ -10,7 +10,7 @@ export async function getLiveStatus(streamer) {
 
 export async function upsertLiveStatus(data) {
     await db.query(`
-        INSERT INTO twitch_live_status
+        INSERT INTO twitch_livestatus
         (streamer, isLive, announced, messageId, title, viewers)
         VALUES (?, ?, ?, ?, ?, ?)
         ON DUPLICATE KEY UPDATE
