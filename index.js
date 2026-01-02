@@ -79,28 +79,8 @@ const loadEvents = async () => {
     }
 };
 
-async function initStreamers() {
-    const streamers = JSON.parse(
-        readFileSync('./twitch/streamers.json', 'utf-8')
-    );
-
-    for (const streamer of streamers) {
-        await upsertLiveStatus({
-            streamer,
-            isLive: false,
-            announced: false,
-            messageId: null,
-            title: null,
-            viewers: 0
-        });
-    }
-
-    console.log('✅ Streamer DB initialisiert');
-}
-
 client.once('ready', async () => {
     console.log(`✅ Bot ist online als ${client.user.tag}`);
-    await initStreamers();
 
     try {
         await loadCommands();
