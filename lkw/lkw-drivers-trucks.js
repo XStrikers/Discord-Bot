@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -17,7 +17,7 @@ export default {
     await interaction.deferReply();
 
     // Abrufen der verfügbaren Fahrer, die keinem LKW zugewiesen sind
-    const [drivers] = await pool.execute(
+    const [drivers] = await db.execute(
       `SELECT driver_name FROM lkw_driver_truck_assignment WHERE (truck_name IS NULL OR truck_name = '') AND discord_id = ?`,
       [userId]
     );
@@ -36,7 +36,7 @@ export default {
     }
 
     // Abrufen der inaktiven LKWs (active = 0)
-    const [inactiveTrucks] = await pool.execute(
+    const [inactiveTrucks] = await db.execute(
       `SELECT name FROM lkw_trucks WHERE active = 0 AND discord_id = ?`,
       [userId]
     );
@@ -90,3 +90,4 @@ export default {
     });
   }
 };
+
