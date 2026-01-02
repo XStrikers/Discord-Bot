@@ -1,5 +1,5 @@
 import { getRandomCityPair, getRandomFreightType, getRandomInt } from './randomUtils.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 const BASE_DURATION_MIN = 30;
 const BASE_DURATION_MAX = 120;
@@ -40,10 +40,10 @@ function generateRandomJob() {
 export async function generateAndStoreJobs(userId) {
   const jobs = [generateRandomJob(), generateRandomJob()];
 
-  await pool.execute(`DELETE FROM lkw_tours_cache WHERE discord_id = ?`, [userId]);
+  await db.execute(`DELETE FROM lkw_tours_cache WHERE discord_id = ?`, [userId]);
 
   for (const job of jobs) {
-    await pool.execute(`
+    await db.execute(`
       INSERT INTO lkw_tours_cache 
       (discord_id, freight, start_city, end_city, duration_minutes, xp, truckmiles, multiplier)
       VALUES (?, ?, ?, ?, ?, ?, ?, ?)
