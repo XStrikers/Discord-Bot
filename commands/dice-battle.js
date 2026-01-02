@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 const challenges = new Map();
 const maxBet = 1000;
@@ -75,8 +75,8 @@ export default {
                 });
             }
 
-            const [challengerRow] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [challengerId]);
-            const [opponentRow] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [opponentId]);
+            const [challengerRow] = await db.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [challengerId]);
+            const [opponentRow] = await db.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [opponentId]);
 
             if (!challengerRow.length || challengerRow[0].coins < bet) {
                 return await interaction.reply({
@@ -258,8 +258,8 @@ export default {
 
             // Datenbank-Update
             if (winnerId && loserId) {
-                await pool.execute('UPDATE discord_user SET coins = coins + ?, current_xp = current_xp + ? WHERE discord_id = ?', [bet, 25, winnerId]);
-                await pool.execute('UPDATE discord_user SET coins = coins - ?, current_xp = current_xp + ? WHERE discord_id = ?', [bet, 10, loserId]);
+                await db.execute('UPDATE discord_user SET coins = coins + ?, current_xp = current_xp + ? WHERE discord_id = ?', [bet, 25, winnerId]);
+                await db.execute('UPDATE discord_user SET coins = coins - ?, current_xp = current_xp + ? WHERE discord_id = ?', [bet, 10, loserId]);
             }
 
             await update(
