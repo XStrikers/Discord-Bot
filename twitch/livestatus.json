@@ -28,10 +28,5 @@
     "isLive": false,
     "announced": false,
     "messageId": null
-  },
-  "gronkhtv": {
-    "isLive": false,
-    "announced": false,
-    "messageId": null
   }
 }
