@@ -2,7 +2,7 @@ import 'dotenv/config';
 import './misc/protocol.js';
 import { startDbPing } from './misc/db_ping.js';
 import { Client, GatewayIntentBits, Collection, REST, Routes } from 'discord.js';
-import { readdirSync, fs } from 'fs';
+import { readdirSync, readFileSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
@@ -81,7 +81,7 @@ const loadEvents = async () => {
 
 async function initStreamers() {
     const streamers = JSON.parse(
-        fs.readFileSync('./twitch/streamers.json', 'utf-8')
+        readFileSync('./twitch/streamers.json', 'utf-8')
     );
 
     for (const streamer of streamers) {
