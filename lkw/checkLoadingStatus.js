@@ -1,7 +1,7 @@
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export async function updateLoadingStatus(userId) {
-  const [rows] = await pool.execute(
+  const [rows] = await db.execute(
     `SELECT status, loading_start_time 
      FROM lkw_tours 
      WHERE discord_id = ? 
@@ -23,10 +23,11 @@ export async function updateLoadingStatus(userId) {
 
   if (elapsedMs >= 5 * 60 * 1000) {
     // 5 Minuten überschritten → auf ready_to_drive updaten
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_tours SET status = 'ready_to_drive' 
        WHERE discord_id = ? AND status = 'loading'`,
       [userId]
     );
   }
 }
+
