@@ -9,6 +9,17 @@ import { logToFile } from './logger.js';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const streamersPath = path.join(__dirname, 'streamers.json');
 
+function getEuropeanDateTime() {
+    return new Date().toLocaleString('de-DE', {
+        timeZone: 'Europe/Berlin',
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit'
+    });
+}
+
 let accessToken = '';
 
 async function getAccessToken() {
@@ -112,7 +123,7 @@ export async function checkTwitchStreams(client) {
             .setImage(`https://static-cdn.jtvnw.net/previews-ttv/live_user_${streamer}-640x360.jpg?cb=${cacheBuster}`)
             .setFooter({
                 iconURL: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png',
-                text: `Twitch Live – ${formattedTime} Uhr`
+                text: `Twitch Live - ${getEuropeanDateTime()}`
             });
 
         /* 🆕 ERSTER POST */
@@ -206,6 +217,7 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
 
 
