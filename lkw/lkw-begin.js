@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -14,7 +14,7 @@ export default {
     const userId = interaction.user.id;
     const displayName = interaction.member?.displayName || interaction.user.username;
 
-    const [users] = await pool.execute(
+    const [users] = await db.execute(
       `SELECT id FROM lkw_users WHERE discord_id = ?`,
       [userId]
     );
@@ -33,10 +33,10 @@ export default {
     }
 
     // Benutzer eintragen
-    await pool.execute('INSERT INTO lkw_users (discord_id, username) VALUES (?, ?)', [userId, displayName]);
+    await db.execute('INSERT INTO lkw_users (discord_id, username) VALUES (?, ?)', [userId, displayName]);
 
     // Starter-Truck
-    await pool.execute(
+    await db.execute(
       `INSERT INTO lkw_trucks (discord_id, name, active) VALUES (?, 'Starter Truck', 1)`,
       [userId]
     );
@@ -58,3 +58,4 @@ export default {
     });
   }
 };
+
