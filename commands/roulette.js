@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, ButtonBuilder, ActionRowBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import cooldowns from '../cooldowns.js';
 import { betLimits } from '../betLimits.js';
 
@@ -60,7 +60,7 @@ export default {
 
         cooldowns.roulette.set(userId, Date.now());
         
-        const [rows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
+        const [rows] = await db.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
         if (rows.length === 0 || rows[0].coins < bet) {
             const embed = new EmbedBuilder()
                 .setTitle('<:xscoins:1346851584985792513> Fehlender Einsatz')
@@ -69,7 +69,7 @@ export default {
             return interaction.reply({ embeds: [embed], flags: 64 });
         }
         
-        await pool.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [bet, userId]);
+        await db.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [bet, userId]);
         
         const nextRound = async (i) => {
             if (Math.random() < chanceToLose) {
@@ -128,7 +128,7 @@ export default {
             }
             
             if (i.customId === 'cashout') {
-                await pool.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [bet, userId]);
+                await db.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [bet, userId]);
                 const embed = new EmbedBuilder()
                     .setTitle('<:laughing:1346851741714612265> Gewinn gesichert')
                     .setDescription(`**${interaction.user.displayName}** hat sich entschieden aufzuhören und seinen Gewinn von **${bet.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> zu nehmen.`)
