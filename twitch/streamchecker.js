@@ -40,8 +40,7 @@ export async function checkTwitchStreams(client) {
         logToFile('errors.log', `❌ Fehler beim Lesen der streamers.json: ${err.message}`);
     }
 
-    const gitHubData = await getLiveStatusFromGitHub();
-    const liveStatus = Object.keys(gitHubData.status || {}).length
+        const liveStatus = Object.keys(gitHubData.status || {}).length
         ? gitHubData.status
         : JSON.parse(fs.readFileSync(
             path.join(__dirname, 'livestatus.json'),
@@ -194,9 +193,8 @@ export async function checkTwitchStreams(client) {
             };
         }
     }
-
-      await updateLiveStatusOnGitHub(liveStatus);
 }
+
 
 
 
