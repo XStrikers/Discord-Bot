@@ -172,18 +172,39 @@ export async function checkTwitchStreams(client) {
         const previous = await getLiveStatus(streamer);
 
         if (previous?.isLive && !stillLive) {
-            await upsertLiveStatus({
-                streamer,
-                isLive: false,
-                announced: false,
-                messageId: previous.messageId,
-                title: null,
-                viewers: 0
-            });
-
-            logToFile('streams.log', `📴 ${streamer} offline`);
+            try {
+                const msg = await channel.messages.fetch(previous.messageId);
+        
+                const offlineEmbed = new EmbedBuilder()
+                    .setColor('#4b4b4b')
+                    .setTitle(`⚫ ${streamer} ist jetzt offline`)
+                    .setDescription('Der Stream ist beendet.\n\u200B')
+                    .setThumbnail(profileImage)
+                    .setImage(profileImage)
+                    .setFooter({
+                        iconURL: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png',
+                        text: 'Twitch – Offline'
+                    });
+        
+                await msg.edit({ embeds: [offlineEmbed] });
+        
+                await upsertLiveStatus({
+                    streamer,
+                    isLive: false,
+                    announced: false,
+                    messageId: previous.messageId,
+                    title: null,
+                    viewers: 0,
+                    game: null
+                });
+        
+                logToFile('streams.log', `📴 ${streamer} offline (Embed aktualisiert)`);
+            } catch (err) {
+                logToFile('errors.log', `❌ Offline-Update fehlgeschlagen (${streamer})`);
+            }
         }
     }
 }
+
 
 
