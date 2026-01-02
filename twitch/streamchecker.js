@@ -1,13 +1,12 @@
+import db from '../economy.js';
 import { EmbedBuilder } from 'discord.js';
 import fetch from 'node-fetch';
-import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { getLiveStatus, upsertLiveStatus } from './livestatus.db.js';
 import { logToFile } from './logger.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const streamersPath = path.join(__dirname, 'streamers.json');
 
 function getEuropeanDateTime() {
     return new Date().toLocaleString('de-DE', {
@@ -43,7 +42,10 @@ export async function checkTwitchStreams(client) {
         accessToken = await getAccessToken();
     }
 
-    SELECT streamer FROM twitch_livestatus
+    const [rows] = await db.query(
+        'SELECT streamer FROM twitch_livestatus'
+    );
+    
     const streamers = rows.map(r => r.streamer);
     const userQuery = streamers.map(s => `user_login=${s}`).join('&');
 
@@ -100,11 +102,6 @@ export async function checkTwitchStreams(client) {
         
         const streamUptime =
             `${diffHrs > 0 ? `${diffHrs}h ` : ''}${diffMin}min`;
-        
-        const formattedTime = now.toLocaleTimeString('de-DE', {
-            hour: '2-digit',
-            minute: '2-digit'
-        });
 
         const cacheBuster = Math.floor(Date.now() / (10 * 60 * 1000));
 
@@ -218,6 +215,7 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
 
 
