@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, AttachmentBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import { createCanvas, loadImage } from 'canvas';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -23,7 +23,7 @@ export default {
     const userId = interaction.user.id;
 
     // 🧾 Benutzer prüfen
-    const [rows] = await pool.execute(`SELECT * FROM lkw_users WHERE discord_id = ? LIMIT 1`, [userId]);
+    const [rows] = await db.execute(`SELECT * FROM lkw_users WHERE discord_id = ? LIMIT 1`, [userId]);
 
     if (rows.length === 0) {
       // ❗ Nur diese Nachricht ist privat
@@ -134,7 +134,7 @@ export default {
     ctx.drawImage(emojiImage, emojiX, emojiY, emojiSize, emojiSize);
 
     // 🏆 Rang #X
-    const [rankedUsers] = await pool.execute(
+    const [rankedUsers] = await db.execute(
       `SELECT discord_id FROM lkw_users ORDER BY level DESC, current_xp DESC`
     );
     const rankIndex = rankedUsers.findIndex(u => u.discord_id === user.discord_id);
@@ -153,3 +153,4 @@ export default {
     return interaction.editReply({ files: [attachment] });
   }
 };
+
