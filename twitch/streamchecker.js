@@ -45,6 +45,8 @@ export async function checkTwitchStreams(client) {
     const [rows] = await db.query(
         'SELECT streamer FROM twitch_livestatus'
     );
+
+    if (!rows.length) return;
     
     const streamers = rows.map(r => r.streamer);
     const userQuery = streamers.map(s => `user_login=${s}`).join('&');
@@ -215,6 +217,7 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
 
 
