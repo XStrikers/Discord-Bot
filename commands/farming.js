@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import cooldowns from '../cooldowns.js';
 
 const plants = {
@@ -46,13 +46,13 @@ export default {
             const currentDate = new Date();
         
             try {
-                const [farmRows] = await pool.execute('SELECT * FROM farming WHERE discord_id = ?', [userId]);
+                const [farmRows] = await db.execute('SELECT * FROM farming WHERE discord_id = ?', [userId]);
 
                 let farmData;
 
                 if (farmRows.length === 0) {
-                    await pool.execute('INSERT INTO farming (discord_id) VALUES (?)', [userId]);
-                    const [newFarmRows] = await pool.execute('SELECT * FROM farming WHERE discord_id = ?', [userId]);
+                    await db.execute('INSERT INTO farming (discord_id) VALUES (?)', [userId]);
+                    const [newFarmRows] = await db.execute('SELECT * FROM farming WHERE discord_id = ?', [userId]);
                     farmData = newFarmRows[0];
                 } else {
                     farmData = farmRows[0];
@@ -101,7 +101,7 @@ export default {
                         });
                     }
         
-                    const [userRows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
+                    const [userRows] = await db.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
                     const userCoins = userRows[0]?.coins || 0;
         
                     if (userCoins < plant.cost) {
@@ -113,9 +113,9 @@ export default {
                         });
                     }
         
-                    await pool.execute(`UPDATE farming SET ${emptySlot.type} = ?, ${emptySlot.time} = ? WHERE discord_id = ?`,
+                    await db.execute(`UPDATE farming SET ${emptySlot.type} = ?, ${emptySlot.time} = ? WHERE discord_id = ?`,
                         [plantName, currentDate, userId]);
-                    await pool.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [plant.cost, userId]);
+                    await db.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [plant.cost, userId]);
         
                     return interaction.editReply({
                         embeds: [new EmbedBuilder()
@@ -150,7 +150,7 @@ export default {
                                 harvestedPlants.push({ name: plantName, reward, xp: xpGain, image: plant.image });
                 
                                 // Slot zurücksetzen
-                                await pool.execute(
+                                await db.execute(
                                     `UPDATE farming SET ${slot.type} = NULL, ${slot.time} = NULL WHERE discord_id = ?`,
                                     [userId]
                                 );
@@ -197,8 +197,8 @@ export default {
                         harvestImage = 'https://xstrikers.de/discord/images/farming.png';
                     }
 
-                    await pool.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [totalReward, userId]);
-                    await pool.execute('UPDATE farming SET current_xp = ?, level = ?, xp_needed = ? WHERE discord_id = ?',
+                    await db.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [totalReward, userId]);
+                    await db.execute('UPDATE farming SET current_xp = ?, level = ?, xp_needed = ? WHERE discord_id = ?',
                         [newXP, newLevel, newXPNeeded, userId]);
                 
                     const embed = new EmbedBuilder()
