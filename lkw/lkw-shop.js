@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -14,14 +14,14 @@ export default {
     const userId = interaction.user.id;
 
     // Abrufen der TruckMiles des Benutzers
-    const [userRows] = await pool.execute(
+    const [userRows] = await db.execute(
       `SELECT truckmiles FROM lkw_users WHERE discord_id = ?`,
       [userId]
     );
     const userTruckMiles = userRows[0].truckmiles;
 
     // Abrufen der Logistik-Daten
-    const [logisticsRows] = await pool.execute(
+    const [logisticsRows] = await db.execute(
       `SELECT * FROM lkw_logistics WHERE discord_id = ?`,
       [userId]
     );
@@ -61,3 +61,4 @@ export default {
     });
   }
 };
+
