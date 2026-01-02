@@ -2,11 +2,12 @@ import 'dotenv/config';
 import './misc/protocol.js';
 import { startDbPing } from './misc/db_ping.js';
 import { Client, GatewayIntentBits, Collection, REST, Routes } from 'discord.js';
-import { readdirSync } from 'fs';
+import { readdirSync, fs } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import cooldowns from './cooldowns.js';
+import { upsertLiveStatus } from './twitch/livestatus.db.js';
 import { checkTwitchStreams } from './twitch/streamchecker.js';
 import { logToFile } from './twitch/logger.js';
 import lkwEventHandler from './events/lkwEventHandler.js';
@@ -43,7 +44,7 @@ const client = new Client({
 const guildId = process.env.GUILD_ID;
 client.commands = new Collection();
 
-const loadCommands = async () => {
+const Commands = async () => {
     const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
     for (const file of commandFiles) {
         const { default: command } = await import(`./commands/${file}`);
@@ -78,8 +79,28 @@ const loadEvents = async () => {
     }
 };
 
+async function initStreamers() {
+    const streamers = JSON.parse(
+        fs.readFileSync('./twitch/streamers.json', 'utf-8')
+    );
+
+    for (const streamer of streamers) {
+        await upsertLiveStatus({
+            streamer,
+            isLive: false,
+            announced: false,
+            messageId: null,
+            title: null,
+            viewers: 0
+        });
+    }
+
+    console.log('✅ Streamer DB initialisiert');
+}
+
 client.once('ready', async () => {
     console.log(`✅ Bot ist online als ${client.user.tag}`);
+    await initStreamers();
 
     try {
         await loadCommands();
