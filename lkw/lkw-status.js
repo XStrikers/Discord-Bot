@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import { updateLoadingStatus } from './checkLoadingStatus.js';
 
 export default {
@@ -16,7 +16,7 @@ export default {
     const userId = interaction.user.id;
     await updateLoadingStatus(userId);
 
-    const [rows] = await pool.execute(
+    const [rows] = await db.execute(
       `SELECT * FROM lkw_tours WHERE discord_id = ? ORDER BY id DESC LIMIT 1`,
       [userId]
     );
@@ -106,3 +106,4 @@ export default {
     return interaction.reply({ embeds: [embed] });
   }
 };
+
