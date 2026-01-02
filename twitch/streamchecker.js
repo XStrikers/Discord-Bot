@@ -78,19 +78,39 @@ export async function checkTwitchStreams(client) {
 
         const user = (await userRes.json()).data[0];
         const profileImage = user.profile_image_url;
+        const now = new Date();
+        const startedAt = new Date(isLive.started_at);
+        
+        const diffMs = now - startedAt;
+        const diffHrs = Math.floor(diffMs / 3600000);
+        const diffMin = Math.floor((diffMs % 3600000) / 60000);
+        
+        const streamUptime =
+            `${diffHrs > 0 ? `${diffHrs}h ` : ''}${diffMin}min`;
+        
+        const formattedTime = now.toLocaleTimeString('de-DE', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
 
         const embed = new EmbedBuilder()
             .setColor('#9146FF')
             .setTitle(`🔴 ${isLive.user_name} ist jetzt LIVE!`)
             .setURL(`https://twitch.tv/${streamer}`)
-            .setDescription(title)
+            .setDescription(`${title}\n\u200B`)
             .addFields(
                 { name: '🎮 Spiel', value: isLive.game_name || 'Unbekannt', inline: true },
-                { name: '👥 Zuschauer', value: viewers.toString(), inline: true }
+                { name: '👥 Zuschauer', value: viewers.toLocaleString('de-DE'), inline: true },
+                { name: '🕒 Laufzeit', value: streamUptime, inline: true },
+                { name: '\u200B', value: '\u200B', inline: false },
+                { name: '🔗 Link', value: `https://twitch.tv/${streamer}`, inline: false }
             )
             .setThumbnail(profileImage)
             .setImage(`https://static-cdn.jtvnw.net/previews-ttv/live_user_${streamer}-640x360.jpg`)
-            .setFooter({ text: 'Twitch Live' });
+            .setFooter({
+                iconURL: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png',
+                text: `Twitch Live – ${formattedTime} Uhr`
+            });
 
         /* 🆕 ERSTER POST */
         if (!previous || !previous.announced || !previous.messageId) {
@@ -105,6 +125,7 @@ export async function checkTwitchStreams(client) {
                 announced: true,
                 messageId: sent.id,
                 title,
+                game,
                 viewers
             });
 
@@ -114,7 +135,8 @@ export async function checkTwitchStreams(client) {
         /* 🔁 UPDATE */
         else if (
             previous.title !== title ||
-            previous.viewers !== viewers
+            previous.viewers !== viewers ||
+            previous.game !== isLive.game_name
         ) {
             try {
                 const msg = await channel.messages.fetch(previous.messageId);
@@ -126,6 +148,7 @@ export async function checkTwitchStreams(client) {
                     announced: true,
                     messageId: previous.messageId,
                     title,
+                    game: isLive.game_name,
                     viewers
                 });
 
@@ -160,3 +183,4 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
