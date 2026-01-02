@@ -130,9 +130,7 @@ export async function checkTwitchStreams(client) {
                     announced: true,
                     messageId: sent.id,
                     title,
-                    viewers,
-                    thumbnail,
-                    cacheBuster
+                    viewers
                 });
             } else {
                 // Prüfe auf Änderungen
@@ -199,6 +197,7 @@ export async function checkTwitchStreams(client) {
 
       await updateLiveStatusOnGitHub(liveStatus);
 }
+
 
 
 
