@@ -44,7 +44,7 @@ const client = new Client({
 const guildId = process.env.GUILD_ID;
 client.commands = new Collection();
 
-const Commands = async () => {
+const loadCommands = async () => {
     const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
     for (const file of commandFiles) {
         const { default: command } = await import(`./commands/${file}`);
