@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import { updateLoadingStatus } from './checkLoadingStatus.js';
 import { fineReasons } from './fineReasons.js';
 import crypto from 'crypto';
@@ -42,7 +42,7 @@ export default {
           const giveFine = Math.random() < 0.15;
           if (!giveFine) return;
 
-          const [fineCountRows] = await pool.execute(
+          const [fineCountRows] = await db.execute(
             `SELECT COUNT(*) AS count FROM lkw_fines WHERE discord_id = ? AND paid = false`,
             [discordId]
           );
@@ -53,7 +53,7 @@ export default {
           const fine = fineReasons[Math.floor(Math.random() * fineReasons.length)];
           const code = generateFineCode();
 
-          await pool.execute(
+          await db.execute(
             `INSERT INTO lkw_fines (discord_id, reason, amount, code) VALUES (?, ?, ?, ?)`,
             [discordId, fine.reason, fine.amount, code]
           );
@@ -93,7 +93,7 @@ export default {
     }
 
     // 1. Prüfen, ob bereits eine aktive Fahrt läuft
-    const [activeTours] = await pool.execute(
+    const [activeTours] = await db.execute(
       `SELECT * FROM lkw_tours WHERE discord_id = ? AND status = 'driving' ORDER BY id DESC LIMIT 1`,
       [userId]
     );
@@ -126,7 +126,7 @@ export default {
     }
 
     // 🚫 Fahrverbot prüfen: Hat der Spieler 10 oder mehr offene Strafzettel?
-    const [fineRows] = await pool.execute(
+    const [fineRows] = await db.execute(
       `SELECT COUNT(*) AS count FROM lkw_fines WHERE discord_id = ? AND paid = false`,
       [userId]
     );
@@ -152,13 +152,13 @@ export default {
     await updateLoadingStatus(userId);
 
     // Aktive Tour suchen
-    const [tours] = await pool.execute(
+    const [tours] = await db.execute(
       `SELECT * FROM lkw_tours WHERE discord_id = ? AND status = 'ready_to_drive' ORDER BY id DESC LIMIT 1`,
       [userId]
     );
 
     if (tours.length === 0) {
-      const [pendingTours] = await pool.execute(
+      const [pendingTours] = await db.execute(
         `SELECT * FROM lkw_tours WHERE discord_id = ? AND status = 'loading' ORDER BY id DESC LIMIT 1`,
         [userId]
       );
@@ -207,7 +207,7 @@ export default {
     const minutes = tour.duration_minutes % 60;
     const formattedDuration = `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}`;
 
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_tours SET status = 'driving', start_time = ?, end_time = ?, loading_start_time = NULL, loading_end_time = NULL WHERE id = ?`,
       [now, end, tour.id]
     );
@@ -243,3 +243,4 @@ export default {
     });
   }
 };
+
