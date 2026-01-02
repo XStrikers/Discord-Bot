@@ -1,14 +1,3 @@
-for (const streamer of streamers) {
-    await upsertLiveStatus({
-        streamer,
-        isLive: false,
-        announced: false,
-        messageId: null,
-        title: null,
-        viewers: 0
-    });
-}
-
 [
   "xstrikers_gaming",
   "jake4thegames",
