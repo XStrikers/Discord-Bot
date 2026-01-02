@@ -1,5 +1,5 @@
 // db_ping.js
-import { db } from './economy.js';
+import { db } from '../economy.js';
 
 const CHANNEL_ID = process.env.CHANNEL_ID;
 
