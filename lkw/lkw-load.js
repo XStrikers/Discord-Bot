@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -15,7 +15,7 @@ export default {
     const userId = interaction.user.id;
 
     // Aktiven Auftrag finden
-    const [tours] = await pool.execute(
+    const [tours] = await db.execute(
       `SELECT id FROM lkw_tours WHERE discord_id = ? AND status = 'accept' ORDER BY id DESC LIMIT 1`,
       [userId]
     );
@@ -41,12 +41,12 @@ export default {
     const end = new Date(now.getTime() + loadingMinutes * 60 * 1000);
 
     // Status aktualisieren
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_tours SET status = 'loading', loading_start_time = ?, loading_end_time = ? WHERE id = ?`,
       [now, end, tourId]
     );
 
-    const [jobData] = await pool.execute(
+    const [jobData] = await db.execute(
       `SELECT freight FROM lkw_tours WHERE id = ? LIMIT 1`,
       [tourId]
     );
@@ -68,3 +68,4 @@ export default {
     });
   }
 };
+
