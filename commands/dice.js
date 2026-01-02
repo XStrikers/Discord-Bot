@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool, getCoins } from '../economy.js';
+import { db, getCoins } from '../economy.js';
 import cooldowns from '../cooldowns.js';
 import { betLimits } from '../betLimits.js';
 
@@ -42,7 +42,7 @@ export default {
             return interaction.reply({ embeds: [embed], flags: 64 });
         }
 
-        const [rows] = await pool.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
+        const [rows] = await db.execute('SELECT coins FROM discord_user WHERE discord_id = ?', [userId]);
         if (rows.length === 0 || rows[0].coins < bet) {
             const embed = new EmbedBuilder()
                 .setTitle('<:xscoins:1346851584985792513> Fehlender Einsatz')
@@ -102,7 +102,7 @@ export default {
         let finalEmbed;
         if (userTotalRoll > botTotalRoll) {
             const reward = Math.floor(bet * 1.5);
-            await pool.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [reward, userId]);
+            await db.execute('UPDATE discord_user SET coins = coins + ? WHERE discord_id = ?', [reward, userId]);
             finalEmbed = new EmbedBuilder()
                 .setTitle(':game_die: Dice gewonnen')
                 .setColor(0x26d926)
@@ -111,7 +111,7 @@ export default {
                 **${interaction.user.displayName}** hat **${reward.toLocaleString('de-DE')}** <:xscoins:1346851584985792513> gewonnen.`)
                 .setImage('https://xstrikers.de/discord/images/win.png');
         } else if (userTotalRoll < botTotalRoll) {
-            await pool.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [bet, userId]);
+            await db.execute('UPDATE discord_user SET coins = coins - ? WHERE discord_id = ?', [bet, userId]);
             finalEmbed = new EmbedBuilder()
                 .setTitle(':game_die: Dice verloren')
                 .setColor(0xd92626)
