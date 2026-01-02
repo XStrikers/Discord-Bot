@@ -93,6 +93,8 @@ export async function checkTwitchStreams(client) {
             minute: '2-digit'
         });
 
+        const cacheBuster = Math.floor(Date.now() / (10 * 60 * 1000));
+
         const embed = new EmbedBuilder()
             .setColor('#9146FF')
             .setTitle(`🔴 ${isLive.user_name} ist jetzt LIVE!`)
@@ -106,7 +108,7 @@ export async function checkTwitchStreams(client) {
                 { name: '🔗 Link', value: `https://twitch.tv/${streamer}`, inline: false }
             )
             .setThumbnail(profileImage)
-            .setImage(`https://static-cdn.jtvnw.net/previews-ttv/live_user_${streamer}-640x360.jpg`)
+            .setImage(`https://static-cdn.jtvnw.net/previews-ttv/live_user_${streamer}-640x360.jpg?cb=${cacheBuster}`)
             .setFooter({
                 iconURL: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png',
                 text: `Twitch Live – ${formattedTime} Uhr`
@@ -183,4 +185,5 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
