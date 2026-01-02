@@ -1,4 +1,4 @@
-import { pool } from '../economy.js';
+import db from '../misc/database.js';
 
 export async function getLiveStatus(streamer) {
     const [rows] = await db.query(
