@@ -1,6 +1,6 @@
 import { SlashCommandBuilder, EmbedBuilder, MessageFlags } from 'discord.js';
 import cooldowns from '../cooldowns.js';
-import { pool, getCoins, getLevel } from '../economy.js';
+import { db, getCoins, getLevel } from '../economy.js';
 
 
 
@@ -14,7 +14,7 @@ export default {
         const currentDate = new Date();
 
         try {
-            const [rows] = await pool.execute('SELECT * FROM discord_user WHERE discord_id = ?', [userId]);
+            const [rows] = await db.execute('SELECT * FROM discord_user WHERE discord_id = ?', [userId]);
 
             if (rows.length === 0) {
                 const embed = new EmbedBuilder()
@@ -46,7 +46,7 @@ export default {
                         currentXP = overflowXP;
                     }
 
-                    await pool.execute('UPDATE discord_user SET coins = ?, current_xp = ?, level = ?, xp_needed = ?, last_work = ? WHERE discord_id = ?', 
+                    await db.execute('UPDATE discord_user SET coins = ?, current_xp = ?, level = ?, xp_needed = ?, last_work = ? WHERE discord_id = ?', 
                         [newCoins, currentXP, newLevel, xp_needed, currentDate, userId]);
 
                     const embed = new EmbedBuilder()
@@ -77,7 +77,7 @@ export default {
                 }
             }
 
-            await pool.execute('UPDATE discord_user SET last_work = ? WHERE discord_id = ?', [currentDate, userId]);
+            await db.execute('UPDATE discord_user SET last_work = ? WHERE discord_id = ?', [currentDate, userId]);
 
             const embed = new EmbedBuilder()
                 .setTitle('🧭 Erstes Abenteuer gestartet')
