@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import { firstNames, lastNames } from './agentur-names.js';
 
 export default {
@@ -15,7 +15,7 @@ export default {
     const userId = interaction.user.id;
 
     // 1. Überprüfe, ob der Benutzer eine Logistik hat
-    const [logistics] = await pool.execute(
+    const [logistics] = await db.execute(
       `SELECT * FROM lkw_logistics WHERE discord_id = ?`,
       [userId]
     );
@@ -35,7 +35,7 @@ export default {
     const logisticsData = logistics[0];
 
     // 2. Überprüfen, ob der Benutzer eine aktive Tour hat
-    const [activeTours] = await pool.execute(
+    const [activeTours] = await db.execute(
       `SELECT * FROM lkw_tours WHERE discord_id = ? AND status = 'driving'`,
       [userId]
     );
@@ -53,7 +53,7 @@ export default {
     }
 
     // 3. Abrufen der TruckMiles des Benutzers
-    const [userRows] = await pool.execute(
+    const [userRows] = await db.execute(
       `SELECT truckmiles FROM lkw_users WHERE discord_id = ?`,
       [userId]
     );
@@ -78,7 +78,7 @@ export default {
     }
 
     // 5. TruckMiles abziehen und Fahrer zur Logistik hinzufügen
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_users SET truckmiles = truckmiles - ? WHERE discord_id = ?`,
       [costForNextDriver, userId]
     );
@@ -103,13 +103,13 @@ export default {
     }
 
     // Fahrer in die Logistik einfügen
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_logistics SET drivers = ? WHERE discord_id = ?`,
       [updatedDrivers, userId]
     );
 
     // 8. Fahrer auch in der lkw_driver_truck_assignment Tabelle speichern
-    await pool.execute(
+    await db.execute(
       `INSERT INTO lkw_driver_truck_assignment (discord_id, driver_name, logistic_id) VALUES (?, ?, ?)`,
       [userId, newDriver, logisticsData.id]
     );
@@ -127,3 +127,4 @@ export default {
     });
   }
 };
+
