@@ -194,8 +194,8 @@ export async function checkTwitchStreams(client) {
                     announced: false,
                     messageId: previous.messageId,
                     title: null,
-                    viewers: 0,
-                    game: null
+                    game: null,
+                    viewers: 0
                 });
         
                 logToFile('streams.log', `📴 ${streamer} offline (Embed aktualisiert)`);
@@ -205,6 +205,7 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
 
 
