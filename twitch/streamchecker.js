@@ -118,15 +118,14 @@ export async function checkTwitchStreams(client) {
                     text: `Twitch - ${formattedTime} Uhr`
                 });
 
-            const previous = liveStatus[streamer];
+            const previous = await getLiveStatus(streamer);
 
             // Wenn noch nie gepostet → sende neue Nachricht
-            if (!previous?.announced || !previous?.messageId) {
+            if (!previous || !previous?.announced || !previous?.messageId) {
                 logToFile('streams.log', `🔴 ${isLive.user_login} ist live – ${viewers} Zuschauer – "${title}"`);
                 const sent = await channel.send({ content: '||@everyone||', embeds: [embed] });
 
-                liveStatus[streamer] = {
-                    ...liveStatus[streamer],
+                await upsertLiveStatus({
                     isLive: true,
                     announced: true,
                     messageId: sent.id,
@@ -134,7 +133,7 @@ export async function checkTwitchStreams(client) {
                     viewers,
                     thumbnail,
                     cacheBuster
-                };
+                });
             } else {
                 // Prüfe auf Änderungen
                 const hasChanges =
@@ -200,6 +199,7 @@ export async function checkTwitchStreams(client) {
 
       await updateLiveStatusOnGitHub(liveStatus);
 }
+
 
 
 
