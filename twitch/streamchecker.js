@@ -3,7 +3,6 @@ import fetch from 'node-fetch';
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getLiveStatusFromGitHub, updateLiveStatusOnGitHub } from './livestatusmanager.js';
 import { logToFile } from './logger.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
@@ -200,5 +199,6 @@ export async function checkTwitchStreams(client) {
 
       await updateLiveStatusOnGitHub(liveStatus);
 }
+
 
 
