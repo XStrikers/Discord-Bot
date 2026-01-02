@@ -6,7 +6,6 @@ import { fileURLToPath } from 'url';
 import { getLiveStatus, upsertLiveStatus } from './livestatus.db.js';
 import { logToFile } from './logger.js';
 
-const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function getEuropeanDateTime() {
     return new Date().toLocaleString('de-DE', {
@@ -192,7 +191,7 @@ export async function checkTwitchStreams(client) {
                     .setTitle(`⚫ ${streamer} ist jetzt offline`)
                     .setDescription('Der Stream ist beendet.\n\u200B')
                     .setThumbnail(profileImage)
-                    .setImage(profileImage)
+                    .setImage('https://static-cdn.jtvnw.net/ttv-static/404_preview-640x360.jpg')
                     .setFooter({
                         iconURL: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png',
                         text: 'Twitch – Offline'
@@ -217,6 +216,7 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
 
 
