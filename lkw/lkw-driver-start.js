@@ -1,7 +1,7 @@
 // lkw-driver-start.js
 
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import { getRandomCity } from './cities.js';
 import { getRandomFreightType } from './freightTypes.js';
 
@@ -24,7 +24,7 @@ export default {
     // 1) Truck anhand des Namens finden und prüfen, ob er aktiv ist
     let truck;
     try {
-      const [rows] = await pool.query(
+      const [rows] = await db.query(
         `SELECT * FROM lkw_trucks 
          WHERE discord_id = ? AND name = ? AND active = 1`,
         [discordId, truckName]
@@ -59,7 +59,7 @@ export default {
     // === Fahrername aus lkw_driver_truck_assignment laden ===
     let driverName = 'unbekannter Fahrer';
     try {
-      const [assignRows] = await pool.query(
+      const [assignRows] = await db.query(
         `SELECT driver_name
          FROM lkw_driver_truck_assignment
          WHERE discord_id = ? AND truck_name = ?
@@ -76,7 +76,7 @@ export default {
 
     // ─────────────── Prüfen, ob bereits eine Tour läuft ───────────────
     try {
-      const [activeTours] = await pool.query(
+      const [activeTours] = await db.query(
         `SELECT id 
          FROM lkw_tours
          WHERE truck_id = ? 
@@ -130,7 +130,7 @@ export default {
 
     // 4) Tour in DB einfügen
     try {
-      await pool.query(
+      await db.query(
         `INSERT INTO lkw_tours
          (discord_id, truck_id, driver_name, loading_start_time, loading_end_time,
           start_city, end_city, freight, duration_minutes,
@@ -192,6 +192,7 @@ export default {
     await interaction.reply({ embeds: [embed] });
   }
 };
+
 
 
 
