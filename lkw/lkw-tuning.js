@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import tuningConfig, { getUpgradeCost } from './tuningConfig.js';
 
 // Baut die Fortschrittsanzeige aus ■ und □
@@ -58,7 +58,7 @@ export default {
     const userId = interaction.user.id;
 
     // 🚫 Check: Hat der User einen aktiven Auftrag?
-    const [active] = await pool.execute(
+    const [active] = await db.execute(
       `SELECT id FROM lkw_tours WHERE discord_id = ? AND status IN ('accept', 'loading', 'ready_to_drive', 'driving') LIMIT 1`,
       [userId]
     );
@@ -77,7 +77,7 @@ export default {
     }
 
     // 🔧 Aktives Fahrzeug laden
-    const [truckRows] = await pool.execute(
+    const [truckRows] = await db.execute(
       `SELECT speed_level, trailer_level, eco_level, tank_level FROM lkw_trucks WHERE discord_id = ? AND active = 1 LIMIT 1`,
       [userId]
     );
@@ -216,3 +216,4 @@ export default {
     });
   }
 };
+
