@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -14,14 +14,14 @@ export default {
     const userId = interaction.user.id;
 
     // Abrufen der TruckMiles des Benutzers
-    const [userRows] = await pool.execute(
+    const [userRows] = await db.execute(
       `SELECT truckmiles FROM lkw_users WHERE discord_id = ?`,
       [userId]
     );
     const userTruckMiles = userRows[0].truckmiles;
 
     // Abrufen der Logistik-Daten
-    const [logisticsRows] = await pool.execute(
+    const [logisticsRows] = await db.execute(
       `SELECT * FROM lkw_logistics WHERE discord_id = ?`,
       [userId]
     );
@@ -58,7 +58,7 @@ export default {
     }
 
     // TruckMiles abziehen
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_users SET truckmiles = truckmiles - ? WHERE discord_id = ?`,
       [costForNextTruck, userId]
     );
@@ -68,14 +68,14 @@ export default {
     const updatedTrucks = logistics.trucks ? `${logistics.trucks}, ${newTruck}` : newTruck;
 
     // Aktualisiere die Logistik-Daten mit dem neuen LKW
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_logistics SET trucks = ? WHERE discord_id = ?`,
       [updatedTrucks, userId]
     );
 
     // LKW auch in der Tabelle 'lkw_trucks' speichern
     // Überprüfen, ob die discord_id in lkw_users existiert, bevor wir den LKW speichern
-    const [userExists] = await pool.execute(
+    const [userExists] = await db.execute(
       `SELECT * FROM lkw_users WHERE discord_id = ?`,
       [userId]
     );
@@ -93,7 +93,7 @@ export default {
     }
 
     // LKW in der lkw_trucks Tabelle speichern
-    await pool.execute(
+    await db.execute(
         `INSERT INTO lkw_trucks (name, speed_level, trailer_level, eco_level, tank_level, state, logistic_id, discord_id, active) 
         VALUES (?, 0, 0, 0, 0, 0, ?, ?, 0)`,
         [newTruck, logistics.id, userId]
@@ -115,3 +115,4 @@ export default {
     });
   }
 };
+
