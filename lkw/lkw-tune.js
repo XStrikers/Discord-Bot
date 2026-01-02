@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import tuningConfig, { getUpgradeCost } from './tuningConfig.js';
 
 export default {
@@ -28,7 +28,7 @@ export default {
     const type = interaction.options.getString('bereich');
 
     // 1. Aktiver Auftrag blockiert Tuning
-    const [tours] = await pool.execute(
+    const [tours] = await db.execute(
       `SELECT id FROM lkw_tours WHERE discord_id = ? AND status IN ('accept', 'loading', 'ready_to_drive', 'driving') LIMIT 1`,
       [userId]
     );
@@ -46,7 +46,7 @@ export default {
     }
 
     // 2. Aktiven Truck laden
-    const [truckRows] = await pool.execute(
+    const [truckRows] = await db.execute(
       `SELECT id, speed_level, trailer_level, eco_level, tank_level FROM lkw_trucks WHERE discord_id = ? AND active = 1 LIMIT 1`,
       [userId]
     );
@@ -85,7 +85,7 @@ export default {
     }
 
     // 3. TruckMiles prüfen
-    const [userRow] = await pool.execute(
+    const [userRow] = await db.execute(
       `SELECT truckmiles FROM lkw_users WHERE discord_id = ? LIMIT 1`,
       [userId]
     );
@@ -108,12 +108,12 @@ export default {
     const newLevel = currentLevel + 1;
 
     // 4. Truck-Level aktualisieren & TruckMiles abziehen
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_trucks SET ${levelKey} = ? WHERE id = ?`,
       [newLevel, truck.id]
     );
 
-    await pool.execute(
+    await db.execute(
       `UPDATE lkw_users SET truckmiles = truckmiles - ? WHERE discord_id = ?`,
       [cost, userId]
     );
@@ -134,3 +134,4 @@ export default {
     });
   }
 };
+
