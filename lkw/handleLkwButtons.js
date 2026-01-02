@@ -1,4 +1,4 @@
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import { userJobs } from './jobMemory.js';
 
 async function handleLkwButtons(interaction) {
@@ -21,7 +21,7 @@ async function handleLkwButtons(interaction) {
   const end = new Date(now.getTime() + job.durationMinutes * 60 * 1000);
 
   try {
-    await pool.execute(
+    await db.execute(
       `INSERT INTO lkw_tours 
         (discord_id, truck_id, start_city, end_city, freight, duration_minutes, start_time, end_time, status, earned_xp, earned_truckmiles, accident, traffic_jam, fine_generated)
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
@@ -58,3 +58,4 @@ async function handleLkwButtons(interaction) {
 }
 
 export default handleLkwButtons;
+
