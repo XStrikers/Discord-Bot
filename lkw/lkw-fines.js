@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -22,7 +22,7 @@ export default {
 
     try {
       // Prüfen, ob der Strafzettel mit diesem Code existiert und ob er dem User gehört
-      const [rows] = await pool.execute(
+      const [rows] = await db.execute(
         `SELECT * FROM lkw_fines WHERE discord_id = ? AND code = ? AND paid = false`,
         [userId, code]
       );
@@ -43,7 +43,7 @@ export default {
       const amount = fine.amount;
 
       // Überprüfen, ob der User genug TruckMiles hat
-      const [userRows] = await pool.execute(
+      const [userRows] = await db.execute(
         `SELECT truckmiles FROM lkw_users WHERE discord_id = ?`,
         [userId]
       );
@@ -64,13 +64,13 @@ export default {
       }
 
       // Abbuchen der TruckMiles
-      await pool.execute(
+      await db.execute(
         `UPDATE lkw_users SET truckmiles = truckmiles - ? WHERE discord_id = ?`,
         [amount, userId]
       );
 
       // Strafzettel als bezahlt markieren und aus der Datenbank entfernen
-      await pool.execute(
+      await db.execute(
         `DELETE FROM lkw_fines WHERE id = ?`,
         [fine.id]
       );
@@ -103,3 +103,4 @@ export default {
     }
   }
 };
+
