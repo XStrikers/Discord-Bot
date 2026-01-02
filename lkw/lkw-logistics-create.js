@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -35,7 +35,7 @@ export default {
     name = name.trim();
 
     // Überprüfe, ob der Benutzer genug TruckMiles hat
-    const [userRows] = await pool.execute(`SELECT truckmiles FROM lkw_users WHERE discord_id = ?`, [userId]);
+    const [userRows] = await db.execute(`SELECT truckmiles FROM lkw_users WHERE discord_id = ?`, [userId]);
     const userTruckMiles = userRows[0].truckmiles;
 
     if (userTruckMiles < 5000) {
@@ -79,10 +79,10 @@ export default {
     }
 
     // Logistik erstellen
-    await pool.execute(`INSERT INTO lkw_logistics (discord_id, logistic) VALUES (?, ?)`, [userId, name]);
+    await db.execute(`INSERT INTO lkw_logistics (discord_id, logistic) VALUES (?, ?)`, [userId, name]);
 
     // Benutzer aktualisieren (5k TruckMiles abziehen)
-    await pool.execute(`UPDATE lkw_users SET truckmiles = truckmiles - 5000 WHERE discord_id = ?`, [userId]);
+    await db.execute(`UPDATE lkw_users SET truckmiles = truckmiles - 5000 WHERE discord_id = ?`, [userId]);
 
     return interaction.reply({
       embeds: [
@@ -96,3 +96,4 @@ export default {
     });
   }
 };
+
