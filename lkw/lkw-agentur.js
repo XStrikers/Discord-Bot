@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -14,7 +14,7 @@ export default {
     const userId = interaction.user.id;
 
     // 1. Überprüfe, ob der Benutzer eine Logistik hat
-    const [logistics] = await pool.execute(
+    const [logistics] = await db.execute(
       `SELECT * FROM lkw_logistics WHERE discord_id = ?`,
       [userId]
     );
@@ -32,7 +32,7 @@ export default {
     }
 
     // 2. Überprüfen, ob der Benutzer eine aktive Tour hat
-    const [activeTours] = await pool.execute(
+    const [activeTours] = await db.execute(
       `SELECT * FROM lkw_tours WHERE discord_id = ? AND status = 'driving'`,
       [userId]
     );
@@ -71,3 +71,4 @@ export default {
     });
   }
 };
+
