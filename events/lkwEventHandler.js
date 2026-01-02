@@ -1,5 +1,5 @@
 import { EmbedBuilder } from 'discord.js';
-import { pool } from '../economy.js';
+import { db } from '../economy.js';
 import { calculateModifiedJob } from '../lkw/tuningHelper.js';
 
 export default {
@@ -12,7 +12,7 @@ export default {
     const jobIndex = parseInt(interaction.customId.split('_').pop(), 10) - 1;
 
     // 🧾 Aktive Tour prüfen
-    const [activeTours] = await pool.execute(
+    const [activeTours] = await db.execute(
       `SELECT id FROM lkw_tours WHERE discord_id = ? AND status IN ('accept', 'loading', 'ready_to_drive', 'driving') LIMIT 1`,
       [userId]
     );
@@ -31,7 +31,7 @@ export default {
     }
 
     // 🚛 Aktiven Truck laden
-    const [trucks] = await pool.execute(
+    const [trucks] = await db.execute(
       'SELECT id FROM lkw_trucks WHERE discord_id = ? AND active = 1 LIMIT 1',
       [userId]
     );
@@ -51,13 +51,13 @@ export default {
     const truckId = trucks[0].id;
 
     // 🧊 Aufträge aus Cache laden
-    const [cachedJobs] = await pool.execute(
+    const [cachedJobs] = await db.execute(
       `SELECT * FROM lkw_tours_cache WHERE discord_id = ? ORDER BY id ASC LIMIT 2`,
       [userId]
     );
 
     // Tuning-Daten für den aktiven Truck laden
-    const [truckTuningRows] = await pool.execute(
+    const [truckTuningRows] = await db.execute(
       `SELECT speed_level, eco_level, trailer_level, tank_level FROM lkw_trucks WHERE id = ? LIMIT 1`,
       [truckId]
     );
@@ -92,7 +92,7 @@ export default {
 
     try {
       // 📥 In Haupt-Tour-Tabelle eintragen
-      await pool.execute(`
+      await db.execute(`
         INSERT INTO lkw_tours (
           discord_id, truck_id, start_city, end_city, freight, duration_minutes, loading_start_time, loading_end_time, status, earned_xp, earned_truckmiles, accident, traffic_jam, fine_generated
         ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
@@ -138,7 +138,7 @@ export default {
       });
 
       // 🧹 Optional: Job-Cache nach Annahme löschen
-      await pool.execute(`DELETE FROM lkw_tours_cache WHERE discord_id = ?`, [userId]);
+      await db.execute(`DELETE FROM lkw_tours_cache WHERE discord_id = ?`, [userId]);
 
     } catch (error) {
       console.error('❌ Fehler beim Speichern des Auftrags:', error);
@@ -156,3 +156,4 @@ export default {
     }
   }
 };
+
