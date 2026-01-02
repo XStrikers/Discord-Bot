@@ -1,5 +1,5 @@
 import { SlashCommandBuilder, EmbedBuilder, MessageFlags  } from 'discord.js';
-import { pool, getCoins } from '../economy.js';
+import { db, getCoins } from '../economy.js';
 import cooldowns from '../cooldowns.js';
 
 export default {
@@ -16,7 +16,7 @@ export default {
     
         try {
             // Prüfe, ob der Benutzer bereits in der Datenbank ist
-            const [rows] = await pool.execute('SELECT last_daily, coins, current_xp, level, xp_needed FROM discord_user WHERE discord_id = ?', [userId]);
+            const [rows] = await db.execute('SELECT last_daily, coins, current_xp, level, xp_needed FROM discord_user WHERE discord_id = ?', [userId]);
 
             let lastDaily = null;
             let lastDailyDate = null;
@@ -33,7 +33,7 @@ export default {
                 // Benutzer existiert nicht -> Erstelle neuen Eintrag mit zufälligen Coins und XP
                 const displayName = interaction.user.displayName;
 
-                await pool.execute(
+                await db.execute(
                     'INSERT INTO discord_user (discord_id, username, display_name, coins, current_xp, xp_needed, level, last_daily, last_work) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)',
                     [userId, username, displayName, newCoins, earnedXP, 120, 0, currentDate, null]
                 );
@@ -72,7 +72,7 @@ export default {
             }
     
             // Datenbank aktualisieren
-            await pool.execute('UPDATE discord_user SET coins = ?, current_xp = ?, level = ?, xp_needed = ?, last_daily = ? WHERE discord_id = ?', [newCoins, currentXP, level, xpNeeded, currentDate, userId]);
+            await db.execute('UPDATE discord_user SET coins = ?, current_xp = ?, level = ?, xp_needed = ?, last_daily = ? WHERE discord_id = ?', [newCoins, currentXP, level, xpNeeded, currentDate, userId]);
     
             const embed = new EmbedBuilder()
                 .setTitle('<:xscoins:1346851584985792513> eingesammelt')
