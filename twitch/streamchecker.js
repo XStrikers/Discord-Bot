@@ -1,4 +1,4 @@
-import db from '../economy.js';
+import { db } from '../economy.js';
 import { EmbedBuilder } from 'discord.js';
 import fetch from 'node-fetch';
 import path from 'path';
@@ -216,6 +216,7 @@ export async function checkTwitchStreams(client) {
         }
     }
 }
+
 
 
 
