@@ -10,7 +10,8 @@ export const db = mysql.createPool({
     connectionLimit: 10,
     queueLimit: 0,
     connectTimeout: 10000,
-    idleTimeout: 60000,
+    enableKeepAlive: true,
+    keepAliveInitialDelay: 0,
 });
 
 // Funktion zum Abrufen der Coins eines Benutzers
@@ -112,7 +113,7 @@ export async function addXPAndCoins(userId, xpAmount, coinAmount) {
     }
 }
 
-// Verbindung alle 5 Minuten testen, damit sie nicht einschläft (Keep-Alive)
+// Verbindung alle 3 Minuten testen, damit sie nicht einschläft (Keep-Alive)
 setInterval(async () => {
     try {
         await db.query('SELECT 1');
@@ -120,4 +121,4 @@ setInterval(async () => {
     } catch (err) {
         console.warn('⚠️ MySQL Keep-Alive fehlgeschlagen:', err.message);
     }
-}, 300_000); // alle 5 Minuten
+}, 300_000); // alle 3 Minuten
