@@ -75,24 +75,24 @@
     "event": "Tag der deutschen Einheit",
     "type": "xp_coins",
     "amount": 310,
-    "reason": "Tag der deutschen Einheit 2025",
-    "date_start": "2025-10-03",
-    "date_end": "2025-10-07"
+    "reason": "Tag der deutschen Einheit 2026",
+    "date_start": "2026-10-03",
+    "date_end": "2026-10-07"
   },
   "!halloween": {
     "event": "Halloween",
     "type": "xp_coins",
     "amount": 3110,
-    "reason": "Halloween 2025",
-    "date_start": "2025-10-31",
-    "date_end": "2025-11-04"
+    "reason": "Halloween 2026",
+    "date_start": "2026-10-31",
+    "date_end": "2026-11-04"
   },
-  "!xmas25": {
+  "!xmas26": {
     "event": "Weihnachten",
     "type": "xp_coins",
     "amount": 2412,
-    "reason": "Weihnachten 2025",
-    "date_start": "2025-12-24",
-    "date_end": "2025-12-28"
+    "reason": "Weihnachten 2026",
+    "date_start": "2026-12-24",
+    "date_end": "2026-12-28"
   }
 }
