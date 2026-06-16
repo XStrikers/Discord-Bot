@@ -3,6 +3,26 @@ import { TikTokLiveConnection, SignConfig } from 'tiktok-live-connector';
 const tiktokUsername = 'bayboyzed';
 const discordChannelId = '1152537702089097329';
 
+// Hilfsfunktion: Holt die Room-ID kostenlos über die externe TokCount-API
+async function fetchRoomIdFree(username) {
+    try {
+        const response = await fetch(`https://tokcount.com{username}`);
+        if (!response.ok) {
+            throw new Error('TokCount-API-Antwort war nicht im 2xx-Bereich.');
+        }
+        
+        const data = await response.json();
+        
+        // Prüft, ob der Nutzer live ist und eine gültige Room-ID existiert
+        if (data && data.live_info && data.live_info.room_id) {
+            return data.live_info.room_id;
+        }
+        throw new Error("Streamer ist aktuell offline.");
+    } catch (err) {
+        throw new Error(`Kostenlose ID-Ermittlung fehlgeschlagen: ${err.message}`);
+    }
+}
+
 export async function startTikTokLive(client) {
     try {
         if (!process.env.EULERSTREAM_API_KEY) {
@@ -11,20 +31,22 @@ export async function startTikTokLive(client) {
         }
 
         SignConfig.apiKey = process.env.EULERSTREAM_API_KEY;
-        console.log(`[TikTok] Starte Verbindung für @${tiktokUsername}...`);
+        console.log(`[TikTok] Ermittle Room-ID für @${tiktokUsername}...`);
 
+        // 1. Hole die Room-ID über die API (umgeht Render-IP-Sperren)
+        const currentRoomId = await fetchRoomIdFree(tiktokUsername);
+        console.log(`[TikTok] Room-ID gefunden: ${currentRoomId}. Starte Verbindung...`);
+
+        // 2. Initialisiere Connector NUR mit der ermittelten Room-ID
         const tiktokLive = new TikTokLiveConnection(tiktokUsername, {
             processInitialData: true,
             enableExtendedGiftInfo: true,
             enableWebsocketUpgrade: true,
-            // WICHTIG: Erlaubt dem Connector, die ID über alternative, kostenlose Wege 
-            // zu bestimmen und umgeht IP-Sperren von Rechenzentren
-            connectWithUniqueId: true, 
+            roomId: currentRoomId, // <-- Zwingt den Connector, den kostenlosen Pfad zu nutzen
             requestPollingIntervalMs: 2000,
             requestOptions: {
-                timeout: 15000, // Timeout leicht erhöht für Render.com
+                timeout: 15000,
                 headers: {
-                    // Simuliert einen echten Desktop-Browser, um 'fetch failed' zu minimieren
                     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
                 }
             },
@@ -33,13 +55,12 @@ export async function startTikTokLive(client) {
             }
         });
 
-        // Verbindung aufbauen (Der Connector löst die ID jetzt intern & kostenlos auf)
         const state = await tiktokLive.connect();
 
         console.log(`[TikTok] Verbunden mit @${tiktokUsername}`);
         console.log(`[TikTok] Room ID: ${state.roomId}`);
 
-        // Discord-Kanal holen und Nachricht senden
+        // 3. Discord-Kanal holen und Nachricht senden
         const channel = await client.channels.fetch(discordChannelId);
         if (!channel) {
             console.error('[Discord] TikTok-Livestream-Channel nicht gefunden.');
@@ -52,7 +73,7 @@ export async function startTikTokLive(client) {
         console.log(`[Discord] TikTok Live-Meldung für @${tiktokUsername} gesendet.`);
 
     } catch (error) {
-        // Falls der User einfach offline ist oder TikTok temporär blockiert
-        console.error('[TikTok] Verbindung fehlgeschlagen:', error.message || error);
+        // Fängt den Zustand ab, wenn der Streamer offline ist (ohne Eulerstream-Fehler)
+        console.log(`[TikTok] Info: ${error.message || error}`);
     }
 }
