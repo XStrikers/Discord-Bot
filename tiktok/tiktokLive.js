@@ -1,6 +1,6 @@
 import { TikTokLiveConnection, SignConfig } from 'tiktok-live-connector';
 
-const tiktokUsername = 'reallifesouthlandchicken';
+const tiktokUsername = 'bayboyzed';
 const discordChannelId = '1152537702089097329';
 
 export async function startTikTokLive(client) {
