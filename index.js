@@ -99,14 +99,11 @@ client.once('ready', async () => {
     } catch (err) {
         console.error("❌ Fehler bei Initialisierung:", err);
     }
+        console.log(
+            `${client.user.tag} gestartet`
+        );
 
-    client.once('ready', async () => {
-
-    console.log(
-        `${client.user.tag} gestartet`
-    );
-
-    startTikTokLive(client);
+        startTikTokLive(client);
 });
 
 client.on('interactionCreate', async interaction => {
