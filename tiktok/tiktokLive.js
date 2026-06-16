@@ -1,6 +1,6 @@
 import { TikTokLiveConnection } from 'tiktok-live-connector';
 
-const tiktokUsername = 'tits.19';
+const tiktokUsername = 'freditjarks1996';
 
 export async function startTikTokLive(client) {
     try {
