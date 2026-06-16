@@ -14,7 +14,8 @@ export async function startTikTokLive(client) {
             },
             websocketOptions: {
                 timeout: 10000
-            }
+            },
+            signApiKey: process.env.EULERSTREAM_API_KEY
         });
 
         const state = await tiktokLive.connect();
