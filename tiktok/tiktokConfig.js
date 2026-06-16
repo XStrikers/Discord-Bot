@@ -1,5 +1,5 @@
 export default {
-    username: 'shimmersnips',
+    username: 'xstrikers_gaming',
 
     livestreamChannelId: '1152537702089097329',
 
