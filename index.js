@@ -2,16 +2,15 @@ import 'dotenv/config';
 import './misc/protocol.js';
 import { startDbPing } from './misc/db_ping.js';
 import { Client, GatewayIntentBits, Collection, REST, Routes } from 'discord.js';
-import { readdirSync, readFileSync } from 'fs';
+import { readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 import express from 'express';
 import cooldowns from './cooldowns.js';
-import { upsertLiveStatus } from './twitch/livestatus.db.js';
 import { checkTwitchStreams } from './twitch/streamchecker.js';
 import { logToFile } from './twitch/logger.js';
 import lkwEventHandler from './events/lkwEventHandler.js';
-import { TikTokLiveConnection } from 'tiktok-live-connector';
+import { startTikTokLive } from './tiktok/tiktokLive.js';
 
 logToFile('streams.log', '🚀 Bot wurde gestartet');
 
@@ -88,22 +87,19 @@ client.once('ready', async () => {
         await loadEvents();
         await registerCommands();
 
-        // Starte den Datenbank-Ping
         startDbPing(client);
 
-        // Twitch-Check starten
         console.log("📡 Starte Twitch Stream-Checker...");
         await checkTwitchStreams(client);
         setInterval(() => checkTwitchStreams(client), 5 * 60 * 1000);
         console.log("🔄 Twitch Stream-Check ausgeführt...");
+
+        console.log("📡 Starte TikTok Live-Connector...");
+        await startTikTokLive(client);
+
     } catch (err) {
         console.error("❌ Fehler bei Initialisierung:", err);
     }
-        console.log(
-            `${client.user.tag} gestartet`
-        );
-
-        startTikTokLive(client);
 });
 
 client.on('interactionCreate', async interaction => {
