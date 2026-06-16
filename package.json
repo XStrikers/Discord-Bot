@@ -27,6 +27,7 @@
     "safer-buffer": "^2.1.2",
     "seq-queue": "^0.0.5",
     "sqlstring": "^2.3.3",
+    "tiktok-live-connector": "^2.4.0",
     "ts-mixer": "^6.0.4",
     "tslib": "^2.8.1",
     "undici": "^6.21.1",
