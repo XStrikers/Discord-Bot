@@ -173,8 +173,8 @@ export async function checkTwitchStreams(client) {
     }
 
     /* =========================
-       📴 OFFLINE
-       ========================= */
+    📴 OFFLINE
+    ========================= */
     for (const streamer of streamers) {
         const stillLive = liveNow.some(
             s => s.user_login.toLowerCase() === streamer.toLowerCase()
@@ -184,47 +184,44 @@ export async function checkTwitchStreams(client) {
 
         if (previous?.isLive && !stillLive) {
             try {
-                const msg = await channel.messages.fetch(previous.messageId);
-        
+                let msg = null;
+
+                if (previous.messageId) {
+                    try {
+                        msg = await channel.messages.fetch(previous.messageId);
+                    } catch (err) {
+                        logToFile('errors.log', `⚠️ Alte Live-Nachricht nicht gefunden (${streamer})`);
+                    }
+                }
+
                 const offlineEmbed = new EmbedBuilder()
                     .setColor('#4b4b4b')
                     .setTitle(`⚫ ${streamer} ist jetzt offline`)
                     .setDescription('Der Stream ist beendet.\n\u200B')
-                    .setThumbnail(profileImage)
                     .setImage('https://static-cdn.jtvnw.net/ttv-static/404_preview-640x360.jpg')
                     .setFooter({
                         iconURL: 'https://cdn-icons-png.flaticon.com/512/5968/5968819.png',
                         text: 'Twitch – Offline'
                     });
-        
-                await msg.edit({ embeds: [offlineEmbed] });
-        
+
+                if (msg) {
+                    await msg.edit({ embeds: [offlineEmbed] });
+                }
+
                 await upsertLiveStatus({
                     streamer,
                     isLive: false,
                     announced: false,
-                    messageId: previous.messageId,
+                    messageId: null,
                     title: null,
                     game: null,
                     viewers: 0
                 });
-        
-                logToFile('streams.log', `📴 ${streamer} offline (Embed aktualisiert)`);
+
+                logToFile('streams.log', `📴 ${streamer} offline gesetzt`);
             } catch (err) {
-                logToFile('errors.log', `❌ Offline-Update fehlgeschlagen (${streamer})`);
+                logToFile('errors.log', `❌ Offline-Update fehlgeschlagen (${streamer}): ${err.message}`);
             }
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
