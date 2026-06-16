@@ -11,6 +11,7 @@ import { upsertLiveStatus } from './twitch/livestatus.db.js';
 import { checkTwitchStreams } from './twitch/streamchecker.js';
 import { logToFile } from './twitch/logger.js';
 import lkwEventHandler from './events/lkwEventHandler.js';
+import { TikTokLiveConnection } from 'tiktok-live-connector';
 
 logToFile('streams.log', '🚀 Bot wurde gestartet');
 
@@ -98,6 +99,14 @@ client.once('ready', async () => {
     } catch (err) {
         console.error("❌ Fehler bei Initialisierung:", err);
     }
+
+    client.once('ready', async () => {
+
+    console.log(
+        `${client.user.tag} gestartet`
+    );
+
+    startTikTokLive(client);
 });
 
 client.on('interactionCreate', async interaction => {
