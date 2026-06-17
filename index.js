@@ -1,7 +1,7 @@
 import 'dotenv/config';
 import './misc/protocol.js';
 import { startDbPing } from './misc/db_ping.js';
-import { Client, GatewayIntentBits, Collection, REST, Routes } from 'discord.js';
+import { Client, GatewayIntentBits, Collection, REST, Routes, EmbedBuilder, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 import { readdirSync } from 'fs';
 import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
@@ -16,6 +16,8 @@ logToFile('streams.log', '🚀 Bot wurde gestartet');
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const app = express();
+app.use(express.json());
+
 const port = process.env.PORT;
 
 // Express Webserver starten (z. B. für Uptime-Keeper wie UptimeRobot)
@@ -133,5 +135,79 @@ client.on('interactionCreate', async interaction => {
 });
 
 client.on(lkwEventHandler.name, (...args) => lkwEventHandler.execute(...args));
+
+app.post('/tiktok/live-alert', async (req, res) => {
+    try {
+        const data = req.body || {};
+
+        console.log('[TikTok Webhook] Daten erhalten:', data);
+
+        const username = data.username || 'xstrikers_gaming';
+        const nickname = data.nickname || username;
+        const title = data.title || 'TikTok Livestream';
+        const viewers = data.current_viewers || 0;
+        const avatarUrl = data.avatar_url || null;
+        const coverUrl = data.cover_url || null;
+        const startTime = data.start_time || Math.floor(Date.now() / 1000);
+
+        const channel = await client.channels.fetch(
+            process.env.TIKTOK_LIVESTREAM_CHANNEL_ID
+        );
+
+        if (!channel) {
+            return res.status(404).json({
+                success: false,
+                message: 'Discord channel not found'
+            });
+        }
+
+        const streamUrl = `https://www.tiktok.com/@${username}/live`;
+
+        const embed = new EmbedBuilder()
+            .setColor('#bc4141')
+            .setTitle(`🔴 ${title}`)
+            .setURL(streamUrl)
+            .setDescription(
+                [
+                    `**${nickname}** ist jetzt live auf TikTok!`,
+                    '',
+                    `👤 TikTok: **@${username}**`,
+                    `👥 Zuschauer: **${viewers}**`,
+                    `⏰ Live seit: <t:${startTime}:R>`
+                ].join('\n')
+            )
+            .setTimestamp()
+            .setFooter({
+                text: 'TikTok Live • XStrikers Gaming Netzwerk'
+            });
+
+        if (avatarUrl) embed.setThumbnail(avatarUrl);
+        if (coverUrl) embed.setImage(coverUrl);
+
+        const row = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
+                .setLabel('TikTok Stream öffnen')
+                .setStyle(ButtonStyle.Link)
+                .setURL(streamUrl)
+        );
+
+        await channel.send({
+            content: '@everyone 🔴 **TikTok Livestream gestartet!**',
+            embeds: [embed],
+            components: [row]
+        });
+
+        return res.status(200).json({
+            success: true
+        });
+
+    } catch (error) {
+        console.error('[TikTok Webhook] Fehler:', error);
+
+        return res.status(500).json({
+            success: false
+        });
+    }
+});
 
 client.login(process.env.TOKEN);
