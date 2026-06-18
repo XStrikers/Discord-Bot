@@ -138,13 +138,40 @@ app.post('/tiktok/live-alert', async (req, res) => {
 
         console.log('[TikTok Webhook] Daten erhalten:', data);
 
-        const username = data.username || 'xstrikers_gaming';
-        const nickname = data.nickname || username;
-        const title = data.title || 'TikTok Livestream';
-        const viewers = data.current_viewers || 0;
-        const avatarUrl = data.avatar_url || null;
-        const coverUrl = data.cover_url || null;
-        const startTime = data.start_time || Math.floor(Date.now() / 1000);
+        const isTestWebhook =
+            !data.username &&
+            !data.nickname &&
+            !data.title &&
+            !data.cover_url &&
+            !data.avatar_url;
+        
+        const username = isTestWebhook
+            ? 'xstrikers_gaming'
+            : data.username || 'xstrikers_gaming';
+        
+        const nickname = isTestWebhook
+            ? 'XStrikers Gaming'
+            : data.nickname || username;
+        
+        const title = isTestWebhook
+            ? 'Test-Livestream über EulerStream'
+            : data.title || 'TikTok Livestream';
+        
+        const viewers = isTestWebhook
+            ? 'Testmodus'
+            : data.current_viewers || 'Unbekannt';
+        
+        const avatarUrl = isTestWebhook
+            ? null
+            : data.avatar_url || null;
+        
+        const coverUrl = isTestWebhook
+            ? null
+            : data.cover_url || null;
+        
+        const startTime = isTestWebhook
+            ? Math.floor(Date.now() / 1000)
+            : Number(data.start_time) || Math.floor(Date.now() / 1000);
 
         const channel = await client.channels.fetch(
             process.env.TIKTOK_LIVESTREAM_CHANNEL_ID
@@ -165,7 +192,9 @@ app.post('/tiktok/live-alert', async (req, res) => {
             .setURL(streamUrl)
             .setDescription(
                 [
-                    `**${nickname}** ist jetzt live auf TikTok!`,
+                    isTestWebhook
+                        ? `🧪 **Test-Webhook erfolgreich empfangen.**`
+                        : `**${nickname}** ist jetzt live auf TikTok!`,
                     '',
                     `👤 TikTok: **@${username}**`,
                     `👥 Zuschauer: **${viewers}**`,
