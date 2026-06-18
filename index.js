@@ -187,22 +187,25 @@ app.post('/tiktok/live-alert', async (req, res) => {
         const streamUrl = `https://www.tiktok.com/@${username}/live`;
 
         const embed = new EmbedBuilder()
-            .setColor('#bc4141')
-            .setTitle(`🔴 ${title}`)
+            .setColor('#00FCFF')
+            .setTitle(`🔴 ${nickname} ist jetzt LIVE!`)
             .setURL(streamUrl)
             .setDescription(
                 [
                     isTestWebhook
                         ? `🧪 **Test-Webhook erfolgreich empfangen.**`
-                        : `**${nickname}** ist jetzt live auf TikTok!`,
-                    '',
-                    `👤 TikTok: **@${username}**`,
-                    `👥 Zuschauer: **${viewers}**`,
-                    `⏰ Live seit: <t:${startTime}:R>`
-                ].join('\n')
+                        : `${title}\n\u200B`
+            )
+            .addFields(
+                { name: '🎮 TikTok', value: '@${username}' || 'Unbekannt', inline: true },
+                { name: '👥 Zuschauer', value: '${viewers}', inline: true },
+                { name: '🕒 Laufzeit', value: '<t:${startTime}:R>', inline: true },
+                { name: '\u200B', value: '\u200B', inline: false },
+                { name: '🔗 Link', value: `(streamUrl)`, inline: false }
             )
             .setTimestamp()
             .setFooter({
+                iconURL: 'https://cdn-icons-png.flaticon.com/512/3046/3046121.png',
                 text: 'TikTok Live • XStrikers Gaming Netzwerk'
             });
 
@@ -211,13 +214,13 @@ app.post('/tiktok/live-alert', async (req, res) => {
 
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
-                .setLabel('TikTok Stream öffnen')
+                .setLabel('${nickname} Stream öffnen')
                 .setStyle(ButtonStyle.Link)
                 .setURL(streamUrl)
         );
 
         await channel.send({
-            content: '@everyone 🔴 **TikTok Livestream gestartet!**',
+            content: '||@everyone||',
             embeds: [embed],
             components: [row]
         });
