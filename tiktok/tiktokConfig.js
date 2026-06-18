@@ -1,7 +1,7 @@
 export default {
     username: 'xstrikers_gaming',
 
-    livestreamChannelId: '1152537702089097329',
+    livestreamChannelId: '1517136519607881868',
 
     likeMilestone: 100,
 
