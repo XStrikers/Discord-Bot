@@ -10,7 +10,6 @@ import cooldowns from './cooldowns.js';
 import { checkTwitchStreams } from './twitch/streamchecker.js';
 import { logToFile } from './twitch/logger.js';
 import lkwEventHandler from './events/lkwEventHandler.js';
-import { startTikTokLive } from './tiktok/tiktokLive.js';
 
 logToFile('streams.log', '🚀 Bot wurde gestartet');
 
@@ -95,9 +94,6 @@ client.once('ready', async () => {
         await checkTwitchStreams(client);
         setInterval(() => checkTwitchStreams(client), 5 * 60 * 1000);
         console.log("🔄 Twitch Stream-Check ausgeführt...");
-
-        console.log("📡 Starte TikTok Live-Connector...");
-        await startTikTokLive(client);
 
     } catch (err) {
         console.error("❌ Fehler bei Initialisierung:", err);
