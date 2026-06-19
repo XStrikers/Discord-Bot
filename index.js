@@ -191,30 +191,49 @@ app.post('/tiktok/live-alert', async (req, res) => {
             .setTitle(`🔴 ${nickname} ist jetzt LIVE!`)
             .setURL(streamUrl)
             .setDescription(
-                [
-                    isTestWebhook
-                        ? `🧪 **Test-Webhook erfolgreich empfangen.**`
-                        : `${title}\n\u200B`
+                isTestWebhook
+                    ? '🧪 **Test-Webhook erfolgreich empfangen.**\n\u200B'
+                    : `${title}\n\u200B`
             )
             .addFields(
-                { name: '🎮 TikTok', value: '@${username}' || 'Unbekannt', inline: true },
-                { name: '👥 Zuschauer', value: '${viewers}', inline: true },
-                { name: '🕒 Laufzeit', value: '<t:${startTime}:R>', inline: true },
-                { name: '\u200B', value: '\u200B', inline: false },
-                { name: '🔗 Link', value: `(streamUrl)`, inline: false }
+                {
+                    name: '🎮 Plattform',
+                    value: 'TikTok LIVE',
+                    inline: true
+                },
+                {
+                    name: '👥 Zuschauer',
+                    value: `${viewers}`,
+                    inline: true
+                },
+                {
+                    name: '🕒 Laufzeit',
+                    value: `<t:${startTime}:R>`,
+                    inline: true
+                },
+                {
+                    name: '\u200B',
+                    value: '\u200B',
+                    inline: false
+                },
+                {
+                    name: '🔗 Link',
+                    value: streamUrl,
+                    inline: false
+                }
             )
             .setTimestamp()
             .setFooter({
                 iconURL: 'https://cdn-icons-png.flaticon.com/512/3046/3046121.png',
                 text: 'TikTok Live • XStrikers Gaming Netzwerk'
             });
-
+        
         if (avatarUrl) embed.setThumbnail(avatarUrl);
         if (coverUrl) embed.setImage(coverUrl);
-
+        
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
-                .setLabel('${nickname} Stream öffnen')
+                .setLabel(`${nickname} Stream öffnen`)
                 .setStyle(ButtonStyle.Link)
                 .setURL(streamUrl)
         );
