@@ -221,11 +221,15 @@ app.post('/tiktok/live-alert', async (req, res) => {
             )
             .addFields(
                 {
-                    name: '🎮 TikTok',
+                    name: '📷 TikTok',
                     value: `@${username}`,
-                    inline: true
+                    inline: false
                 },
                 {
+                    name: '\u200B',
+                    value: '\u200B',
+                    inline: false
+                },                {
                     name: '👥 Zuschauer',
                     value: `${viewers}`,
                     inline: true
@@ -233,7 +237,7 @@ app.post('/tiktok/live-alert', async (req, res) => {
                 {
                     name: '🕒 Laufzeit',
                     value: `<t:${startTime}:R>`,
-                    inline: true
+                    inline: false
                 },
                 {
                     name: '\u200B',
