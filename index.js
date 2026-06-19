@@ -237,7 +237,7 @@ app.post('/tiktok/live-alert', async (req, res) => {
                 {
                     name: '🕒 Laufzeit',
                     value: `<t:${startTime}:R>`,
-                    inline: false
+                    inline: true
                 },
                 {
                     name: '\u200B',
