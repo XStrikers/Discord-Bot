@@ -158,15 +158,15 @@ app.post('/tiktok/live-alert', async (req, res) => {
             : data.title || 'TikTok Livestream';
         
         const viewers = isTestWebhook
-            ? 'Testmodus'
+            ? '135'
             : data.current_viewers || 'Unbekannt';
         
         const avatarUrl = isTestWebhook
-            ? null
+            ? 'https://i.imgur.com/4M34hi2.png'
             : data.avatar_url || null;
         
         const coverUrl = isTestWebhook
-            ? null
+            ? 'https://xstrikers.de/images/stream_off.png'
             : data.cover_url || null;
         
         const startTime = isTestWebhook
@@ -186,6 +186,30 @@ app.post('/tiktok/live-alert', async (req, res) => {
 
         const streamUrl = `https://www.tiktok.com/@${username}/live`;
 
+        const streamMessages = [
+            '💥 Schalte ein und erlebe Streams, die keine Wünsche offenlassen. Sei dabei, wenn es wieder heißt: Keine Herausforderung ist zu groß!',
+        
+            '💀 Komm vorbei, wenn du mutig genug bist, und erlebe den Nervenkitzel hautnah.',
+        
+            '💖 Sei dabei und erlebe einen Stream, der deinen Tag verzaubert. Gemeinsam mit der Community wird es garantiert unvergesslich!',
+        
+            '👾 Egal, ob du ein treuer Fan bist oder neu dazu kommst – hier erwartet dich eine geniale Community voller Spaß, Lachen und epischer Momente.',
+        
+            '🔥 Jetzt ist der perfekte Zeitpunkt einzuschalten. Spannende Abenteuer, lustige Momente und eine großartige Community warten auf dich!',
+        
+            '🚀 Die Reise beginnt genau jetzt. Sei live dabei und verpasse keinen Moment!',
+        
+            '🎮 Neue Herausforderungen, unerwartete Wendungen und jede Menge Unterhaltung – schau vorbei und werde Teil des Abenteuers.',
+        
+            '⭐ Gemeinsam macht Gaming am meisten Spaß. Komm in den Stream und erlebe die Action hautnah mit der Community.',
+        
+            '🎉 Unterhaltung, Spannung und gute Stimmung – alles in einem Stream. Sei dabei!',
+        
+            '🏆 Heute wird Geschichte geschrieben. Ob Sieg, Niederlage oder pures Chaos – live dabei sein lohnt sich immer!'
+        ];
+
+        const randomMessage = streamMessages[Math.floor(Math.random() * streamMessages.length)];
+
         const embed = new EmbedBuilder()
             .setColor('#00FCFF')
             .setTitle(`🔴 ${nickname} ist jetzt LIVE!`)
@@ -193,12 +217,12 @@ app.post('/tiktok/live-alert', async (req, res) => {
             .setDescription(
                 isTestWebhook
                     ? '🧪 **Test-Webhook erfolgreich empfangen.**\n\u200B'
-                    : `${title}\n\u200B`
+                    : `${randomMessage}\n\u200B`
             )
             .addFields(
                 {
-                    name: '🎮 Plattform',
-                    value: 'TikTok LIVE',
+                    name: '🎮 TikTok',
+                    value: `@${username}`,
                     inline: true
                 },
                 {
@@ -225,7 +249,7 @@ app.post('/tiktok/live-alert', async (req, res) => {
             .setTimestamp()
             .setFooter({
                 iconURL: 'https://cdn-icons-png.flaticon.com/512/3046/3046121.png',
-                text: 'TikTok Live • XStrikers Gaming Netzwerk'
+                text: 'TikTok Live - '
             });
         
         if (avatarUrl) embed.setThumbnail(avatarUrl);
