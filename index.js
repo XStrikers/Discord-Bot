@@ -226,10 +226,6 @@ app.post('/tiktok/live-alert', async (req, res) => {
                     inline: false
                 },
                 {
-                    name: '\u200B',
-                    value: '\u200B',
-                    inline: false
-                },                {
                     name: '👥 Zuschauer',
                     value: `${viewers}`,
                     inline: true
