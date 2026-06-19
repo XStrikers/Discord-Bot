@@ -249,7 +249,7 @@ app.post('/tiktok/live-alert', async (req, res) => {
             .setTimestamp()
             .setFooter({
                 iconURL: 'https://cdn-icons-png.flaticon.com/512/3046/3046121.png',
-                text: 'TikTok Live - '
+                text: 'TikTok Live '
             });
         
         if (avatarUrl) embed.setThumbnail(avatarUrl);
