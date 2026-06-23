@@ -134,7 +134,6 @@ client.on(lkwEventHandler.name, (...args) => lkwEventHandler.execute(...args));
 
 app.get('/tiktok/live-start', async (req, res) => {
     try {
-
         const channel = await client.channels.fetch(
             process.env.TIKTOK_LIVESTREAM_CHANNEL_ID
         );
@@ -147,17 +146,19 @@ app.get('/tiktok/live-start', async (req, res) => {
             .setColor('#00FCFF')
             .setTitle('🔴 XStrikers Gaming ist jetzt LIVE!')
             .setDescription(
-                '🔥 Der Stream wurde gestartet.\n\n' +
-                'Schalte jetzt ein und werde Teil der Community.'
+                '🔥 Der TikTok-Livestream wurde gestartet.\n\n' +
+                'Schalte ein und werde Teil der Community!'
             )
             .addFields(
                 {
                     name: '📷 TikTok',
-                    value: '@xstrikers_gaming'
+                    value: '@xstrikers_gaming',
+                    inline: false
                 },
                 {
                     name: '🔗 Stream',
-                    value: 'https://www.tiktok.com/@xstrikers_gaming/live'
+                    value: 'https://www.tiktok.com/@xstrikers_gaming/live',
+                    inline: false
                 }
             )
             .setTimestamp();
@@ -167,11 +168,11 @@ app.get('/tiktok/live-start', async (req, res) => {
             embeds: [embed]
         });
 
-        res.send('Discord Meldung gesendet');
+        return res.status(200).send('Discord Meldung gesendet');
 
-    } catch (err) {
-        console.error(err);
-        res.status(500).send('Fehler');
+    } catch (error) {
+        console.error('[TikTok Live Start] Fehler:', error);
+        return res.status(500).send('Fehler beim Senden');
     }
 });
 
