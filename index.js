@@ -133,6 +133,16 @@ client.on('interactionCreate', async interaction => {
 client.on(lkwEventHandler.name, (...args) => lkwEventHandler.execute(...args));
 
 app.post('/tiktok/live-alert', async (req, res) => {
+
+    console.log('====================');
+    console.log('BODY');
+    console.log(JSON.stringify(req.body, null, 2));
+
+    console.log('HEADERS');
+    console.log(JSON.stringify(req.headers, null, 2));
+
+    console.log('====================');
+    
     try {
         const data = req.body || {};
 
