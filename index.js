@@ -145,22 +145,26 @@ app.get('/tiktok/live-start', async (req, res) => {
 
         const startTime = Math.floor(Date.now() / 1000);
 
+        const streamMessages = [
+            '🔥 Der Stream ist live! Komm vorbei und werde Teil der Community.',
+            '🎮 Neue Runde, neue Momente, neues Chaos – schalte jetzt ein!',
+            '🚀 Es geht los! Sei live dabei und verpasse keinen Moment.',
+            '👾 Gaming, Spaß und Community – genau jetzt live auf TikTok.',
+            '💥 Der Stream läuft. Komm rein, sag Hallo und genieße die Show!'
+        ];
+        
+        const randomMessage = streamMessages[
+            Math.floor(Math.random() * streamMessages.length)
+        ];
+
         const embed = new EmbedBuilder()
             .setColor('#00FCFF')
             .setTitle('🔴 XStrikers Gaming ist jetzt LIVE!')
-            .setDescription(
-                '🔥 Schalte jetzt ein und werde Teil der Community.\n' +
-                'Spannende Momente, lustige Situationen und jede Menge Unterhaltung warten auf dich.'
-            )
+            .setDescription(`${randomMessage}\n\u200B`)
             .addFields(
                 {
-                    name: '📷 TikTok',
+                    name: '📷 Creator',
                     value: '@xstrikers_gaming',
-                    inline: true
-                },
-                {
-                    name: '👥 Zuschauer',
-                    value: 'LIVE',
                     inline: true
                 },
                 {
@@ -174,12 +178,28 @@ app.get('/tiktok/live-start', async (req, res) => {
                     inline: false
                 },
                 {
+                    name: '🧊 Server',
+                    value: 'Eisfurt Roleplay',
+                    inline: true
+                },
+                {
+                    name: '🛬 Einreise',
+                    value: `Whitelist Einreise`,
+                    inline: true
+                },   
+                {
+                    name: '🎮 Discord',
+                    value: `discord.gg/p8f5G4kwA4`,
+                    inline: true
+                },   
+                {
                     name: '🎬 Aktueller Stream',
                     value: 'https://www.tiktok.com/@xstrikers_gaming/live',
                     inline: false
                 }
             )
-            .setThumbnail('https://i.imgur.com/4M34hi2.png')
+            .setThumbnail('https://p19-common-sign.tiktokcdn-eu.com/tos-useast2a-avt-0068-euttp/73cadfaef88e341fa3be4936d3a909fa~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=10399&refresh_token=83c1c5a4&x-expires=1782399600&x-signature=cg0ua8jD25ALzD3TaEJ6kwBY9YM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=no1a')
+            .setImage('https://chatgpt.com/backend-api/estuary/content?id=file_00000000bcdc71f4b7a02c25f7078dd9&ts=495067&p=fs&cid=1&sig=b9a88f7c5879f1bdf7c4e12c7a437ee6ee1bca501bbd3e8f2a61fa332df87ceb&v=0')
             .setTimestamp()
             .setFooter({
                 iconURL: 'https://cdn-icons-png.flaticon.com/512/3046/3046121.png',
@@ -188,9 +208,14 @@ app.get('/tiktok/live-start', async (req, res) => {
 
         const row = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
-                .setLabel('🎥 Stream öffnen')
+                .setLabel('🎥 Stream')
                 .setStyle(ButtonStyle.Link)
-                .setURL('https://www.tiktok.com/@xstrikers_gaming/live')
+                .setURL('https://www.tiktok.com/@xstrikers_gaming/live'),
+
+            new ButtonBuilder()
+                .setLabel('💬 Discord')
+                .setStyle(ButtonStyle.Link)
+                .setURL('https://discord.gg/p8f5G4kwA4')
         );
 
         await channel.send({
