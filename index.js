@@ -191,7 +191,12 @@ app.get('/tiktok/live-start', async (req, res) => {
                     name: '🎮 Discord',
                     value: `discord.gg/p8f5G4kwA4`,
                     inline: true
-                },   
+                },
+                {
+                    name: '\u200B',
+                    value: '\u200B',
+                    inline: false
+                },
                 {
                     name: '🎬 Aktueller Stream',
                     value: 'https://www.tiktok.com/@xstrikers_gaming/live',
@@ -199,7 +204,7 @@ app.get('/tiktok/live-start', async (req, res) => {
                 }
             )
             .setThumbnail('https://p19-common-sign.tiktokcdn-eu.com/tos-useast2a-avt-0068-euttp/73cadfaef88e341fa3be4936d3a909fa~tplv-tiktokx-cropcenter:1080:1080.jpeg?dr=10399&refresh_token=83c1c5a4&x-expires=1782399600&x-signature=cg0ua8jD25ALzD3TaEJ6kwBY9YM%3D&t=4d5b0474&ps=13740610&shp=a5d48078&shcp=81f88b70&idc=no1a')
-            .setImage('https://chatgpt.com/backend-api/estuary/content?id=file_00000000bcdc71f4b7a02c25f7078dd9&ts=495067&p=fs&cid=1&sig=b9a88f7c5879f1bdf7c4e12c7a437ee6ee1bca501bbd3e8f2a61fa332df87ceb&v=0')
+            .setImage('https://i.imgur.com/wYU9u58.jpeg')
             .setTimestamp()
             .setFooter({
                 iconURL: 'https://cdn-icons-png.flaticon.com/512/3046/3046121.png',
