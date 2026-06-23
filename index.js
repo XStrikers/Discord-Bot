@@ -132,48 +132,46 @@ client.on('interactionCreate', async interaction => {
 
 client.on(lkwEventHandler.name, (...args) => lkwEventHandler.execute(...args));
 
-app.post('/tiktok/live-alert', async (req, res) => {
-
-    console.log('====================');
-    console.log('BODY');
-    console.log(JSON.stringify(req.body, null, 2));
-
-    console.log('HEADERS');
-    console.log(JSON.stringify(req.headers, null, 2));
-
-    console.log('====================');
-    
+app.get('/tiktok/live-start', async (req, res) => {
     try {
-        const data = req.body || {};
-        
-        console.log('[TikTok Webhook] Daten erhalten:', data);
-        
+
         const channel = await client.channels.fetch(
             process.env.TIKTOK_LIVESTREAM_CHANNEL_ID
         );
-        
+
         if (!channel) {
-            return res.status(404).json({
-                success: false,
-                message: 'Discord channel not found'
-            });
+            return res.status(404).send('Channel nicht gefunden');
         }
-        
+
+        const embed = new EmbedBuilder()
+            .setColor('#00FCFF')
+            .setTitle('🔴 XStrikers Gaming ist jetzt LIVE!')
+            .setDescription(
+                '🔥 Der Stream wurde gestartet.\n\n' +
+                'Schalte jetzt ein und werde Teil der Community.'
+            )
+            .addFields(
+                {
+                    name: '📷 TikTok',
+                    value: '@xstrikers_gaming'
+                },
+                {
+                    name: '🔗 Stream',
+                    value: 'https://www.tiktok.com/@xstrikers_gaming/live'
+                }
+            )
+            .setTimestamp();
+
         await channel.send({
-            content: data.content || '||@everyone||',
-            embeds: Array.isArray(data.embeds) ? data.embeds : []
-        });
-        
-        return res.status(200).json({
-            success: true
+            content: '||@everyone||',
+            embeds: [embed]
         });
 
-    } catch (error) {
-        console.error('[TikTok Webhook] Fehler:', error);
+        res.send('Discord Meldung gesendet');
 
-        return res.status(500).json({
-            success: false
-        });
+    } catch (err) {
+        console.error(err);
+        res.status(500).send('Fehler');
     }
 });
 
