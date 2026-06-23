@@ -134,6 +134,7 @@ client.on(lkwEventHandler.name, (...args) => lkwEventHandler.execute(...args));
 
 app.get('/tiktok/live-start', async (req, res) => {
     try {
+
         const channel = await client.channels.fetch(
             process.env.TIKTOK_LIVESTREAM_CHANNEL_ID
         );
@@ -142,30 +143,60 @@ app.get('/tiktok/live-start', async (req, res) => {
             return res.status(404).send('Channel nicht gefunden');
         }
 
+        const startTime = Math.floor(Date.now() / 1000);
+
         const embed = new EmbedBuilder()
             .setColor('#00FCFF')
             .setTitle('🔴 XStrikers Gaming ist jetzt LIVE!')
             .setDescription(
-                '🔥 Der TikTok-Livestream wurde gestartet.\n\n' +
-                'Schalte ein und werde Teil der Community!'
+                '🔥 Schalte jetzt ein und werde Teil der Community.\n' +
+                'Spannende Momente, lustige Situationen und jede Menge Unterhaltung warten auf dich.'
             )
             .addFields(
                 {
                     name: '📷 TikTok',
                     value: '@xstrikers_gaming',
+                    inline: true
+                },
+                {
+                    name: '👥 Zuschauer',
+                    value: 'LIVE',
+                    inline: true
+                },
+                {
+                    name: '🕒 Streamzeit',
+                    value: `<t:${startTime}:R>`,
+                    inline: true
+                },
+                {
+                    name: '\u200B',
+                    value: '\u200B',
                     inline: false
                 },
                 {
-                    name: '🔗 Stream',
+                    name: '🎬 Aktueller Stream',
                     value: 'https://www.tiktok.com/@xstrikers_gaming/live',
                     inline: false
                 }
             )
-            .setTimestamp();
+            .setThumbnail('https://i.imgur.com/4M34hi2.png')
+            .setTimestamp()
+            .setFooter({
+                iconURL: 'https://cdn-icons-png.flaticon.com/512/3046/3046121.png',
+                text: 'TikTok LIVE'
+            });
+
+        const row = new ActionRowBuilder().addComponents(
+            new ButtonBuilder()
+                .setLabel('🎥 Stream öffnen')
+                .setStyle(ButtonStyle.Link)
+                .setURL('https://www.tiktok.com/@xstrikers_gaming/live')
+        );
 
         await channel.send({
             content: '||@everyone||',
-            embeds: [embed]
+            embeds: [embed],
+            components: [row]
         });
 
         return res.status(200).send('Discord Meldung gesendet');
